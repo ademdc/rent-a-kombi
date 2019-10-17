@@ -40,6 +40,7 @@ gem 'slim-rails'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'devise'
+gem 'toastr_rails', '2.1.3'
 
 
 

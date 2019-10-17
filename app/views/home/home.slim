@@ -1,6 +1,6 @@
-h1 Adem is sorry, but he was doing some important work on this website.
 
+#main-container
+  h1 Welcome
+  h3 = current_user.email
 
-.container
-  #mydiv Adam
-= link_to 'logout', '#'
+  = link_to "Logout", destroy_user_session_path, method: :delete

@@ -10,6 +10,32 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap";
+@import 'toastr';
+
+#main-container {
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin: 20px;
+}
+
+.devise-container {
+  width: 345px;
+  padding-left: 15px;
+}
+
+.product-block {
+  width: 750px;
+}
+
+.btn {
+  text-decoration: none;
+}
+
+body {
+  background: #f2f2f2;
+}
+

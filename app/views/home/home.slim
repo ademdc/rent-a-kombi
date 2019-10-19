@@ -2,4 +2,7 @@
   h1 Welcome
   h3 = current_user.email
 
-  = link_to "Logout", destroy_user_session_path, method: :delete
+  div
+    = link_to "My posts", posts_path
+  div
+    = link_to "Logout", destroy_user_session_path, method: :delete

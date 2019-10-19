@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @post.title
+p
+  strong Category:
+  = @post.category
+p
+  strong Images:
+  = @post.images
+p
+  strong Description:
+  = @post.description
+p
+  strong Contact:
+  = @post.contact
+
+=> link_to 'Edit', edit_post_path(@post)
+'|
+=< link_to 'Back', posts_path

@@ -7,4 +7,8 @@ class User < ApplicationRecord
   def admin?
     is_admin
   end
+
+  def ability
+    @ability ||= Ability.new(self)
+  end
 end

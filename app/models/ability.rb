@@ -6,10 +6,11 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     if user.admin?
-    can :manage, :all
-    can :manage, Category
+      can :manage, :all
+      can :manage, Category
+      can :manage, Vehicle
     else
-    can :read, :all
+      can :read, :all
     end
     #
     # The first argument to `can` is the action you are giving the user

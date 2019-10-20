@@ -12,8 +12,15 @@
     = f.input :category_id, as: :select, collection: Category.all
   .field
     = f.input :images
+
   .field
-    = f.input :description
+    = f.simple_fields_for :vehicle do |vehicle|
+      = vehicle.input :model
+      = vehicle.input :production_year
+      = vehicle.input :milage
+      = vehicle.input :gas_type
+  .field
+    = f.input :description, as: :text
   .field
     = f.input :contact
   .actions = f.button :submit, class: 'btn btn-primary'

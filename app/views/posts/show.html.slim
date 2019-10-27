@@ -10,7 +10,12 @@ p
   = @post.category.name
 p
   strong Images:
-  = @post.images
+  .flexslider.show-flex
+    ul.slides
+      - @post.images.each do |image|
+        li
+          = image_tag image, class: 'post-img'
+
 p
   strong Description:
   = @post.description

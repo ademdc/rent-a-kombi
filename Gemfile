@@ -38,11 +38,17 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'slim-rails'
 gem 'jquery-rails'
+gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'devise'
 gem 'toastr_rails', '2.1.3'
 gem 'cancancan'
 gem 'simple_form'
+gem "aws-sdk-s3", require: false
+gem 'awesome_print'
+gem 'dotenv-rails'
+gem 'flex-slider-rails'
 
 
 group :development, :test do

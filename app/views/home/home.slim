@@ -1,3 +1,14 @@
-#main-container
-  h1 Welcome
-  h3 = current_user.email
+.container
+  .row
+    .col-md-6
+      h1 Welcome
+      h3 = current_user.email
+
+    .col-md-6
+      .search-box
+        h4 Search vehicles
+        = simple_form_for @posts, url: search_posts_path do |f|
+          = f.input :title, input_html: { class: "daterange" }, as: :string, label: false
+          = f.submit 'Search now', class: 'btn btn-primary'
+
+

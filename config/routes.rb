@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    post :search, on: :collection
+    delete :remove_attachment, on: :member
+  end
   resources :categories
   root to: 'home#home'
 

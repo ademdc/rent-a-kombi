@@ -1,0 +1,40 @@
+p#notice = notice
+
+hr
+h3 About Post
+p
+  strong Title:
+  = @post.title
+p
+  strong Category:
+  = @post.category.name
+p
+  strong Images:
+  = @post.images
+p
+  strong Description:
+  = @post.description
+p
+  strong Contact:
+  = @post.contact
+
+hr
+h3 Vehicle
+p
+  strong Model:
+  = @post.vehicle&.model
+p
+  strong Milage:
+  = @post.vehicle&.milage
+
+p
+  strong Fuel:
+  = @post.vehicle&.gas_type
+
+p
+  strong Year:
+  = @post.vehicle&.production_year
+
+=> link_to 'Edit', edit_post_path(@post)
+'|
+=< link_to 'Back', posts_path

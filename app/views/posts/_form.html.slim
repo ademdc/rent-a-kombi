@@ -5,22 +5,26 @@
       ul
         - @post.errors.full_messages.each do |message|
           li = message
-
-  .field
-    = f.input :title
-  .field
-    = f.input :category_id, as: :select, collection: Category.all
-  .field
-    h3 Images
-    = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo'
-  .field
-    = f.simple_fields_for :vehicle do |vehicle|
-      = vehicle.input :model
-      = vehicle.input :production_year
-      = vehicle.input :milage
-      = vehicle.input :gas_type
-  .field
-    = f.input :description, as: :text
-  .field
-    = f.input :contact
-  .actions = f.button :submit, class: 'btn btn-primary'
+  .row
+    .col-md-7
+      .field
+        = f.input :title
+      .field
+        = f.input :category_id, as: :select, collection: Category.all
+      .field
+        = f.input :description, as: :text
+      .field
+        = f.input :contact
+    .col-md-5
+      .field
+        h3 Images
+        = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo'
+  .row
+    .col-md-6
+      .field
+        = f.simple_fields_for :vehicle do |vehicle|
+          = vehicle.input :model
+          = vehicle.input :production_year
+          = vehicle.input :milage
+          = vehicle.input :gas_type
+      .actions = f.button :submit, class: 'btn btn-primary'

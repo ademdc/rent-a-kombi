@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    post :search, on: :collection
+  end
   resources :categories
   root to: 'home#home'
 

@@ -10,7 +10,12 @@ p
   = @post.category.name
 p
   strong Images:
-  = @post.images
+
+  #carouselExampleSlidesOnly.carousel.slide data-ride="carousel"
+  .carousel-inner role="listbox"
+    - @post.images.each do |image|
+      .carousel-item.active
+        = image_tag image, class: 'post-img'
 p
   strong Description:
   = @post.description

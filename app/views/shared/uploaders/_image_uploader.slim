@@ -1,0 +1,13 @@
+- object = form_builder.object
+- attribute ||= :images
+- button_label ||= t('uploader.choose_image')
+- scope_class ||= nil
+- default_image ||= 'fa-user'
+
+.js-image-uploader-container
+  .js-image-uploader.gazzda-uploader.image-uploader class=scope_class
+    .button-wrapper.m-t
+      = form_builder.input attribute, as: :file, label: false, input_html: { multiple: true }
+    .image-preview.js-image-preview
+      - object.images.each do |img|
+        = image_tag img, class: 'post-img'

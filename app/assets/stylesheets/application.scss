@@ -14,38 +14,5 @@
 
 @import "bootstrap";
 @import 'toastr';
-@import 'posts';
 @import 'flexslider';
-
-#content {
-  margin: 40px;
-  padding-top: 20px;
-}
-
-#navbar {
-  margin: 40px 0px 0px 40px;
-}
-
-#main-container {
-  position: relative;
-  padding-bottom: 50px;
-  margin: 20px;
-}
-
-.devise-container {
-  width: 345px;
-  padding-left: 15px;
-}
-
-.product-block {
-  width: 750px;
-}
-
-.btn {
-  text-decoration: none;
-}
-
-body {
-  background: #f2f2f2;
-}
-
+@import 'style';

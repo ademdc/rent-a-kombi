@@ -14,4 +14,4 @@
           - object.images.each do |image|
             li
               = image_tag image, class: 'post-img'
-
+              = link_to 'x', remove_attachment_post_path(image.id), method: :delete

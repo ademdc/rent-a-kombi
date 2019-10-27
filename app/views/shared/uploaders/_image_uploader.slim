@@ -9,5 +9,8 @@
     .button-wrapper.m-t
       = form_builder.input attribute, as: :file, label: false, input_html: { multiple: true }
     .image-preview.js-image-preview
-      - object.images.each do |img|
-        = image_tag img, class: 'post-img'
+      .flexslider.show-flex
+        ul.slides
+          - object.images.each do |image|
+            li
+              = image_tag image, class: 'post-img'

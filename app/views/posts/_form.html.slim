@@ -12,7 +12,7 @@
     = f.input :category_id, as: :select, collection: Category.all
   .field
     h3 Images
-    = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo', button_label: 'Upload'
+    = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo'
   .field
     = f.simple_fields_for :vehicle do |vehicle|
       = vehicle.input :model

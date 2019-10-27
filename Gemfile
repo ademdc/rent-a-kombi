@@ -43,7 +43,10 @@ gem 'devise'
 gem 'toastr_rails', '2.1.3'
 gem 'cancancan'
 gem 'simple_form'
-
+gem "aws-sdk-s3", require: false
+gem 'awesome_print'
+gem 'dotenv-rails'
+gem 'flex-slider-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

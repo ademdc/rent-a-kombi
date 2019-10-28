@@ -20,11 +20,14 @@
 //= require jquery.flexslider
 //= require moment
 //= require daterangepicker
+//= require fullcalendar
+//= require fullcalendar/locale-all
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
     console.log('in')
     $('.daterange').daterangepicker()
     $('.flexslider').flexslider();
+    $('#calendar').fullCalendar({});
 });
 

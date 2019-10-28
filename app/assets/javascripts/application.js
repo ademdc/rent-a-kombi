@@ -28,6 +28,5 @@ $(document).on("turbolinks:load", function() {
     console.log('in')
     $('.daterange').daterangepicker()
     $('.flexslider').flexslider();
-    $('#calendar').fullCalendar({});
 });
 

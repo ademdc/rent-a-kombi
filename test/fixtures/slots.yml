@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  references: 
+  start: 2019-10-28 18:05:56
+  end: 2019-10-28 18:05:56
+
+two:
+  references: 
+  start: 2019-10-28 18:05:56
+  end: 2019-10-28 18:05:56

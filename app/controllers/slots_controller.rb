@@ -7,14 +7,12 @@ class SlotsController < ApplicationController
 
 
   def create
-    @slot = Slot.new(working_day_params)
+    @slot = Slot.new(slot_params)
 
     respond_to do |format|
       if @slot.save
-        format.html { redirect_to @slot, notice: 'Slot was successfully created.' }
-        format.json { render :show, status: :created, location: @working_day }
+        format.json { render json: { message: 'Slot created successfully.' } , status: :ok }
       else
-        format.html { render :new }
         format.json { render json: @slot.errors, status: :unprocessable_entity }
       end
     end
@@ -35,6 +33,6 @@ class SlotsController < ApplicationController
   protected
 
   def slot_params
-    params.require(:slot).permit(:start, :end)
+    params.require(:slot).permit(:post_id, :start, :end)
   end
 end

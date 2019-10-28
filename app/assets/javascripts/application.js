@@ -25,7 +25,6 @@
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
-    console.log('in')
     $('.daterange').daterangepicker()
     $('.flexslider').flexslider();
 });

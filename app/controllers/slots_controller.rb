@@ -22,7 +22,10 @@ class SlotsController < ApplicationController
   end
 
   def for_post
-    @slot = Slot.where(post_id: params[:post_id])
+    @slots = Slot.for_post(params[:post_id])
+    respond_to do |format|
+      format.json { render json: @slots , status: :ok }
+    end
   end
 
 
@@ -33,6 +36,6 @@ class SlotsController < ApplicationController
   protected
 
   def slot_params
-    params.require(:slot).permit(:post_id, :start, :end)
+    params.require(:slot).permit(:post_id, :start, :end, :title)
   end
 end

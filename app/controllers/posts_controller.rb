@@ -53,6 +53,8 @@ class PostsController < ApplicationController
   end
 
   def search
+    date = params[:post][:title]
+    from, to = date.split('-')a
   end
 
   def remove_attachment

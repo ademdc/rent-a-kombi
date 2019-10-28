@@ -16,11 +16,12 @@ class Posts
       $post_id = $('#calendar').data('post-id')
       start = $('.daterange').val().split('-')[0]
       end = $('.daterange').val().split('-')[1]
+      title = $('.js-title').val()
 
       start_date = moment(start).format("DD/MM/YYYY")
       end_date = moment(end).format("DD/MM/YYYY")
 
-      data = { 'slot[post_id]': $post_id, 'slot[start]': start_date, 'slot[end]': end_date }
+      data = { 'slot[post_id]': $post_id, 'slot[start]': start_date, 'slot[end]': end_date, 'slot[title]': title }
 
       url = $('#calendar').data('slot-create-url')
 
@@ -30,14 +31,24 @@ class Posts
         method: 'POST'
         dataType: 'JSON'
         success: (data) =>
+          @innitialize_full_calendar()
           toastr.success('New time slot successfully created')
         error: () =>
           toastr.error('Error occured')
 
   innitialize_full_calendar: () ->
-    results = {title:'event1', start:'2019-01-10', end: '2019-01-01'}
-    console.log results
-    $('#calendar').fullCalendar()
+    url = $('#calendar').data('generate-slots-url')
+    if url
+      $.ajax
+        url: url
+        method: 'POST'
+        dataType: 'JSON'
+        success: (data) =>
+          $('#calendar').fullCalendar(
+            events: data)
+        error: () =>
+          toastr.error('Error occured while loading calendar')
+
 
 $ ->
   posts = new Posts

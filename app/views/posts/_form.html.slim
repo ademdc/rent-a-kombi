@@ -32,5 +32,6 @@
   .row
     / # = input :title, input_html: { class: "daterange" }, as: :string, label: false
     = text_field_tag "new_slot", nil, class: 'daterange w-300 m-r-sm'
+    = text_field_tag "title", nil, class: 'js-title w-300 m-r-sm'
     = link_to 'Generate slots', '#', class: 'btn btn-primary js-generate-slot'
-    #calendar data-post-id=@post.id data-slot-create-url=slots_path
+    #calendar data-post-id=@post.id data-slot-create-url=slots_path data-generate-slots-url=for_post_slots_path(post_id: @post.id, format: 'json')

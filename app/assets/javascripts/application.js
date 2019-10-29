@@ -25,7 +25,11 @@
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
-    $('.daterange').daterangepicker()
+    $('.daterange').daterangepicker({
+      locale: {
+        format: 'D/M/YYYY hh:mm'
+      }
+    })
     $('.flexslider').flexslider();
 });
 

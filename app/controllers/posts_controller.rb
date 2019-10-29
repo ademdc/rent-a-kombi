@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.images.attach(params[:post][:images])
+    @post.images.attach(params[:post][:images]) if params[:post][:images]
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        @post.images.attach(params[:post][:images])
+        @post.images.attach(params[:post][:images]) if params[:post][:images]
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
 
   def search
     date = params[:post][:title]
-    from, to = date.split('-')a
+    from, to = date.split('-')
   end
 
   def remove_attachment

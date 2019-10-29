@@ -1,5 +1,5 @@
 class SlotsController < ApplicationController
-  before_action :get_slot, only: [:show]
+  before_action :get_slot, only: [:show, :destroy]
 
 
   def show
@@ -19,6 +19,10 @@ class SlotsController < ApplicationController
   end
 
   def destroy
+    @slot.destroy
+    respond_to do |format|
+      format.json { head :no_content, notice: 'Deleted' }
+    end
   end
 
   def for_post

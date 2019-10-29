@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  include PostsHelper
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
+  before_action :get_image!, only: [:remove_attachment]
 
   def index
     @posts = Post.all
@@ -53,13 +55,10 @@ class PostsController < ApplicationController
   end
 
   def search
-    date = params[:post][:title]
-    @from, @to = date.split('-').map(&:to_datetime)
-    @posts = Post.joins(:slots).where('slots.start > ? OR slots.end < ?', @from, @to).uniq
+    @posts = get_reserved_posts
   end
 
   def remove_attachment
-    @image = ActiveStorage::Attachment.find(params[:id])
     @image.purge
     redirect_back(fallback_location: request.referer)
   end
@@ -68,6 +67,10 @@ class PostsController < ApplicationController
 
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def get_image
+      @image = ActiveStorage::Attachment.find(params[:id])
     end
 
     def post_params

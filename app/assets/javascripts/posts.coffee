@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-window.Posts or= {}
+# window.Posts or= {}
 
 class Posts
   constructor: () ->
@@ -77,5 +77,5 @@ class Posts
             error: () =>
               toastr.error('Error occured while deleting')
 
-$ ->
+$(document).on 'turbolinks:load', ->
   posts = new Posts

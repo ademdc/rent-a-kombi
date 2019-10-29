@@ -6,6 +6,7 @@ window.Posts or= {}
 
 class Posts
   constructor: () ->
+    @$calendar = $('#calendar')
     @innitialize_listeners()
     @innitialize_full_calendar()
 
@@ -52,21 +53,29 @@ class Posts
         error: () =>
           toastr.error('Error occured while loading calendar')
 
-  @slot_delete: (event, element) ->
-    if confirm("Do you really want to delete event?")
-      url = $('#calendar').data('slot-url')
-      $post_id = $('#calendar').data('post-id')
-      data = { 'id': event.id}
-      $.ajax
-        url: url
-        data: data
-        method: 'DELETE'
-        dataType: 'JSON'
-        success: (data) =>
-          toastr.success('Time slot successfully deleted')
-          $(element.currentTarget).remove()
-        error: () =>
-          toastr.error('Error occured while deleting')
+  @slot_delete: (event, element) =>
+    swal {
+      title: 'Do you really want to delete time slot?'
+      text: 'Delete?'
+      type: 'warning'
+      showCancelButton: true
+      confirmButtonColor: '#DD6B55'
+      confirmButtonText: 'Delete'
+      closeOnConfirm: yes
+    }, ->
+          url = $('#calendar').data('slot-url')
+          $post_id = $('#calendar').data('post-id')
+          data = { 'id': event.id}
+          $.ajax
+            url: url
+            data: data
+            method: 'DELETE'
+            dataType: 'JSON'
+            success: (data) =>
+              toastr.success('Time slot successfully deleted')
+              $(element.currentTarget).remove()
+            error: () =>
+              toastr.error('Error occured while deleting')
 
 $ ->
   posts = new Posts

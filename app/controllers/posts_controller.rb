@@ -54,7 +54,8 @@ class PostsController < ApplicationController
 
   def search
     date = params[:post][:title]
-    from, to = date.split('-')
+    @from, @to = date.split('-').map(&:to_datetime)
+    @posts = Post.joins(:slots).where('slots.start > ? OR slots.end < ?', @from, @to).uniq
   end
 
   def remove_attachment

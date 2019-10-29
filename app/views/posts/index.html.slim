@@ -1,29 +1,6 @@
-h1 Listing posts
-
-table
-  thead
-    tr
-      th Title
-      th Category
-      th Images
-      th Description
-      th Contact
-      th
-      th
-      th
-
-  tbody
-    - @posts.each do |post|
-      tr
-        td = post.title
-        td = post.category.name
-        td = post.images
-        td = post.description
-        td = post.contact
-        td = link_to 'Show', post
-        td = link_to 'Edit', edit_post_path(post)
-        td = link_to 'Destroy', post, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Post', new_post_path
+.container.py-5
+  .row.text-center.mb-5
+    .col-lg-7.mx-auto
+      h1.display-4 All vehicles
+      p.lead.mb-0 = "Listing all available vehicles"
+  = render 'post_list', posts: @posts, edit: true

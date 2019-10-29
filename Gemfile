@@ -51,6 +51,7 @@ gem 'dotenv-rails'
 gem 'flex-slider-rails'
 
 gem 'fullcalendar-rails'
+gem 'font-awesome-rails'
 
 gem 'sweetalert-rails'
 

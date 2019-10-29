@@ -1,6 +1,6 @@
 module PostsHelper
   def get_reserved_posts
-    date = params[:post][:title]
+    date = params[:search][:daterange]
     @from, @to = date.split('-').map(&:to_datetime)
     range = @from.beginning_of_day..@to.end_of_day
 

@@ -7,8 +7,8 @@
     .col-md-6
       .search-box
         h4 Search vehicles
-        = simple_form_for @posts, url: search_posts_path, method: 'GET' do |f|
-          = f.input :title, input_html: { class: "daterange" }, as: :string, label: false
+        = simple_form_for :search, url: search_posts_path, method: 'GET' do |f|
+          = f.input :daterange, input_html: { class: "daterange" }, as: :string, label: false
           = f.submit 'Search now', class: 'btn btn-primary'
 
 

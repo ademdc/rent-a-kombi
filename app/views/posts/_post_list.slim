@@ -22,7 +22,7 @@
                     i.fa.fa-star.text-success
                   li.list-inline-item.m-0
                     i.fa.fa-star-o.text-gray
-              h6.mt-0.font-weight-bold.mb-2.mt-4 = link_to 'Edit', edit_post_path(post) if current_user.admin? && edit
+              h6.mt-0.font-weight-bold.mb-2.mt-4 = link_to 'Edit', edit_post_path(post) if current_user&.admin? && edit
 
             = image_tag post.images.first, class: 'img ml-lg-5 order-1 order-lg-2 w-200'
 

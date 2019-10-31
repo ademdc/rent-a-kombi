@@ -31,6 +31,7 @@ $(document).on("turbolinks:load", function() {
         format: 'D/M/YYYY hh:mm'
       }
     })
-    $('.flexslider').flexslider();
+    $('.flexslider').flexslider({
+      animation: "slide"});
 });
 

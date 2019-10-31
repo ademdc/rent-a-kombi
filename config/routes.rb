@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  require 'sidekiq/cron/web'
+  Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+
+
+  mount Sidekiq::Web => '/sidekiq'
   resources :posts do
     get :search, on: :collection
     delete :remove_attachment, on: :member

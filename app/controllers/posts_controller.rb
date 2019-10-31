@@ -36,7 +36,8 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        @post.images.attach(params[:post][:images]) if params[:post][:images]
+        # @post.images.attach(params[:post][:images]) if params[:post][:images]
+        Posts::ImageUploadWorker.perform_async(@post.id, params[:post][:images])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else

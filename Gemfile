@@ -50,6 +50,11 @@ gem 'awesome_print'
 gem 'dotenv-rails'
 gem 'flex-slider-rails'
 
+gem 'fullcalendar-rails'
+gem 'font-awesome-rails'
+
+gem 'sweetalert-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -9,6 +9,7 @@ class Ability
       can :manage, :all
       can :manage, Category
       can :manage, Vehicle
+      can :manage, Post
     else
       can :read, :all
     end

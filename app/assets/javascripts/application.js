@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require sweetalert
 //= require jquery
 //= require popper
 //= require bootstrap-sprockets
@@ -20,11 +21,16 @@
 //= require jquery.flexslider
 //= require moment
 //= require daterangepicker
+//= require fullcalendar
+//= require fullcalendar/locale-all
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
-    console.log('in')
-    $('.daterange').daterangepicker()
+    $('.daterange').daterangepicker({
+      locale: {
+        format: 'D/M/YYYY hh:mm'
+      }
+    })
     $('.flexslider').flexslider();
 });
 

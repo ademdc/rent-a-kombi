@@ -1,45 +1,51 @@
 p#notice = notice
+.row
+  .col-md-7
+    hr
+    h3 About Post
+    p
+      strong Title:
+      = @post.title
+    p
+      strong Category:
+      = @post.category.name
+    p
+      strong Images:
+      .flexslider.show-flex
+        ul.slides
+          - @post.images.each do |image|
+            li
+              = image_tag image, class: 'post-img'
+  .col-md-5
+    - if current_ability.can?(:edit, @post)
+      #calendar data-post-id=@post.id data-slot-url=slots_path data-generate-slots-url=for_post_slots_path(post_id: @post.id, format: 'json')
 
-hr
-h3 About Post
-p
-  strong Title:
-  = @post.title
-p
-  strong Category:
-  = @post.category.name
-p
-  strong Images:
-  .flexslider.show-flex
-    ul.slides
-      - @post.images.each do |image|
-        li
-          = image_tag image, class: 'post-img'
+.row
+  .col-md-6
+    p
+      strong Description:
+      = @post.description
+    p
+      strong Contact:
+      = @post.contact
 
-p
-  strong Description:
-  = @post.description
-p
-  strong Contact:
-  = @post.contact
+    hr
+    h3 Vehicle
+    p
+      strong Model:
+      = @post.vehicle&.model
+    p
+      strong Milage:
+      = @post.vehicle&.milage
 
-hr
-h3 Vehicle
-p
-  strong Model:
-  = @post.vehicle&.model
-p
-  strong Milage:
-  = @post.vehicle&.milage
+    p
+      strong Fuel:
+      = @post.vehicle&.gas_type
 
-p
-  strong Fuel:
-  = @post.vehicle&.gas_type
+    p
+      strong Year:
+      = @post.vehicle&.production_year
 
-p
-  strong Year:
-  = @post.vehicle&.production_year
-
-=> link_to 'Edit', edit_post_path(@post)
-'|
-=< link_to 'Back', posts_path
+    => link_to 'Edit', edit_post_path(@post)
+    '|
+    =< link_to 'Back', posts_path

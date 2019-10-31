@@ -32,6 +32,14 @@ class SlotsController < ApplicationController
     end
   end
 
+  def last_slot
+    @slot = Slot.where(post_id: params[:post_id]).last
+
+    respond_to do |format|
+      format.json { render json: @slot , status: :ok }
+    end
+  end
+
 
   def get_slot
     @slot = Slot.find(params[:id])

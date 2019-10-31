@@ -13,6 +13,7 @@ class Posts
   innitialize_listeners: () ->
     $(document).on 'click', '.js-generate-slot', (e) =>
       e.preventDefault()
+      return if $('#new_slot').val() == ''
 
       $post_id = $('#calendar').data('post-id')
       start = $('.daterange').val().split('-')[0]
@@ -28,10 +29,19 @@ class Posts
         method: 'POST'
         dataType: 'JSON'
         success: (data) =>
-          @innitialize_full_calendar()
           toastr.success('New time slot successfully created')
+          Posts.refetch_last_event()
+          $('#new_slot').val('')
+          $('#title').val('')
         error: () =>
           toastr.error('Error occured')
+
+    $(document).on 'click', '.js-refetch-slot', (e) =>
+      e.preventDefault()
+      events = [ { title  : 'event1', start  : '2019-10-06', end:  '2019-10-10 01:00' } ]
+      $("#calendar").fullCalendar('addEventSource', events);
+      $("#calendar").fullCalendar('refetchEvents');
+
 
   innitialize_full_calendar: () ->
     url = $('#calendar').data('generate-slots-url')
@@ -52,6 +62,20 @@ class Posts
            )
         error: () =>
           toastr.error('Error occured while loading calendar')
+
+  @refetch_last_event: () ->
+    url = $('#calendar').data('last-slot-path')
+    if url
+      $.ajax
+        url: url
+        method: 'POST'
+        dataType: 'JSON'
+        success: (data) =>
+          console.log data
+          $("#calendar").fullCalendar('addEventSource', data);
+          $("#calendar").fullCalendar('refetchEvents');
+        error: () =>
+          toastr.error('Error occured while loading data for calendar')
 
   @slot_delete: (event, element) =>
     swal {

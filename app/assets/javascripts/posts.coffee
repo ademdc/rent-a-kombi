@@ -8,12 +8,12 @@ class Posts
   constructor: () ->
     @$calendar = $('#calendar')
     @innitialize_listeners()
-    @innitialize_full_calendar()
+    Posts.innitialize_full_calendar()
 
   innitialize_listeners: () ->
     $(document).on 'click', '.js-generate-slot', (e) =>
       e.preventDefault()
-      return if $('#new_slot').val() == ''
+      return if $('.daterange').val() == ''
 
       $post_id = $('#calendar').data('post-id')
       start = $('.daterange').val().split('-')[0]
@@ -30,7 +30,7 @@ class Posts
         dataType: 'JSON'
         success: (data) =>
           toastr.success('New time slot successfully created')
-          Posts.refetch_last_event()
+          Posts.refresh_calendar()
           $('#new_slot').val('')
           $('#title').val('')
         error: () =>
@@ -42,9 +42,9 @@ class Posts
       $("#calendar").fullCalendar('addEventSource', events);
       $("#calendar").fullCalendar('refetchEvents');
 
-
-  innitialize_full_calendar: () ->
-    url = $('#calendar').data('generate-slots-url')
+  @innitialize_full_calendar: () ->
+    url = $('#calendar').data('for-posts-url')
+    console.log 'inn'
     if url
       $.ajax
         url: url
@@ -63,19 +63,19 @@ class Posts
         error: () =>
           toastr.error('Error occured while loading calendar')
 
-  @refetch_last_event: () ->
-    url = $('#calendar').data('last-slot-path')
+  @refresh_calendar: () ->
+    url = $('#calendar').data('for-posts-url')
     if url
       $.ajax
         url: url
         method: 'POST'
         dataType: 'JSON'
         success: (data) =>
-          console.log data
+          $('#calendar').fullCalendar('removeEventSources');
           $("#calendar").fullCalendar('addEventSource', data);
           $("#calendar").fullCalendar('refetchEvents');
         error: () =>
-          toastr.error('Error occured while loading data for calendar')
+          toastr.error('Error occured while loading calendar')
 
   @slot_delete: (event, element) =>
     swal {
@@ -97,7 +97,7 @@ class Posts
             dataType: 'JSON'
             success: (data) =>
               toastr.success('Time slot successfully deleted')
-              $(element.currentTarget).remove()
+              Posts.refresh_calendar()
             error: () =>
               toastr.error('Error occured while deleting')
 

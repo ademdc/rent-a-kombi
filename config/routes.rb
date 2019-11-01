@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 
   resource :slots do
     post :for_post, on: :collection
-    post :last_slot, on: :collection
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

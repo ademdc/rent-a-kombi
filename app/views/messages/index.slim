@@ -1,0 +1,25 @@
+- if @over_ten
+  = link_to 'Show Previous', '?m=all'
+
+.ui.segment.message-container
+  - @messages.each do |message|
+    - if message.body
+      - user = User.find(message.user_id)
+      .item
+        .content
+          .header.border.m-b-xl style="margin-bottom: 50px;"
+            strong
+              = user.email
+            .p-l-xs
+              = message.message_time
+            .list
+              .item.border
+                .right.triangle.icon
+                  = message.body
+
+= form_for [@conversation, @message], html: {class: "ui reply form"} do |f|
+  .field
+    = f.text_area :body, class: "form-control"
+    = f.text_field :user_id, value: current_user.id, type: "hidden"
+  div
+    = f.submit "Add Reply", class: "btn btn-primary"

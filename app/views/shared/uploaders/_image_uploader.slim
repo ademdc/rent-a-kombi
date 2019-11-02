@@ -3,15 +3,16 @@
 - button_label ||= t('uploader.choose_image')
 - scope_class ||= nil
 - default_image ||= 'fa-user'
+- multiple ||=true
 
 .js-image-uploader-container
   .js-image-uploader.gazzda-uploader.image-uploader class=scope_class
     .button-wrapper.m-t
-      = form_builder.input attribute, as: :file, label: false, input_html: { multiple: true }
+      = form_builder.input attribute, as: :file, label: false, input_html: { multiple: multiple }
     .image-preview.js-image-preview
       .flexslider.show-flex
         ul.slides
-          - object.images.each do |image|
-            li
-              = image_tag image, class: 'post-img'
-              = link_to 'x', remove_attachment_post_path(image.id), method: :delete
+          / - object.images&.each do |image|
+          /   li
+          /     = image_tag image, class: 'post-img'
+          /     = link_to 'x', remove_attachment_post_path(image.id), method: :delete

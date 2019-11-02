@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :category
+  belongs_to :user
   has_one :vehicle, dependent: :destroy
   has_many :slots, dependent: :destroy
 

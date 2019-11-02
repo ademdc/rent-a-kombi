@@ -4,8 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :posts, dependent: :destroy
+
   def admin?
     is_admin
+  end
+
+  def my_post?(post)
+    self.id==post.user.id
   end
 
   def ability

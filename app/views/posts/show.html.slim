@@ -19,7 +19,6 @@ p#notice = notice
   .col-md-5
     - if current_ability.can?(:edit, @post)
       #calendar data-post-id=@post.id data-slot-url=slots_path data-generate-slots-url=for_post_slots_path(post_id: @post.id, format: 'json')
-
 .row
   .col-md-6
     p
@@ -28,7 +27,11 @@ p#notice = notice
     p
       strong Contact:
       = @post.contact
-
+    p
+      strong Seller:
+      = @post.user.email
+      .messaging
+        = link_to ' Message seller!', conversations_path(sender_id: current_user.id, recipient_id: @post.user.id), method: 'post', class: 'btn btn-sm btn-success mt-3' unless current_user.my_post?(@post)
     hr
     h3 Vehicle
     p
@@ -46,6 +49,6 @@ p#notice = notice
       strong Year:
       = @post.vehicle&.production_year
 
-    => link_to 'Edit', edit_post_path(@post)
-    '|
-    =< link_to 'Back', posts_path
+    = link_to 'Edit', edit_post_path(@post)
+
+    = link_to 'Back', posts_path

@@ -8,6 +8,7 @@
   .row
     .col-md-7
       .field
+        = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
         = f.input :title
       .field
         = f.input :category_id, as: :select, collection: Category.all

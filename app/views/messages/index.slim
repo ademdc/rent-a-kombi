@@ -1,6 +1,3 @@
-- if @over_ten
-  = link_to 'Show Previous', '?m=all'
-
 .ui.segment.message-container
   - @messages.each do |message|
     - if message.body
@@ -16,6 +13,8 @@
               .item.border
                 .right.triangle.icon
                   = message.body
+  - if @over_ten
+    = link_to 'Show Previous', '?m=all'
 
 = form_for [@conversation, @message], html: {class: "ui reply form"} do |f|
   .field

@@ -1,0 +1,7 @@
+= form_for [@conversation, @message], html: { class: "ui reply form" } do |f|
+  .field
+    = f.text_field :body, class: "form-control", placeholder: 'Write your message'
+    = f.text_field :user_id, value: current_user.id, type: "hidden"
+  div
+    = f.submit "Send", class: "btn btn-primary"
+      i.fa.fa-paper-plane-o aria-hidden="true"

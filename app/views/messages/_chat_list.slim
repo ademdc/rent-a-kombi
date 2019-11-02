@@ -1,0 +1,12 @@
+- Conversation.per_user(current_user.id).each do |conversation|
+  a href=conversation_messages_path(conversation.id)
+    .chat_list class="#{params[:conversation_id] == conversation.id.to_s ? 'active_chat' : ''}"
+      .chat_people
+        .chat_img
+          img alt="sunil" src="https://ptetutorials.com/images/user-profile.png" /
+        .chat_ib
+          h5
+            = conversation.recipient_name(current_user)
+            span.chat_date = conversation.messages.last.message_time
+          p
+            = conversation.messages.last.body

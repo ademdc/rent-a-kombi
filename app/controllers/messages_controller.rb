@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   end
 
   def index
-    @messages = @conversation.messages.order('created_at DESC')
+    @messages = @conversation.messages.order('created_at ASC')
     if @messages.length > 10
       @over_ten = true
       @messages = @messages[-10..-1]
@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
 
     if params[:m]
       @over_ten = false
-      @messages = @conversation.messages.order('created_at DESC')
+      @messages = @conversation.messages.order('created_at ASC')
     end
 
     if @messages.last

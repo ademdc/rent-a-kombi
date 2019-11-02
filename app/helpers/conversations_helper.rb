@@ -1,5 +1,6 @@
 module ConversationsHelper
   def conversations_per_user(user)
+    html = ''
     Conversation.per_user(user.id).each do |conversation|
       if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id
         if conversation.sender_id == current_user.id
@@ -7,8 +8,11 @@ module ConversationsHelper
         else
           recipient = User.find(conversation.sender_id)
         end
-        return link_to recipient.email, conversation_messages_path(conversation)
+          html += (link_to recipient.email, conversation_messages_path(conversation))
       end
     end
+
+    html.html_safe
   end
+
 end

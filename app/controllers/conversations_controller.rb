@@ -2,8 +2,7 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
-    @conversations = Conversation.all
+    @conversations = Conversation.per_user(current_user.id)
   end
 
   def create

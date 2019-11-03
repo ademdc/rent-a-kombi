@@ -1,9 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
-# window.Posts or= {}
-
 class Posts
   constructor: () ->
     @$calendar = $('#calendar')
@@ -44,7 +38,7 @@ class Posts
 
   @innitialize_full_calendar: () ->
     url = $('#calendar').data('for-posts-url')
-    console.log 'inn'
+
     if url
       $.ajax
         url: url
@@ -101,5 +95,5 @@ class Posts
             error: () =>
               toastr.error('Error occured while deleting')
 
-$(document).on 'turbolinks:load', ->
+$(document).ready ->
   posts = new Posts

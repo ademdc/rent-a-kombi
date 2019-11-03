@@ -6,7 +6,7 @@
         - @post.errors.full_messages.each do |message|
           li = message
   .row
-    .col-md-7
+    .col-md-6
       .field
         = f.input :title
       .field
@@ -15,10 +15,13 @@
         = f.input :description, as: :text
       .field
         = f.input :contact
-    .col-md-5
+    .col-md-6
       .field
         h3 Images
         = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo'
+  .row
+    .row
+      h2 More info
   .row
     .col-md-6
       .field
@@ -30,11 +33,12 @@
       .actions = f.button :submit, class: 'btn btn-primary'
   hr
   .row
-    / # = input :title, input_html: { class: "daterange" }, as: :string, label: false
-    = text_field_tag "new_slot", nil, class: 'daterange w-300 m-r-sm'
-    = text_field_tag "title", nil, class: 'js-title w-300 m-r-sm'
-    = link_to 'Generate slots', '#', class: 'btn btn-primary js-generate-slot'
-    #calendar data-post-id=@post.id data-slot-url=slots_path data-generate-slots-url=for_post_slots_path(post_id: @post.id, format: 'json')
+    .js-calendar-container.calendar-container
+      = text_field_tag "new_slot", nil, class: 'daterange w-300 m-r-sm'
+      = text_field_tag "title", nil, class: 'js-title w-300 m-r-sm'
+      = link_to 'Generate slots', '#', class: 'btn btn-primary js-generate-slot'
+
+      #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
 
 / .container
 /   .row.m-y-2

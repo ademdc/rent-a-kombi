@@ -37,6 +37,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.update(post_params)
         @post.images.attach(params[:post][:images]) if params[:post][:images]
+
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -55,7 +56,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = get_reserved_posts
+    @posts = get_reserved_posts(params[:search][:daterange])
   end
 
   def remove_attachment

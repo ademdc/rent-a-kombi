@@ -1,18 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
-# window.Posts or= {}
-
 class Posts
   constructor: () ->
     @$calendar = $('#calendar')
     @innitialize_listeners()
-    @innitialize_full_calendar()
+    Posts.innitialize_full_calendar()
 
   innitialize_listeners: () ->
     $(document).on 'click', '.js-generate-slot', (e) =>
       e.preventDefault()
+      return if $('.daterange').val() == ''
 
       $post_id = $('#calendar').data('post-id')
       start = $('.daterange').val().split('-')[0]
@@ -28,13 +23,22 @@ class Posts
         method: 'POST'
         dataType: 'JSON'
         success: (data) =>
-          @innitialize_full_calendar()
           toastr.success('New time slot successfully created')
+          Posts.refresh_calendar()
+          $('#new_slot').val('')
+          $('#title').val('')
         error: () =>
           toastr.error('Error occured')
 
-  innitialize_full_calendar: () ->
-    url = $('#calendar').data('generate-slots-url')
+    $(document).on 'click', '.js-refetch-slot', (e) =>
+      e.preventDefault()
+      events = [ { title  : 'event1', start  : '2019-10-06', end:  '2019-10-10 01:00' } ]
+      $("#calendar").fullCalendar('addEventSource', events);
+      $("#calendar").fullCalendar('refetchEvents');
+
+  @innitialize_full_calendar: () ->
+    url = $('#calendar').data('for-posts-url')
+
     if url
       $.ajax
         url: url
@@ -50,6 +54,20 @@ class Posts
             eventClick: (event, element) ->
               Posts.slot_delete(event, element)
            )
+        error: () =>
+          toastr.error('Error occured while loading calendar')
+
+  @refresh_calendar: () ->
+    url = $('#calendar').data('for-posts-url')
+    if url
+      $.ajax
+        url: url
+        method: 'POST'
+        dataType: 'JSON'
+        success: (data) =>
+          $('#calendar').fullCalendar('removeEventSources');
+          $("#calendar").fullCalendar('addEventSource', data);
+          $("#calendar").fullCalendar('refetchEvents');
         error: () =>
           toastr.error('Error occured while loading calendar')
 
@@ -73,9 +91,9 @@ class Posts
             dataType: 'JSON'
             success: (data) =>
               toastr.success('Time slot successfully deleted')
-              $(element.currentTarget).remove()
+              Posts.refresh_calendar()
             error: () =>
               toastr.error('Error occured while deleting')
 
-$(document).on 'turbolinks:load', ->
+$(document).ready ->
   posts = new Posts

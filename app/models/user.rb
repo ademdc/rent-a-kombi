@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_one_attached :avatar
+
 
   def admin?
     is_admin
@@ -12,6 +14,10 @@ class User < ApplicationRecord
 
   def my_post?(post)
     self.id==post.user.id
+  end
+
+  def full_name
+    first_name && last_name ? "#{first_name} #{last_name}" : email
   end
 
   def ability

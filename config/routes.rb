@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :categories
   root to: 'home#home'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
   resource :slots do
     post :for_post, on: :collection
   end

@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= render 'shared/uploaders/image_uploader', form_builder: f, attribute: :profile_picture, multiple: false, default_image: 'fa-user' %>
+    <%= f.input :avatar, as: :file, label: false %>
   </div>
 
   <div class="field">
-    <%= image_tag resource.profile_picture, class: 'post-img' if resource.profile_picture.attached?  %>
+    <%= image_tag resource.avatar, class: 'post-img' if resource.avatar.attached?  %>
   </div>
 
   <div class="field">

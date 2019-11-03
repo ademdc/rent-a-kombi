@@ -12,6 +12,8 @@ body {
 
 .navbar {
   background-color: #3579F6 !important;
+  padding: 5px 100px;
+
 }
 
 .page-footer {
@@ -36,4 +38,14 @@ body {
 
 .m-r-sm {
   margin-right: 20px;
+}
+
+.img-circle {
+  border-radius: 50%;
+  width: 40px;
+}
+
+.nav-link:hover {
+  background-color: darkblue;
+  color: white !important;
 }

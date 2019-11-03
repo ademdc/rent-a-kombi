@@ -1,0 +1,6 @@
+- if current_user && current_user.avatar.attached?
+  = image_tag current_user.avatar, class: 'img-circle'
+- elsif !current_user.avatar.attached?
+  = image_tag 'user-photo.png', class: 'img-circle d-inline'
+- else
+  = ''

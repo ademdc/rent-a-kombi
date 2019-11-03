@@ -18,7 +18,7 @@ p#notice = notice
               = image_tag image, class: 'post-img'
   .col-md-5
     - if current_ability.can?(:edit, @post)
-      #calendar data-post-id=@post.id data-slot-url=slots_path data-generate-slots-url=for_post_slots_path(post_id: @post.id, format: 'json')
+      #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
 .row
   .col-md-6
     p

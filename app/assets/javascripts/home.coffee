@@ -1,3 +1,17 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+class Home
+  constructor: () ->
+    @innitialize_plugins()
+
+  innitialize_plugins: () ->
+    @innitialize_daterangepicker()
+    @innitialize_flexslider()
+
+  innitialize_daterangepicker: () ->
+    $('.daterange').daterangepicker
+      locale: format: 'D/M/YYYY hh:mm'
+
+  innitialize_flexslider: () ->
+    $('.flexslider').flexslider()
+
+$(document).ready ->
+  home = new Home

@@ -17,20 +17,10 @@
 //= require rails-ujs
 //= require activestorage
 //= require toastr
-//= require turbolinks
 //= require jquery.flexslider
 //= require moment
 //= require daterangepicker
 //= require fullcalendar
 //= require fullcalendar/locale-all
 //= require_tree .
-
-$(document).on("turbolinks:load", function() {
-    $('.daterange').daterangepicker({
-      locale: {
-        format: 'D/M/YYYY hh:mm'
-      }
-    })
-    $('.flexslider').flexslider();
-});
 

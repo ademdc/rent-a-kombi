@@ -1,10 +1,5 @@
 class SlotsController < ApplicationController
-  before_action :get_slot, only: [:show, :destroy]
-
-
-  def show
-  end
-
+  before_action :get_slot, only: [:destroy]
 
   def create
     @slot = Slot.new(slot_params)
@@ -32,12 +27,11 @@ class SlotsController < ApplicationController
     end
   end
 
+  protected
 
   def get_slot
     @slot = Slot.find(params[:id])
   end
-
-  protected
 
   def slot_params
     params.require(:slot).permit(:post_id, :start, :end, :title)

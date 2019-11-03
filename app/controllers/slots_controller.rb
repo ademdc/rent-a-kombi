@@ -1,8 +1,5 @@
 class SlotsController < ApplicationController
-  before_action :get_slot, only: [:show, :destroy]
-
-  def show
-  end
+  before_action :get_slot, only: [:destroy]
 
   def create
     @slot = Slot.new(slot_params)

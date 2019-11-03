@@ -3,7 +3,6 @@ module Posts
 
     def perform(post_id, options={})
       @post = Post.find(post_id)
-      byebug
       @post.images.attach(options[:file]) if options[:file]
     end
   end

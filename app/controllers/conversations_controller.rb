@@ -11,7 +11,10 @@ class ConversationsController < ApplicationController
    else
       @conversation = Conversation.create!(conversation_params)
    end
-     redirect_to conversation_messages_path(@conversation)
+    respond_to do |format|
+      format.json { render json: @conversation , status: :ok }
+      format.html { redirect_to conversation_messages_path(@conversation) }
+    end
   end
 
   private

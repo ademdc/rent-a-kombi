@@ -16,11 +16,19 @@ class User < ApplicationRecord
     self.id==post.user.id
   end
 
+  def in_conversation?(conversation)
+    [conversation.recipient_id, conversation.sender_id].exclude?(self.id)
+  end
+
   def full_name
     first_name && last_name ? "#{first_name} #{last_name}" : email
   end
 
   def ability
     @ability ||= Ability.new(self)
+  end
+
+  def profile_image
+    self.avatar.attached? ? self.avatar : 'user-photo.png'
   end
 end

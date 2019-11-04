@@ -5,11 +5,11 @@ class Conversation < ActiveRecord::Base
 
   validates_uniqueness_of :sender_id, :scope => :recipient_id
   scope :between, -> (sender_id, recipient_id) do
-    where("(conversations.sender_id = ? AND conversations.recipient_id =?) OR (conversations.sender_id = ? AND conversations.recipient_id =?)", sender_id,recipient_id, recipient_id, sender_id)
+    where("(conversations.sender_id = ? AND conversations.recipient_id =?) OR (conversations.sender_id = ? AND conversations.recipient_id =?)", sender_id, recipient_id, recipient_id, sender_id)
   end
   scope :per_user, -> (user_id) { where(sender_id: user_id).or(where(recipient_id: user_id)) }
 
-  def recipient_name(user)
+  def recipient_of(user)
     if self.sender_id == user.id || self.recipient_id == user.id
       if self.sender_id == user.id
         recipient = User.find(self.recipient_id)
@@ -17,6 +17,6 @@ class Conversation < ActiveRecord::Base
         recipient = User.find(self.sender_id)
       end
     end
-    recipient.email
+    recipient
   end
 end

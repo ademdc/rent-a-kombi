@@ -9,4 +9,5 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :vehicle, reject_if: :all_blank
 
   scope :all_except, -> (ids) { where.not(id: ids) }
+  scope :by_user, -> (user) { where(user_id: user.id) }
 end

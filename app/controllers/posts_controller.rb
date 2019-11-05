@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :get_image!, only: [:remove_attachment]
 
   def index
-    @posts = Post.all
+    @posts = Post.by_user(current_user)
   end
 
   def show

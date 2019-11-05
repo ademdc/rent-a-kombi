@@ -6,12 +6,12 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
     ul.navbar-nav
       li.nav-item
         = link_to "Home", root_path, class: 'nav-link'
-      li.nav-item
-        = link_to "Kombi", posts_path, class: 'nav-link'
       - if current_user
         li.nav-item
-          = link_to "Messages", conversations_path, class: 'nav-link'
-          = content_tag :span, current_user.unread_messages, class: 'button__badge' unless current_user.unread_messages.zero?
+          = link_to "MyVans", posts_path, class: 'nav-link'
+          li.nav-item
+            = link_to "Messages", conversations_path, class: 'nav-link'
+            = content_tag :span, current_user.unread_messages, class: 'button__badge' unless current_user.unread_messages.zero?
     .navbar-collapse.collapse.w-100.order-3.dual-collapse2
       ul.navbar-nav.ml-auto
         - if current_user
@@ -24,5 +24,6 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
         - else
           li.nav-item
             = link_to "Sign in", new_user_session_path, method: :get, class: 'nav-link'
+
 
 

@@ -1,4 +1,4 @@
-- Conversation.per_user(current_user.id).each do |conversation|
+- Conversation.per_latest_message_for(current_user).each do |conversation|
   a href=conversation_messages_path(conversation.id)
     - additional_class = conversation.has_unread_messages_for?(current_user) ? 'unread-message' : ''
     .chat_list class="#{params[:conversation_id] == conversation.id.to_s ? 'active_chat' : ''} #{additional_class}"
@@ -8,6 +8,6 @@
         .chat_ib
           h5
             = conversation.recipient_of(current_user).full_name
-            span.chat_date = conversation.messages.last.message_time
+            span.chat_date = conversation.messages.first.message_time
           p
-            = conversation.messages.last.body
+            = conversation.messages.first.body

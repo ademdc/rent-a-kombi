@@ -19,4 +19,8 @@ class Conversation < ActiveRecord::Base
     end
     recipient
   end
+
+  def has_unread_messages_for?(user)
+    messages.where('user_id != ?', user.id).pluck(:read).include?(false)
+  end
 end

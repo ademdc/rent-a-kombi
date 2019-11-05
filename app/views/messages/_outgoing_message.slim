@@ -1,4 +1,8 @@
 .outgoing_msg
   .sent_msg
-    p = text
-    span.time_date = time
+    - if message.post
+      .attached_post
+        i.fa.fa-paperclip
+        = link_to message.post.title, post_path(message.post), target: '_blank'
+    p = message.body
+    span.time_date = message.message_time

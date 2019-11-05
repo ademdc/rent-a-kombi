@@ -1,6 +1,7 @@
 - Conversation.per_user(current_user.id).each do |conversation|
   a href=conversation_messages_path(conversation.id)
-    .chat_list class="#{params[:conversation_id] == conversation.id.to_s ? 'active_chat' : ''}"
+    - additional_class = conversation.has_unread_messages_for?(current_user) ? 'unread-message' : ''
+    .chat_list class="#{params[:conversation_id] == conversation.id.to_s ? 'active_chat' : ''} #{additional_class}"
       .chat_people
         .chat_img
           = image_tag conversation.recipient_of(current_user).profile_image, class: 'img-circle'

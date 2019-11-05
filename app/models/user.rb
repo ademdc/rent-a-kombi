@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_one_attached :avatar
-
+  has_many :conversations, ->(user) { unscope(:where).where("recipient_id = :id OR sender_id = :id", id: user.id) }
+  has_many :messages, through: :conversations
 
   def admin?
     is_admin
@@ -17,7 +18,7 @@ class User < ApplicationRecord
   end
 
   def in_conversation?(conversation)
-    [conversation.recipient_id, conversation.sender_id].exclude?(self.id)
+    [conversation.recipient_id, conversation.sender_id].include?(self.id)
   end
 
   def full_name
@@ -26,6 +27,10 @@ class User < ApplicationRecord
 
   def ability
     @ability ||= Ability.new(self)
+  end
+
+  def unread_messages
+    self.messages.where('user_id != ?', self.id).where(read: false).group_by(&:conversation_id).count
   end
 
   def profile_image

@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
 
     if @messages.last
       if @messages.last.user_id != current_user.id
-        @messages.last.read = true;
+        @messages.last.update(read: true)
       end
     end
 
@@ -42,10 +42,10 @@ class MessagesController < ApplicationController
 
     def set_up_conversation
       @conversation = Conversation.find(params[:conversation_id])
-      redirect_to root_path, alert: "Can not access that page" if current_user.in_conversation?(@conversation)
+      redirect_to root_path, alert: "Can not access that page" unless current_user.in_conversation?(@conversation)
     end
 
     def message_params
-      params.require(:message).permit(:body, :user_id)
+      params.require(:message).permit(:body, :user_id, :post_id)
     end
 end

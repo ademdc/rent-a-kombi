@@ -30,8 +30,8 @@ p#notice = notice
     p
       strong Seller:
       = @post.user.email
-      .messaging data-conversation-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user.id
-      = link_to ' Message renter', '#', class: 'btn btn-sm btn-success btn-rounded mb-4', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
+      .messaging data-conversation-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user.id data-post-id=@post.id
+      = link_to "Message #{@post.user.full_name}", '#', class: 'btn btn-sm btn-success btn-rounded mb-4', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
     hr
     h3 Vehicle
     p

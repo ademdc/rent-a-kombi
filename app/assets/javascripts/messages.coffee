@@ -9,13 +9,18 @@ class Messages
       conversation_url = $('.messaging').data('conversation-url')
       message = $('.js-message').val()
       current_user_id = $('.messaging').data('current-user-id')
+      post_id = $('.messaging').data('post-id')
+
+      if !message
+        toastr.warning 'Enter message'
+        return
 
       $.ajax
         url: conversation_url
         method: 'POST'
         dataType: 'JSON'
         success: (data) =>
-          params = { 'conversation_id': data.id, 'message[body]': message, 'message[conversation_id]': data.id, 'message[user_id]': current_user_id }
+          params = { 'conversation_id': data.id, 'message[body]': message, 'message[conversation_id]': data.id, 'message[user_id]': current_user_id, 'message[post_id]': post_id }
           $.ajax
             url: "/conversations/#{data.id}/messages.json"
             method: 'POST'

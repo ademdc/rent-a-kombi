@@ -1,5 +1,33 @@
-.ui.segment
-  h3 Mailbox
-  .ui.list
-    .item
-      = conversations_per_user(current_user)
+.container-fluid
+  .row.content
+    .col-sm-3.sidenav
+      br/
+      .input-group
+        input.form-control placeholder=("Search messages..") type="text" /
+        span.input-group-btn
+          button.btn.btn-default type="button"
+            span.glyphicon.glyphicon-search
+
+      ul#myForm.nav.nav-tabs
+        li.active
+          a href="#all"  All
+        li
+          a href="#unread"  Unread
+        li
+          a href="#sent"  Sent
+
+    .col-sm-9
+      .tab-content
+        .tab-pane.active id="all"
+            input.form-control type="text" name="name" placeholder="enter all"
+        .tab-pane.active id="unread"
+            input.form-control type="text" name="name" placeholder="enter unread"
+        .tab-pane.active id="sent"
+            input.form-control type="text" name="name" placeholder="enter sent"
+
+
+/ .ui.segment
+/   h3 Mailbox
+/   .ui.list
+/     .item
+/       = conversations_per_user(current_user)

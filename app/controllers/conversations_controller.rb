@@ -6,11 +6,12 @@ class ConversationsController < ApplicationController
   end
 
   def create
-   if Conversation.between(params[:sender_id],params[:recipient_id]).present?
+    if Conversation.between(params[:sender_id],params[:recipient_id]).present?
       @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
-   else
+     else
       @conversation = Conversation.create!(conversation_params)
-   end
+     end
+
     respond_to do |format|
       format.json { render json: @conversation , status: :ok }
       format.html { redirect_to conversation_messages_path(@conversation) }

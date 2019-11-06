@@ -1,6 +1,7 @@
 class Messages
   constructor: () ->
     @innitialize_listeners()
+    @innitialize_messages_pane()
 
   innitialize_listeners: () ->
     $(document).on 'click', '.js-send-message', (e) =>
@@ -33,6 +34,11 @@ class Messages
               toastr.error('Message could not be sent')
         error: () =>
           toastr.error('Error')
+
+  innitialize_messages_pane: () ->
+    $('#myForm a').click (e) ->
+      e.preventDefault()
+      $(this).tab 'show'
 
 
 

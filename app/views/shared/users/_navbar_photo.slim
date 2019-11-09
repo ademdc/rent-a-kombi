@@ -1,6 +1,9 @@
+- image_klass = 'img-circle profile-photo'
+- default_profile_photo = 'user-photo.png'
+
 - if current_user && current_user.avatar.attached?
-  = image_tag current_user.avatar, class: 'img-circle'
+  = image_tag current_user.avatar, class: image_klass
 - elsif !current_user.avatar.attached?
-  = image_tag 'user-photo.png', class: 'img-circle d-inline'
+  = image_tag default_profile_photo, class: image_klass
 - else
   = ''

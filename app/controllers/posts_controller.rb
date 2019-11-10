@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   include PostsHelper
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :search]
-  before_action :get_image!, only: [:remove_attachment]
+  before_action :get_image, only: [:remove_attachment]
 
   def index
     @posts = Post.by_user(current_user)

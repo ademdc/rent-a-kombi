@@ -1,4 +1,3 @@
-require 'nexmo'
 
 class MessagesController < ApplicationController
   before_action :authenticate_user!
@@ -33,9 +32,6 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.new(message_params)
 
     if @message.save
-      client = Nexmo::Client.new(api_key: ENV['NEXMO_API'], api_secret: ENV['NEXMO_API_SECRET'])
-      client.sms.send(from: 'RentAKombi', to: '387610953232', text: 'Korisnik ti je poslao poruku. Zeli rentati vaseg vivara.')
-
       respond_to do |format|
         format.json { render json: @conversation , status: :ok }
         format.html { redirect_to conversation_messages_path(@conversation) }

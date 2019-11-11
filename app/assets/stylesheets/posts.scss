@@ -10,3 +10,58 @@
   width: 500px;
 }
 
+.filter-title {
+  margin: 5px 0px;
+  background-color: white;
+  padding: 5px 5px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.filter-content {
+  select {
+    width: 100%;
+  }
+
+  input[type='number'] {
+    width: 100%;
+  }
+
+  .daterange {
+    width: 100%;
+  }
+
+  .input-group-text {
+    height: 38px;
+  }
+  .form-group {
+    margin-bottom: 0;
+  }
+}
+
+.info-tag {
+  font-size: 10px;
+  margin: 5px 5px 0 0;
+  overflow: hidden;
+  float: left;
+  border: 1px solid #e2e2e2;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  height: 18px;
+
+  span.left {
+    padding: 1px 10px 2px 4px;
+    margin: 0;
+    color: gray;
+    background-color: #fff;
+  }
+
+  span.right {
+    padding: 1px 10px 2px 4px;
+    margin-left: -3px;
+    color: #FFF;
+    background: #FFA500;
+  }
+}
+

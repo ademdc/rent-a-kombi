@@ -11,14 +11,14 @@ module PostsHelper
   end
 
   def capitalized_models
-    Vehicles::Models::MODELS.map(&:capitalize)
+    Vehicles::Models::MODELS.map(&:to_s)
   end
 
   def capitalized_fuels
-    Posts::Filters::FUEL.map(&:capitalize)
+    Posts::Filters::FUEL.map(&:to_s)
   end
 
   def capitalized_transmissions
-    Posts::Filters::TRANSMISSION.map(&:capitalize)
+    Posts::Filters::TRANSMISSION.map(&:to_s)
   end
 end

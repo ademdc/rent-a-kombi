@@ -7,30 +7,38 @@
           li = message
   .row
     .col-md-6
-      .field
-        = f.input :title
-      .field
-        = f.input :category_id, as: :select, collection: Category.all
-      .field
-        = f.input :description, as: :text
-      .field
-        = f.input :contact
+      .row
+        .col-md-12
+          = f.input :title
+        .col-md-12
+          = f.input :model, as: :select, collection: Vehicles::Models::MODELS.map(&:to_s), label_method: :titleize
+        .col-md-6
+          = f.input :category_id, as: :select, collection: Category.all
+        .col-md-6
+          = f.input :transmission, as: :select, collection: Posts::Filters::TRANSMISSION.map(&:to_s), label_method: :titleize
+        .col-md-6
+          = f.input :production_year
+        .col-md-6
+          = f.input :milage
+        .col-md-6
+          = f.input :fuel, as: :select, collection: Posts::Filters::FUEL.map(&:to_s), label_method: :titleize
+        .col-md-6
+          = f.input :contact
+        .col-md-6
+          = f.input :number_of_seats
+        .col-md-6
+          = f.input :hp
+        .col-md-12
+          = f.input :description, as: :text
     .col-md-6
-      .field
+      .col-md-12
         h3 Images
         = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo'
-  .row
+      .col-md-6
+          = f.input :price, input_html: { type: 'number' }, label: 'Price in BAM'
     .row
-      h2 More info
-  .row
-    .col-md-6
-      .field
-        = f.simple_fields_for :vehicle do |vehicle|
-          = vehicle.input :model
-          = vehicle.input :production_year
-          = vehicle.input :milage
-          = vehicle.input :gas_type
-      .actions = f.button :submit, class: 'btn btn-primary'
+      .col-md-5
+        .actions.ml-3 = f.button :submit, class: 'btn btn-primary'
   hr
   .row
     .js-calendar-container.calendar-container
@@ -39,84 +47,3 @@
       = link_to 'Generate slots', '#', class: 'btn btn-primary js-generate-slot'
 
       #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
-
-/ .container
-/   .row.m-y-2
-/     /! edit form column
-/     .col-lg-4.text-lg-center
-/       h2 Edit Vehicle
-/     .col-lg-8
-/     .col-lg-8.push-lg-4.personal-info
-/       form role="form"
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label First name
-/           .col-lg-9
-/             input.form-control type="text" value="Jane" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label Last name
-/           .col-lg-9
-/             input.form-control type="text" value="Bishop" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label Email
-/           .col-lg-9
-/             input.form-control type="email" value="email@gmail.com" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label Company
-/           .col-lg-9
-/             input.form-control type="text" value="" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label Website
-/           .col-lg-9
-/             input.form-control type="url" value="" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label Address
-/           .col-lg-9
-/             input.form-control placeholder="Street" type="text" value="" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label
-/           .col-lg-6
-/             input.form-control placeholder="City" type="text" value="" /
-/           .col-lg-3
-/             input.form-control placeholder="State" type="text" value="" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label Time Zone
-/           .col-lg-9
-/             select#user_time_zone.form-control size="0"
-/               option value="Hawaii"  (GMT-10:00) Hawaii
-/               option value="Alaska"  (GMT-09:00) Alaska
-/               option value=("Pacific Time (US &amp; Canada)")  (GMT-08:00) Pacific Time (US &amp; Canada)
-/               option value="Arizona"  (GMT-07:00) Arizona
-/               option value=("Mountain Time (US &amp; Canada)")  (GMT-07:00) Mountain Time (US &amp; Canada)
-/               option selected="selected" value=("Central Time (US &amp; Canada)")  (GMT-06:00) Central Time (US &amp; Canada)
-/               option value=("Eastern Time (US &amp; Canada)")  (GMT-05:00) Eastern Time (US &amp; Canada)
-/               option value=("Indiana (East)")  (GMT-05:00) Indiana (East)
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label Username
-/           .col-lg-9
-/             input.form-control type="text" value="janeuser" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label Password
-/           .col-lg-9
-/             input.form-control type="password" value="11111122333" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label Confirm password
-/           .col-lg-9
-/             input.form-control type="password" value="11111122333" /
-/         .form-group.row
-/           label.col-lg-3.col-form-label.form-control-label
-/           .col-lg-9
-/             input.btn.btn-secondary type="reset" value="Cancel" /
-/             input.btn.btn-primary type="button" value=("Save Changes") /
-/     .col-lg-4.pull-lg-8.text-xs-center
-/       img.m-x-auto.img-fluid.img-circle alt="avatar" src="//placehold.it/150" /
-/       h6.m-t-2 Upload a different photo
-/       label.custom-file
-/         input#file.custom-file-input type="file" /
-/         span.custom-file-control Choose file
-/   .row.mt-4
-/     = text_field_tag "new_slot", nil, class: 'daterange w-300 m-r-sm'
-/     = text_field_tag "title", nil, class: 'js-title w-300 m-r-sm'
-/     = link_to 'Generate slots', '#', class: 'btn btn-primary js-generate-slot'
-/     #calendar.mt-3 data-post-id=@post.id data-slot-url=slots_path data-generate-slots-url=for_post_slots_path(post_id: @post.id, format: 'json')
-/ hr/
-

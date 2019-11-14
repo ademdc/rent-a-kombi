@@ -8,20 +8,20 @@ ul.list-group.shadow
           h5.mt-0.font-weight-bold.mb-2 = link_to post.title, post
           p.font-italic.text-muted.mb-0.small = post.description
           .d-flex.align-items-center.justify-content-between.mt-1
-            h6.font-weight-bold.my-2 120.00 KM
+            h6.font-weight-bold.my-2 = "#{post.price} KM"
           .d-flex.align-items-center.justify-content-between.mt-1 style='flex-wrap: wrap;'
             .info-tag
               span.left Fuel
-              span.right Diesel
+              span.right = post.fuel&.titleize
             .info-tag
               span.left Transmission
-              span.right Manual
+              span.right = post.transmission&.titleize
             .info-tag
               span.left Year
-              span.right 2017
+              span.right = post.production_year
             .info-tag
               span.left Model
-              span.right Opel
+              span.right = post.model&.titleize
           h6.mt-0.font-weight-bold.mb-2.mt-4 = link_to 'Edit', edit_post_path(post) if current_user&.admin? && edit
 
         = image_tag post.images.first, class: 'img ml-lg-5 order-1 order-lg-2 w-200'

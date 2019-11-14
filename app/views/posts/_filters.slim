@@ -7,7 +7,7 @@
   .filter-title data-target=".models-field" data-toggle="collapse" aria-expanded="false"
     span Model
   .filter-content.models-field.collapse
-    = f.input 'model', as: :select, collection: capitalized_models, include_blank: 'Select model', label: false
+    = f.input 'model', as: :select, collection: capitalized_models, include_blank: 'Select model', label_method: :titleize, label: false
 
   .filter-title data-target=".price-field" data-toggle="collapse" aria-expanded="false"
     span Price
@@ -21,13 +21,13 @@
   .filter-title data-target=".fuel-field" data-toggle="collapse" aria-expanded="false"
     span Fuel
   .filter-content.collapse.fuel-field
-    = f.input 'fuel', as: :select, collection: capitalized_fuels, include_blank: 'Select fuel', label: false
+    = f.input 'fuel', as: :select, collection: capitalized_fuels, include_blank: 'Select fuel', label: false, label_method: :titleize
 
 
   .filter-title data-target=".transmission-field" data-toggle="collapse" aria-expanded="false"
     span Transmission
   .filter-content.collapse.transmission-field
-    = f.input 'transmission', as: :select, collection: capitalized_transmissions, include_blank: 'Select transmission', label: false
+    = f.input 'transmission', as: :select, collection: capitalized_transmissions, include_blank: 'Select transmission', label: false, label_method: :titleize
 
   .filter-title data-target=".year-field" data-toggle="collapse" aria-expanded="false"
     span Year
@@ -42,6 +42,6 @@
   .filter-title data-target=".daterange-field" data-toggle="collapse" aria-expanded="false"
     span Availability
   .filter-content.collapse.daterange-field
-    = f.input :daterange, input_html: { class: "daterange" }, as: :string, label: false, include_blank: ''
+    = f.input :availability, input_html: { class: "daterange" }, as: :string, label: false, include_blank: ''
 
   = f.submit 'Refresh', class: 'btn btn-sm btn-block btn-primary js-refresh-filter mt-3'

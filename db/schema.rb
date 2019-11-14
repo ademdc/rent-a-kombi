@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_03_162811) do
+ActiveRecord::Schema.define(version: 2019_11_11_194923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,9 @@ ActiveRecord::Schema.define(version: 2019_11_03_162811) do
     t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "post_id"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["post_id"], name: "index_messages_on_post_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -69,6 +71,15 @@ ActiveRecord::Schema.define(version: 2019_11_03_162811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "model"
+    t.integer "production_year"
+    t.integer "fuel", default: 0
+    t.integer "milage"
+    t.integer "transmission", default: 0
+    t.integer "price"
+    t.integer "number_of_seats"
+    t.integer "hp"
+    t.string "kw"
     t.index ["category_id"], name: "index_posts_on_category_id"
   end
 
@@ -116,4 +127,5 @@ ActiveRecord::Schema.define(version: 2019_11_03_162811) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "messages", "posts"
 end

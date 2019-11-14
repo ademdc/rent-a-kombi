@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   include PostsHelper
-  include Filterable
 
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :search]
@@ -15,7 +14,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.build_vehicle
   end
 
   def edit
@@ -58,7 +56,8 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = get_filtered_posts(search_post_params)
+    # @posts = get_filtered_posts(search_post_params)
+    @posts = Post.filter(search_post_params)
   end
 
   def remove_attachment
@@ -97,6 +96,14 @@ class PostsController < ApplicationController
         :images,
         :description,
         :contact,
-        vehicle_attributes: [:model, :production_year, :gas_type, :milage])
+        :model,
+        :production_year,
+        :fuel,
+        :milage,
+        :transmission,
+        :price,
+        :number_of_seats,
+        :hp,
+        :kw)
     end
 end

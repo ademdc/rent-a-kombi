@@ -1,14 +1,18 @@
 @import 'home';
 @import 'posts';
 @import 'messages';
+@import 'conversations';
+@import 'datatable';
 
 body {
   background: #f2f2f2;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 
 .container {
   padding-top: 20px;
   min-height: 75vh;
+  background-color: white;
 }
 
 .navbar {
@@ -59,7 +63,6 @@ li.nav-item {
   padding: 2px 5px; /* Add some padding so it looks nice */
 }
 
-/* Make the badge float in the top right corner of the button */
 .button__badge {
   background-color: #fa3e3e;
   border-radius: 2px;

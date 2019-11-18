@@ -7,7 +7,7 @@ module DateTimeHelper
     date_format = created_at.strftime("at %l:%D %M")
 
     if days_ago > 1
-      if (1..7).to_a.include?(days_ago)
+      if (1..15).to_a.include?(days_ago)
         return "#{days_ago} days ago, #{hours_format}"
       end
       return date_format

@@ -149,3 +149,29 @@ img{ max-width:100%;}
 .tab-pane {
     padding:20px;
 }
+
+ul.inbox-sidebar-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: white;
+
+  li {
+    margin: 2px 0px;
+    background-color: #3579F6;
+    height: 40px;
+    border-radius: 5px;
+    padding: 8px 0px 0px 10px;
+  }
+
+  li a {
+     text-decoration: none;
+     color: white;
+     padding-left: 5px;
+  }
+
+  li:hover {
+    color: white;
+    background-color: darkblue;
+  }
+}

@@ -2,8 +2,13 @@ class Messages
   constructor: () ->
     @innitialize_listeners()
     @innitialize_messages_pane()
+    @innitialize_datatable()
 
   innitialize_listeners: () ->
+    $('.show-message').on 'click', (e) ->
+      $('.messages-container').css('display', 'block')
+      $('.conversation-container').css('display', 'none')
+
     $(document).on 'click', '.js-send-message', (e) =>
       e.preventDefault()
 
@@ -40,6 +45,15 @@ class Messages
       e.preventDefault()
       $(this).tab 'show'
 
+  innitialize_datatable: () ->
+    $('.datatable').DataTable(
+      responsive: true,
+      paging: false,
+      searching: true,
+      label: true,
+      select: true)
+
+    $('.dataTables_wrapper').removeClass('form-inline')
 
 
 $(document).ready ->

@@ -18,6 +18,7 @@
 //= require activestorage
 //= require toastr
 //= require jquery.flexslider
+//= require dataTable/datatables.js
 //= require moment
 //= require daterangepicker
 //= require fullcalendar

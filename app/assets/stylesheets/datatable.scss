@@ -1,0 +1,28 @@
+.dataTables_wrapper {
+  .dataTables_filter {
+    label {
+      float: right;
+    }
+  }
+
+  .datatable {
+    th {
+      height: 45px;
+      padding-left: 8px
+    }
+
+    td {
+      padding: 0px 8px;
+      height: 35px;
+    }
+
+    tr:hover {
+      background-color: #99CCFF;
+      cursor: pointer;
+    }
+  }
+
+  .dataTables_info {
+    margin-top: 20px;
+  }
+}

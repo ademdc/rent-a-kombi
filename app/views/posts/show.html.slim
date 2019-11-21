@@ -36,18 +36,18 @@ p#notice = notice
     h3 Vehicle
     p
       strong Model:
-      = @post.vehicle&.model
+      = @post.model
     p
       strong Milage:
-      = @post.vehicle&.milage
+      = @post.milage
 
     p
       strong Fuel:
-      = @post.vehicle&.gas_type
+      = @post.fuel
 
     p
       strong Year:
-      = @post.vehicle&.production_year
+      = @post.production_year
 
     - if can?(:edit, @post)
       = link_to 'Edit', edit_post_path(@post)

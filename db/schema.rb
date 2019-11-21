@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_211838) do
+
+ActiveRecord::Schema.define(version: 2019_11_11_194923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +72,15 @@ ActiveRecord::Schema.define(version: 2019_11_04_211838) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "model"
+    t.integer "production_year"
+    t.integer "fuel", default: 0
+    t.integer "milage"
+    t.integer "transmission", default: 0
+    t.integer "price"
+    t.integer "number_of_seats"
+    t.integer "hp"
+    t.string "kw"
     t.index ["category_id"], name: "index_posts_on_category_id"
   end
 

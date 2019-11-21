@@ -8,8 +8,8 @@
   width: 400px;
   border: 1px solid black;
   border-radius: 5px;
-  background-color: #73C2FB;
   float: left;
+  border: none;
 }
 
 .carousel-item {
@@ -23,5 +23,5 @@
 }
 
 .carousel-container {
-  width: 100vw;
+  width: 100%;
 }

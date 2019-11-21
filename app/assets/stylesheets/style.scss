@@ -16,7 +16,7 @@ body {
 }
 
 .navbar {
-  background-color: #3579F6 !important;
+  background-color: #323E5F !important;
   padding: 5px 100px;
 
 }
@@ -51,16 +51,17 @@ body {
 }
 
 .nav-link:hover {
-  background-color: #007bff;
+  background-color: #263343;
   color: white !important;
+
 }
 
 
 li.nav-item {
-  color: white;
+  color: black;
   display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
   position: relative; /* All 'absolute'ly positioned elements are relative to this one */
-  padding: 2px 5px; /* Add some padding so it looks nice */
+
 }
 
 .button__badge {
@@ -74,4 +75,22 @@ li.nav-item {
   position: absolute; /* Position the badge within the relatively positioned button */
   bottom: 0;
   right: 0;
+}
+
+.navbar-dark .navbar-brand {
+    color: #fff;
+}
+
+.gray-bg {
+  background-color: #ededed;
+}
+
+.btn-search {
+  background: #323E5F;
+  width: 200px;
+  color: white;
+}
+
+.btn-search:hover {
+  background: #263343 !important;
 }

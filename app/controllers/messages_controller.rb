@@ -25,16 +25,18 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.new
 
     json_object = []
-    json_object = @messages.each do |msg|
-      {
+
+    @messages.each do |msg|
+      json_object << (OpenStruct.new(
         id: msg.id,
         body: msg.body,
         post: msg.post,
         conversation_id: msg.conversation_id,
         current_user_id: current_user.id,
         user_id: msg.user_id
-      }
+      ))
     end
+
     byebug
     respond_to do |format|
       format.json { render json: json_object }

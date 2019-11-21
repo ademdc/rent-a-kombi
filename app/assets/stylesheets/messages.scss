@@ -154,11 +154,11 @@ ul.inbox-sidebar-list{
   list-style: none;
   margin: 0;
   padding: 0;
-  color: white;
+  color: black;
 
   li {
     margin: 2px 0px;
-    background-color: #99CCFF;
+    background-color: #CFDBE1 ;
     height: 40px;
     border-radius: 5px;
     padding: 8px 0px 0px 10px;
@@ -166,12 +166,20 @@ ul.inbox-sidebar-list{
 
   li a {
      text-decoration: none;
-     color: white;
+     color: black;
      padding-left: 5px;
   }
 
   li:hover {
-    color: white;
-    background-color: #3579F6;
+    color: white !important;
+    background-color: #323E5F;
+    a{
+      color: white;
+    }
   }
+}
+
+.back-to-msgs-btn {
+  background-color: #323E5F;
+  color: white;
 }

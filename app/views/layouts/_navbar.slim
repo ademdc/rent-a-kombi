@@ -13,9 +13,9 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
             = link_to "Messages", conversations_path, class: 'nav-link'
             = content_tag :span, current_user.unread_messages, class: 'button__badge' unless current_user.unread_messages.zero?
     .navbar-collapse.collapse.w-100.order-3.dual-collapse2
-      ul.navbar-nav.ml-auto
+      ul.navbar-nav.ml-auto.text-white
         - if current_user
-          .mt-2.mr-3.text-white  = current_user.full_name
+          .mt-2.mr-3  = current_user.full_name
           li.dropdown
             .dropdown-toggle data-toggle="dropdown"
               = render 'shared/users/navbar_photo'

@@ -29,7 +29,7 @@ class Post < ApplicationRecord
   enum transmission: Posts::Filters::TRANSMISSION
 
   def self.by_availability(range)
-    from, to = range.split('-').map(&:to_datetime)
+    from, to = range.split('to').map(&:to_datetime)
     range = from.beginning_of_day..to.end_of_day
 
     reserved_post_ids = Slot.where(start: range).or(Slot.where(end: range)).pluck(:post_id)

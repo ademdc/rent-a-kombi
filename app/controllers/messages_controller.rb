@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
   before_action { set_up_conversation }
 
   def index
-    @messages = @conversation.messages.order('created_at ASC')
+    @messages = @conversation.messages.includes(:post).order('created_at ASC')
+
     if @messages.length > 10
       @over_ten = true
       @messages = @messages[-10..-1]
@@ -22,6 +23,11 @@ class MessagesController < ApplicationController
     end
 
     @message = @conversation.messages.new
+
+    respond_to do |format|
+      format.json { render json: @messages }
+      format.html { @message = @conversation.messages.new }
+    end
   end
 
   def new
@@ -33,7 +39,7 @@ class MessagesController < ApplicationController
 
     if @message.save
       respond_to do |format|
-        format.json { render json: @conversation , status: :ok }
+        format.json { render json: @conversation, status: :ok }
         format.html { redirect_to conversation_messages_path(@conversation) }
       end
     end

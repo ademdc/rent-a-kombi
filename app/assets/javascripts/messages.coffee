@@ -5,9 +5,25 @@ class Messages
     @innitialize_datatable()
 
   innitialize_listeners: () ->
-    $('.show-message').on 'click', (e) ->
+    $('.back-to-msgs-btn').on 'click', (e) ->
+      $('.messages-container').css('display', 'none')
+      $('.conversation-container').css('display', 'block')
+
+    $('.js-message').on 'click', (e) ->
       $('.messages-container').css('display', 'block')
       $('.conversation-container').css('display', 'none')
+
+      conversation_url = $(e.currentTarget).parents('tr').data('message-url')
+      $.ajax
+        url: conversation_url
+        method: 'GET'
+        dataType: 'JSON'
+        success: (data) =>
+          console.log data
+          Messages.render_messages(data)
+
+        error: () =>
+          toastr.error('Message could not be seen')
 
     $(document).on 'click', '.js-send-message', (e) =>
       e.preventDefault()
@@ -39,6 +55,10 @@ class Messages
               toastr.error('Message could not be sent')
         error: () =>
           toastr.error('Error')
+
+  @render_messages: (data) ->
+    template = JST['templates/messages'](data: data)
+    $('.messages-container').html(template)
 
   innitialize_messages_pane: () ->
     $('#myForm a').click (e) ->

@@ -58,6 +58,8 @@ gem 'sidekiq'
 
 gem 'nexmo'
 gem 'inline_svg'
+gem 'ejs'
+
 
 
 

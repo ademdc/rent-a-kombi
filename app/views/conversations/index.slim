@@ -10,7 +10,7 @@
         li
           a href="#sent"  Sent
 
-      button.show-message.btn Toggle
+      button.back-to-msgs-btn.btn Back
 
     .col-sm-9
       .conversation-container
@@ -23,13 +23,14 @@
               th Actions
           tbody
             - recipient_conversations_for(current_user).each do |conversation|
-              tr
+              tr data-recipient-id=conversation[:recipient].id data-message-url=conversation_messages_path(conversation[:conversation])
                 td = conversation[:recipient].full_name
                 td = conversation[:conversation].messages.last.body
                 td = conversation[:conversation].messages.last.message_time
-                td.text-center = link_to message_icon, conversation_messages_path(conversation[:conversation])
+                td.text-center = message_icon('js-message')
 
       .messages-container style='display: none;'
+
 
 / .ui.segment
 /   h3 Mailbox

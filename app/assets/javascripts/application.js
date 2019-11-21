@@ -19,8 +19,8 @@
 //= require toastr
 //= require jquery.flexslider
 //= require dataTable/datatables.js
+//= require datetimepicker/flatpickr.min
 //= require moment
-//= require daterangepicker
 //= require fullcalendar
 //= require fullcalendar/locale-all
 //= require_tree .

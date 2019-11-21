@@ -39,7 +39,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'momentjs-rails'
-gem 'bootstrap-daterangepicker-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'devise'
 gem 'toastr_rails', '2.1.3'

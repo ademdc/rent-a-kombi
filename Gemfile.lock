@@ -74,8 +74,6 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
-    bootstrap-daterangepicker-rails (3.0.3)
-      railties (>= 4.0, < 5.3)
     builder (3.2.3)
     byebug (11.0.1)
     cancancan (2.2.0)
@@ -290,7 +288,6 @@ DEPENDENCIES
   aws-sdk-s3
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
-  bootstrap-daterangepicker-rails
   byebug
   cancancan
   capybara (>= 2.15)

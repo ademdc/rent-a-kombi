@@ -10,8 +10,8 @@ class Posts
       return if $('.daterange').val() == ''
 
       $post_id = $('#calendar').data('post-id')
-      start = $('.daterange').val().split('-')[0]
-      end = $('.daterange').val().split('-')[1]
+      start = $('.daterange').val().split('to')[0]
+      end = $('.daterange').val().split('to')[1]
       title = $('.js-title').val()
 
       data = { 'slot[post_id]': $post_id, 'slot[start]': start, 'slot[end]': end, 'slot[title]': title }

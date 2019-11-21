@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   include PostsHelper
+
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :search]
-  before_action :get_image!, only: [:remove_attachment]
+  before_action :get_image, only: [:remove_attachment]
 
   def index
     @posts = Post.all
@@ -13,7 +14,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.build_vehicle
   end
 
   def edit
@@ -56,7 +56,8 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = get_reserved_posts(params[:search][:daterange])
+    # @posts = get_filtered_posts(search_post_params)
+    @posts = Post.filter(search_post_params)
   end
 
   def remove_attachment
@@ -74,6 +75,20 @@ class PostsController < ApplicationController
       @image = ActiveStorage::Attachment.find(params[:id])
     end
 
+    def search_post_params
+      params.require(:search).permit(
+        :category,
+        :model,
+        :price_from,
+        :price_to,
+        :fuel,
+        :transmission,
+        :year_from,
+        :year_to,
+        :availability
+        )
+    end
+
     def post_params
       params.require(:post).permit(
         :title,
@@ -81,6 +96,14 @@ class PostsController < ApplicationController
         :images,
         :description,
         :contact,
-        vehicle_attributes: [:model, :production_year, :gas_type, :milage])
+        :model,
+        :production_year,
+        :fuel,
+        :milage,
+        :transmission,
+        :price,
+        :number_of_seats,
+        :hp,
+        :kw)
     end
 end

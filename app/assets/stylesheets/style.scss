@@ -15,9 +15,24 @@ body {
   background-color: white;
 }
 
-.navbar {
+nav.navbar {
   background-color: #323E5F !important;
   padding: 5px 100px;
+
+  .nav-link:hover {
+    background-color: #263343;
+    color: white !important;
+  }
+
+  li.nav-item {
+    color: black;
+    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+  }
+
+  .navbar-dark .navbar-brand {
+    color: #fff;
+  }
 
 }
 
@@ -50,20 +65,6 @@ body {
   width: 40px;
 }
 
-.nav-link:hover {
-  background-color: #263343;
-  color: white !important;
-
-}
-
-
-li.nav-item {
-  color: black;
-  display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
-  position: relative; /* All 'absolute'ly positioned elements are relative to this one */
-
-}
-
 .button__badge {
   background-color: #fa3e3e;
   border-radius: 2px;
@@ -77,9 +78,7 @@ li.nav-item {
   right: 0;
 }
 
-.navbar-dark .navbar-brand {
-    color: #fff;
-}
+
 
 .gray-bg {
   background-color: #ededed;

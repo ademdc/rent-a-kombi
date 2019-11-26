@@ -5,9 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
-  has_one_attached :avatar
   has_many :conversations, ->(user) { unscope(:where).where("recipient_id = :id OR sender_id = :id", id: user.id) }
   has_many :messages, through: :conversations
+
+  has_one_attached :avatar
+
 
   def admin?
     is_admin

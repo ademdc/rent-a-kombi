@@ -1,123 +1,71 @@
-= simple_form_for @post do |f|
-  - if @post.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
-      ul
-        - @post.errors.full_messages.each do |message|
-          li = message
-  .actions.mb-4
-    = f.button :submit, class: 'btn btn-primary btn-app'
-  ul#myTabJust.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"
-    li.nav-item
-      = link_to info_icon('fa-lg'), '#main-info-tab', class: 'nav-link active', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'home-just' }, role: 'tab'
-    li.nav-item
-      = link_to info_icon('fa-sm'), '#other-info-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'profile-just' }, role: 'tab'
-    li.nav-item
-      = link_to camera_icon, '#photos-tab', class: 'nav-link', data: { toggle: "tab" }
-    li.nav-item
-      = link_to calendar_icon, '#schedule-tab', class: 'nav-link', data: { toggle: "tab" }
+.edit-post-container
+  = simple_form_for @post do |f|
+    - if @post.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+        ul
+          - @post.errors.full_messages.each do |message|
+            li = message
+    .row
+      .col-md-2
+        .edit-actions.mb-4
+          = submit_button
+          = highlight_button
+          = show_button
+          = back_button
+          = delete_button
 
-      / a#home-tab-just.nav-link.active aria-controls="home-just" aria-selected="true" data-toggle="tab" href="#main-info-tab" role="tab" Main info
-      /   i.fa.fa-info
-    / li.nav-item
-    /   a#profile-tab-just.nav-link aria-controls="profile-just" aria-selected="false" data-toggle="tab" href="#other-info-tab" role="tab"  Other info
-    / li.nav-item
-    /   a#contact-tab-just.nav-link aria-controls="contact-just" aria-selected="false" data-toggle="tab" href="#photos-tab" role="tab"  Photos
-    / li.nav-item
-    /   a#contact-tab-just.nav-link aria-controls="contact-just" aria-selected="false" data-toggle="tab" href="#schedule-tab" role="tab"  Schedule
+      .col-md-10
+        ul#edit-post-tab-list.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"
+          li.nav-item
+            = link_to info_icon('fa-lg'), '#main-info-tab', class: 'nav-link active', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'home-just' }, role: 'tab'
+          li.nav-item
+            = link_to info_icon('fa-sm'), '#other-info-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'profile-just' }, role: 'tab'
+          li.nav-item
+            = link_to camera_icon, '#photos-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
+          li.nav-item
+            = link_to calendar_icon, '#schedule-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
 
-  #myTabContentJust.tab-content.card.pt-5
-    #main-info-tab.tab-pane.fade.show.active aria-labelledby="home-tab-just" role="tabpanel"
-     .row
-      .col-md-12
-        = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-        = f.input :title
-      .col-md-6
-        = f.input :category_id, as: :select, collection: Category.all
-      .col-md-6
-        = f.input :model, as: :select, collection: Vehicles::Models::MODELS.map(&:to_s), label_method: :titleize
-      .col-md-12
-        = f.input :description
-    #other-info-tab.tab-pane.fade aria-labelledby="profile-tab-just" role="tabpanel"
-     .row
+        #edit-post-tab.tab-content.card.pt-5
+          #main-info-tab.tab-pane.fade.show.active aria-labelledby="home-tab-just" role="tabpanel"
+           .row
+            .col-md-12
+              = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+              = f.input :title
+            .col-md-6
+              = f.input :category_id, as: :select, collection: Category.all
+            .col-md-6
+              = f.input :model, as: :select, collection: Vehicles::Models::MODELS.map(&:to_s), label_method: :titleize
+            .col-md-12
+              = f.input :description
+          #other-info-tab.tab-pane.fade aria-labelledby="profile-tab-just" role="tabpanel"
+           .row
 
-      .col-md-6
-        = f.input :transmission, as: :select, collection: Posts::Filters::TRANSMISSION.map(&:to_s), label_method: :titleize
-      .col-md-6
-        = f.input :production_year
-      .col-md-6
-        = f.input :milage
-      .col-md-6
-        = f.input :fuel, as: :select, collection: Posts::Filters::FUEL.map(&:to_s), label_method: :titleize
-      .col-md-6
-        = f.input :contact
-      .col-md-6
-        = f.input :number_of_seats
-      .col-md-6
-        = f.input :hp
-    #photos-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
-      .row
-        .col-md-12
-          = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo'
-    #schedule-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
-      .row
-        .js-calendar-container.calendar-container
-          = text_field_tag "new_slot", nil, class: 'daterange w-300 m-r-sm'
-          = text_field_tag "title", nil, class: 'js-title w-300 m-r-sm'
-          = link_to 'Generate slots', '#', class: 'btn btn-primary btn-app js-generate-slot'
+            .col-md-6
+              = f.input :transmission, as: :select, collection: Posts::Filters::TRANSMISSION.map(&:to_s), label_method: :titleize
+            .col-md-6
+              = f.input :production_year
+            .col-md-6
+              = f.input :milage
+            .col-md-6
+              = f.input :fuel, as: :select, collection: Posts::Filters::FUEL.map(&:to_s), label_method: :titleize
+            .col-md-6
+              = f.input :contact
+            .col-md-6
+              = f.input :number_of_seats
+            .col-md-6
+              = f.input :hp
+          #photos-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
+            .row
+              .col-md-12
+                = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo'
+          #schedule-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
+            .row
+              .js-calendar-container.calendar-container
+                .mb-5.text-center
+                  = text_field_tag "new_slot", nil, class: 'daterange w-300 m-r-sm', placeholder: 'Select daterange'
+                  = text_field_tag "title", nil, class: 'js-title w-300 m-r-sm', placeholder: 'Slot title'
+                  = link_to 'Generate slots', '#', class: 'btn btn-primary btn-app js-generate-slot'
 
-          #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
+                #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
 
-
-
-
-/ = simple_form_for @post do |f|
-/   - if @post.errors.any?
-/     #error_explanation
-/       h2 = "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
-/       ul
-/         - @post.errors.full_messages.each do |message|
-/           li = message
-/   .row
-/     .col-md-6
-/       .row
-/         .col-md-12
-/           = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-/           = f.input :title
-/         .col-md-12
-/           = f.input :model, as: :select, collection: Vehicles::Models::MODELS.map(&:to_s), label_method: :titleize
-/         .col-md-6
-/           = f.input :category_id, as: :select, collection: Category.all
-/         .col-md-6
-/           = f.input :transmission, as: :select, collection: Posts::Filters::TRANSMISSION.map(&:to_s), label_method: :titleize
-/         .col-md-6
-/           = f.input :production_year
-/         .col-md-6
-/           = f.input :milage
-/         .col-md-6
-/           = f.input :fuel, as: :select, collection: Posts::Filters::FUEL.map(&:to_s), label_method: :titleize
-/         .col-md-6
-/           = f.input :contact
-/         .col-md-6
-/           = f.input :number_of_seats
-/         .col-md-6
-/           = f.input :hp
-/         .col-md-12
-/           = f.input :description, as: :text
-/     .col-md-6
-/       .col-md-12
-/         h3 Images
-/         = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo'
-/       .col-md-6
-/           = f.input :price, input_html: { type: 'number' }, label: 'Price in BAM'
-/     .row
-/       .col-md-5
-/         .actions.ml-3 = f.button :submit, class: 'btn btn-primary'
-/   hr
-/   .row
-/     .js-calendar-container.calendar-container
-/       = text_field_tag "new_slot", nil, class: 'daterange w-300 m-r-sm'
-/       = text_field_tag "title", nil, class: 'js-title w-300 m-r-sm'
-/       = link_to 'Generate slots', '#', class: 'btn btn-primary js-generate-slot'
-
-/       #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')

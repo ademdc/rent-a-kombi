@@ -10,7 +10,6 @@
           .input-group
             - seach_icon = content_tag :i, '', class: 'fa fa-search'
             = f.submit 'Search', class: 'btn btn-search btn-success'
-
 end
 
 header
@@ -36,16 +35,3 @@ header
         a.carousel-control-next data-slide="next" href="#carouselExampleIndicators" role="button"
           span.carousel-control-next-icon aria-hidden="true"
           span.sr-only Next
-
-/ .row
-/   .col-md-6
-/     h1 Welcome
-/     h3 = current_user&.email
-
-/   .col-md-6
-/     .search-box
-/       h4 Search vehicles
-/       = simple_form_for :search, url: search_posts_path, method: 'GET' do |f|
-/         = f.input :availability, input_html: { class: "daterange" }, as: :string, label: false
-/         = f.submit 'Search now', class: 'btn btn-primary'
-

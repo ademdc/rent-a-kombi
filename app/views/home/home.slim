@@ -4,12 +4,16 @@
         = simple_form_for :search, url: search_posts_path, method: 'GET' do |f|
           .row
             .col-md-11
-              = f.input :availability, input_html: { class: "daterange" }, as: :string, label: false, placeholder: 'Select date'
+              .input-group
+                = f.input :availability, input_html: { class: "daterange" }, as: :string, label: false, placeholder: 'Select date'
+                .input-group-append
+                  span.input-group-text.fa.fa-calendar
             .col-md-1
-              = inline_svg 'calendar.svg'
+
           .input-group
             - seach_icon = content_tag :i, '', class: 'fa fa-search'
             = f.submit 'Search', class: 'btn btn-search btn-success'
+
 end
 
 header

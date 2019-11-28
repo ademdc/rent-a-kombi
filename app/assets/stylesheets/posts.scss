@@ -102,8 +102,13 @@
     .btn-group {
       width: 100%;
 
+      a {
+        width: 100%;
+      }
+
       button {
         margin: 5px 0px;
+        width: 100%;
       }
     }
   }

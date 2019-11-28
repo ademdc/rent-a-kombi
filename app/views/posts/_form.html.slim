@@ -10,10 +10,10 @@
       .col-md-2
         .edit-actions.mb-4
           = submit_button
-          = highlight_button
-          = show_button
+          = navigation_button(:highlight, '#', 'btn-orange ')
+          = navigation_button(:show, post_path(@post))
           = back_button
-          = delete_button
+          = delete_button(post_path)
 
       .col-md-10
         ul#edit-post-tab-list.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"

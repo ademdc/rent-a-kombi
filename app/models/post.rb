@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_one :vehicle, dependent: :destroy
   has_many :slots, dependent: :destroy
   has_many :messages
+
   has_many_attached :images
 
   scope :all_except, -> (ids) { where.not(id: ids) }

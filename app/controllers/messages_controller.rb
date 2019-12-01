@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.new
 
     respond_to do |format|
-      format.json { render json: @messages.to_json }
+      format.json { render json: @messages }
       format.html { @message = @conversation.messages.new }
     end
   end

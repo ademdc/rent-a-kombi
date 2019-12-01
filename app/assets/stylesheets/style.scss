@@ -27,10 +27,25 @@ nav.navbar {
     color: black;
     display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
     position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+    width: 100%;
   }
 
   .navbar-dark .navbar-brand {
     color: #fff;
+  }
+
+  .dropdown-menu {
+    width: 180px;
+  }
+
+  .language-icon {
+    margin-top: 11px;
+    margin-left: 10px;
+  }
+
+  .country-icon {
+    height: 40px;
+    margin-left: 5px;
   }
 
 }
@@ -39,6 +54,7 @@ nav.navbar {
   background-color: #3579F6;
   width: 100%;
 }
+
 .right {
   float: right;
 }
@@ -48,11 +64,15 @@ nav.navbar {
 }
 
 .w-200 {
-  width: 300px;
+  width: 200px !important;
 }
 
 .w-300 {
-  width: 300px;
+  width: 300px !important;
+}
+
+.w-115 {
+  width: 115px !important;
 }
 
 .m-r-sm {
@@ -100,4 +120,5 @@ nav.navbar {
 .btn-orange:hover {
   background: #FFA500;
 }
+
 

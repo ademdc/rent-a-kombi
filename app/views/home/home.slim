@@ -5,14 +5,14 @@
           .row
             .col-md-11
               .input-group
-                = f.input :availability, input_html: { class: "daterange" }, as: :string, label: false, placeholder: 'Select date'
+                = f.input :availability, input_html: { class: "daterange" }, as: :string, label: false, placeholder: t('datetime.select')
                 .input-group-append
                   span.input-group-text.fa.fa-calendar
             .col-md-1
 
           .input-group
             - seach_icon = content_tag :i, '', class: 'fa fa-search'
-            = f.submit 'Search', class: 'btn btn-search btn-success'
+            = f.submit t('buttons.search'), class: 'btn btn-search btn-success'
 
 end
 

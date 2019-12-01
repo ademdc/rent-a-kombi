@@ -1,0 +1,16 @@
+bs:
+  welcome: 'Dobro došli'
+  available: 'Slobodna vozila'
+  language: 'Jezik'
+  languages:
+    en: 'Engleski'
+    bs: 'Bosanski'
+  navigation:
+    home: 'Početna'
+    my_rentals: 'Moja rentanja'
+    messages: 'Poruke'
+    sign_in: 'Prijavi se'
+  buttons:
+    search: 'Traži'
+  datetime:
+    select: 'Odaberi datum'

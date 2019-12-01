@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
 
+  def locale
+    redirect_to root_path, notice: t(:locale_change, language: t("languages.#{I18n.locale}"))
+  end
 
   private
 

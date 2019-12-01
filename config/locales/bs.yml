@@ -10,7 +10,10 @@ bs:
     my_rentals: 'Moja rentanja'
     messages: 'Poruke'
     sign_in: 'Prijavi se'
+    account: 'Račun'
+    logout: 'Odjaviti se'
   buttons:
     search: 'Traži'
   datetime:
     select: 'Odaberi datum'
+  locale_change: "Jezik je uspjesno promijenjen u %{language}"

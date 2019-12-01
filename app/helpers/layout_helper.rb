@@ -66,7 +66,7 @@ module LayoutHelper
     I18n.available_locales.map do |locale|
       content_tag :div, class: 'dropdown-items' do
         concat inline_svg("countries/#{locale}.svg", class: 'country-icon')
-        concat link_to t("languages.#{locale}"), root_path(locale: :en), class: 'js-change-locale dropdown-item d-inline'
+        concat link_to t("languages.#{locale}"), locale_path(locale: locale), class: 'dropdown-item d-inline'
       end
     end.join("").html_safe
   end

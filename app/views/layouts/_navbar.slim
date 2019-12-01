@@ -13,8 +13,8 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
         - if current_user
           .mt-2.mr-3  = current_user.full_name
           = dropdown_navbar_item((render 'shared/users/navbar_photo'), '') do
-            = link_to 'Account', edit_user_registration_path, class: 'dropdown-item'
-            = link_to "Logout", destroy_user_session_path, method: :delete, class: 'dropdown-item'
+            = link_to t('navigation.account'), edit_user_registration_path, class: 'dropdown-item'
+            = link_to t('navigation.logout'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
           end
 
         - else
@@ -23,16 +23,3 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
           = dropdown_navbar_item('', 'language-icon fa fa-language') do
             = locale_selector
           end
-
-
-
-          / li.dropdown
-          /   .dropdown-toggle data-toggle="dropdown"
-          /     .language-icon.fa.fa-language
-          /   .dropdown-menu.dropdown-menu-right
-          /     .dropdown-items
-          /       = inline_svg('countries/bosnia-and-herzegovina.svg', style:'height: 40px; margin-left: 5px;')
-          /       = link_to t('languages.bosnian'), root_path(locale: :bs), class: 'dropdown-item d-inline'
-          /     .dropdown-items
-          /       = inline_svg('countries/united-kingdom.svg', style:'height: 40px; margin-left: 5px;')
-          /       = link_to t('languages.english'), root_path(locale: :en), class: 'dropdown-item d-inline'

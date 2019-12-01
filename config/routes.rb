@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     root to: 'home#home'
 
-    get 'locale', to: 'home#locale'
+    get 'locale', to: 'application#locale'
 
     resources :posts do
       get :search, on: :collection

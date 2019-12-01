@@ -5,7 +5,4 @@ class HomeController < ApplicationController
     @posts = Post.new
   end
 
-  def locale
-  end
-
 end

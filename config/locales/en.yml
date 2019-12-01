@@ -41,9 +41,12 @@ en:
     my_rentals: 'My Rentals'
     messages: 'Messages'
     sign_in: 'Sign in'
+    log_out: 'Logout'
+    account: 'Account'
   buttons:
     search: 'Search'
   datetime:
     select: 'Select date'
+  locale_change: "Language successfully changed to %{language}"
 
 

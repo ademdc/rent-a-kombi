@@ -14,4 +14,9 @@ module ToolboxHelper
   def calendar_icon(klass='')
     content_tag :i, '', class: "fa fa-calendar #{klass}"
   end
+
+  def upload_icon(klass='')
+    content_tag :i, '', class: "fa fa-upload #{klass}"
+  end
+
 end

@@ -59,6 +59,8 @@ gem 'nexmo'
 gem 'inline_svg'
 gem 'ejs'
 
+gem "will_paginate"
+
 
 
 

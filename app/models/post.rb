@@ -22,6 +22,9 @@ class Post < ApplicationRecord
   scope :by_price_from, -> (price) { where('price > ?', price) }
   scope :by_price_to, -> (price) { where('price < ?', price) }
 
+  scope :by_availability_from, -> (availability) { where('price < ?', price) }
+  scope :by_availability_to, -> (availability) { where('price < ?', price) }
+
 
   validates :title, :price, :model, presence: true
 
@@ -29,12 +32,18 @@ class Post < ApplicationRecord
   enum fuel: Posts::Filters::FUEL
   enum transmission: Posts::Filters::TRANSMISSION
 
+  self.per_page = 5
+
   def self.by_availability(range)
     from, to = range.split('to').map(&:to_datetime)
     range = from.beginning_of_day..to.end_of_day
 
     reserved_post_ids = Slot.where(start: range).or(Slot.where(end: range)).pluck(:post_id)
     Post.all_except(reserved_post_ids)
+  end
+
+  def cover_image
+    self.images.first.present? ? self.images.first : 'cars/car.jpg'
   end
 
 end

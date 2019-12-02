@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_action :get_image, only: [:remove_attachment]
 
   def index
-    @posts = Post.by_user(current_user)
+    @posts = Post.by_user(current_user).paginate(page: params[:page])
   end
 
   def show
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
 
   def search
     # @posts = get_filtered_posts(search_post_params)
-    @posts = Post.filter(search_post_params)
+    @posts = Post.filter(search_post_params).paginate(page: params[:page])
   end
 
   def remove_attachment

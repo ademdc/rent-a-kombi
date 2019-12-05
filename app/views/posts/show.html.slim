@@ -1,64 +1,84 @@
-.row
-  .col-md-7
-    hr
-    h3 = @post.title
-    .row
-      .col-md-6
-        p
-          strong Category:
-          = @post.category.name
-        p
-          strong Model:
-          = @post.model
-        p
-          strong Milage:
-          = @post.milage
-        p
-          strong Number of seats:
-          = @post.number_of_seats
-      .col-md-6
-        p
-          strong Fuel:
-          = @post.fuel
-        p
-          strong Year:
-          = @post.production_year
-        p
-          strong Transmission:
-          = @post.transmission
-        p
-          strong HorsePower:
-          = @post.hp
+.post-show-container
+  .row
+    .col-md-12
+      h3 = @post.title
+      hr
+  .row
+    .col-md-7
+      .subtitle-container
+        h5.subtitle Main Information
+        hr
+      .row
+        .col-md-6
+          p
+            strong Category:
+            = @post.category.name
+          p
+            strong Model:
+            = @post.model
+          p
+            strong Milage:
+            = @post.milage
+          p
+            strong Number of seats:
+            = @post.number_of_seats
+        .col-md-6
+          p
+            strong Fuel:
+            = @post.fuel
+          p
+            strong Year:
+            = @post.production_year
+          p
+            strong Transmission:
+            = @post.transmission
+          p
+            strong HorsePower:
+            = @post.hp
 
-    hr
-    .row
-      .col-md-12
-        .flexslider.show-flex
-          ul.slides
-            - @post.images.each do |image|
-              li
-                = image_tag image, class: 'post-img'
+      hr
+      .row
+        .col-md-12
+          .flexslider.show-flex
+            ul.slides
+              - @post.images.each do |image|
+                li
+                  = image_tag image, class: 'post-img'
 
-  .col-md-5
-    - if current_ability.can?(:edit, @post)
-      #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
+    .col-md-5
+      .subtitle-container
+        h5.subtitle Availability
+        hr
+          .row
+            .col-md-4
+              .input-group
+                = text_field_tag :availability_from, '',  class: "daterange", label: false, placeholder: 'Select date from'
+            .col-md-4
+              .input-group
+                = text_field_tag :availability_to, '', class: "daterange", label: false, placeholder: 'Select date to'
+            .col-md-4
+              .input-group
+                - seach_icon = content_tag :i, '', class: 'fa fa-search'
+                = button_tag 'Check', class: 'btn btn-search btn-success btn-sm', style: 'width: 100%'
 
-    p
-      strong Description:
-      = @post.description
-    p
-      strong Seller:
-      = @post.user.email
+      .subtitle-container
+        h5.subtitle Seller
+        hr
+          p = @post.user.email
+          p = link_to "Message #{@post.user.full_name}", '#', class: 'btn btn-sm btn-success btn-rounded mb-4', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
+      .messaging data-conversation-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user.id data-post-id=@post.id
+      .subtitle-container
+        h5.subtitle Contact
+        hr
+          = @post.contact
+  .row
+    .col-md-12
+       .subtitle-container
+        h5.subtitle Description
+        hr
+          = @post.description
 
-    .messaging data-conversation-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user.id data-post-id=@post.id
-    p
-      = link_to "Message #{@post.user.full_name}", '#', class: 'btn btn-sm btn-success btn-rounded mb-4', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
-
-    p
-      strong Contact:
-      = @post.contact
-
-- if current_ability.can?(:edit, @post)
-  = link_to 'Edit', edit_post_path(@post), class: 'btn btn-app'
+  - if current_ability.can?(:edit, @post)
+    = link_to 'Edit', edit_post_path(@post), class: 'btn btn-app'
 
 = render 'shared/modals/contact_renter_modal', post: @post  unless current_user.my_post?(@post)

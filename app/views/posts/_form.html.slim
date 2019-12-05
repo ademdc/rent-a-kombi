@@ -1,4 +1,4 @@
-.edit-post-container
+.post-form-container
   = simple_form_for @post do |f|
     - if @post.errors.any?
       #error_explanation
@@ -15,15 +15,19 @@
             = navigation_button(:highlight, '#', 'btn-orange ')
             = navigation_button(:show, post_path(@post))
             = back_button
+            .clearfix
             = delete_button(post_path)
         - else
           = submit_button
 
 
       .col-md-10
+        - unless @post.persisted?
+          h3 New rental
         ul#edit-post-tab-list.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"
           li.nav-item
             = link_to info_icon('fa-lg'), '#main-info-tab', class: 'nav-link active', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'home-just' }, role: 'tab'
+
           li.nav-item
             = link_to info_icon('fa-sm'), '#other-info-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'profile-just' }, role: 'tab'
           li.nav-item

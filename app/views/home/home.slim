@@ -5,7 +5,11 @@
           .row
             .col-md-11
               .input-group
-                = f.input :availability, input_html: { class: "daterange" }, as: :string, label: false, placeholder: 'Select date'
+                = f.input :availability_from, input_html: { class: "daterange" }, as: :string, label: false, placeholder: 'Select date from'
+                .input-group-append
+                  span.input-group-text.fa.fa-calendar
+              .input-group
+                = f.input :availability_to, input_html: { class: "daterange" }, as: :string, label: false, placeholder: 'Select date to'
                 .input-group-append
                   span.input-group-text.fa.fa-calendar
             .col-md-1

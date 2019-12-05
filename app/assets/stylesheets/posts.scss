@@ -4,7 +4,14 @@
 
 .post-img {
   width: 100%;
+  transition: all .2s ease-in-out;
 }
+
+.post-img:hover {
+  transform: scale(1.10);
+  // transform: translate(0px, 5px);
+}
+
 
 .show-flex {
   width: 500px;
@@ -80,24 +87,11 @@
   }
 }
 
-.img-hover-zoom {
-  height: 300px;
-  overflow: hidden;
-}
-
 .image-preview {
   overflow: hidden;
 }
 
-.image-preview img {
-  transition: transform .5s ease;
-}
-
-.image-preview:hover img {
-  transform: scale(1.5);
-}
-
-.edit-post-container {
+.post-form-container {
   .edit-actions {
     .btn-group {
       width: 100%;
@@ -107,8 +101,17 @@
       }
 
       button {
-        margin: 5px 0px;
+        border-radius: 0px;
+        margin: 0px;
         width: 100%;
+        transition: all .2s ease-in-out;
+        span {
+          float: left;
+        }
+      }
+
+      button:hover {
+        transform: scale(1.10);
       }
     }
   }
@@ -120,3 +123,29 @@
   }
 }
 
+.list-group-item {
+  transition: all .2s ease-in-out;
+}
+
+.list-group-item:hover {
+  transform: scale(1.10);
+}
+
+
+.post-show-container {
+  .subtitle-container {
+    margin-bottom: 25px;
+
+    h5.subtitle {
+    }
+
+    hr {
+      margin: 0px;
+    }
+
+    .daterange{
+      width: 100%;
+    }
+  }
+
+}

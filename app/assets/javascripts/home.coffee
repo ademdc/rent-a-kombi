@@ -10,7 +10,6 @@ class Home
     # $('.daterange').daterangepicker
     #   locale: format: 'D/M/YYYY hh:mm'
     $('.daterange').flatpickr
-      mode: 'range'
       enableTime: true
       minDate: 'today'
       time_24hr: true

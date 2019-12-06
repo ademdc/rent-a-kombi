@@ -36,6 +36,21 @@ class Posts
       $("#calendar").fullCalendar('addEventSource', events);
       $("#calendar").fullCalendar('refetchEvents');
 
+    $(document).on 'click', '.js-check-availability', (e) ->
+      from = $('input[name="available_from"]').val()
+      to = $('input[name="available_to"]').val()
+      url = $(e.currentTarget).parents('.subtitle-container').data('post-available-url')
+
+      $.ajax
+        url: url
+        data: { available_from: from, available_to: to }
+        method: 'POST'
+        dataType: 'JSON'
+        success: (data) =>
+          $('.available').css('display', 'inline')
+        error: () =>
+          $('.not-available').css('display', 'inline')
+
   @innitialize_full_calendar: () ->
     url = $('#calendar').data('for-posts-url')
 

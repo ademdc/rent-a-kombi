@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   include PostsHelper
 
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :available]
   before_action :authenticate_user!, except: [:show, :search]
   before_action :get_image, only: [:remove_attachment]
 
@@ -56,8 +56,15 @@ class PostsController < ApplicationController
   end
 
   def search
-    # @posts = get_filtered_posts(search_post_params)
     @posts = Post.filter(search_post_params).paginate(page: params[:page])
+  end
+
+  def available
+    status = @post.available?(params[:available_from], params[:available_to])
+
+    respond_to do |format|
+      format.json { render json: status, status: :ok }
+    end
   end
 
   def remove_attachment

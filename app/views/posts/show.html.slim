@@ -46,26 +46,31 @@
                   = image_tag image, class: 'post-img'
 
     .col-md-5
-      .subtitle-container
+      .subtitle-container  data-post-available-url=available_post_path(@post)
         h5.subtitle Availability
         hr
           .row
-            .col-md-4
-              .input-group
-                = text_field_tag :availability_from, '',  class: "daterange", label: false, placeholder: 'Select date from'
-            .col-md-4
-              .input-group
-                = text_field_tag :availability_to, '', class: "daterange", label: false, placeholder: 'Select date to'
-            .col-md-4
-              .input-group
-                - seach_icon = content_tag :i, '', class: 'fa fa-search'
-                = button_tag 'Check', class: 'btn btn-search btn-success btn-sm', style: 'width: 100%'
-
+            .col-md-12
+              .flex-center-all
+                .input-group
+                  = text_field_tag :available_from, '',  class: "daterange js-post-availability-from", label: false, placeholder: 'Select date from'
+                .input-group
+                  = text_field_tag :available_to, '', class: "daterange js-post-availability-to", label: false, placeholder: 'Select date to'
+                .input-group
+                  = button_tag 'Check', class: 'btn btn-search js-check-availability btn-success btn-sm', style: 'width: 100%'
+          .row
+            .col-md-12
+              .available style='display:none;'
+                = inline_svg 'check.svg', style: 'height: 40px; display: inline;'
+                span Car available in that range
+              .not-available style='display:none;'
+                = inline_svg 'letter-x.svg', style: 'height: 30px; display: inline;'
+                span Car unavailable in that range
       .subtitle-container
-        h5.subtitle Seller
+        h5.subtitle Renter
         hr
           p = @post.user.email
-          p = link_to "Message #{@post.user.full_name}", '#', class: 'btn btn-sm btn-success btn-rounded mb-4', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
+          p = link_to "Message #{@post.user.full_name}", '#', class: 'btn btn-sm btn-success btn-rounded btn-app mb-4', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
       .messaging data-conversation-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user.id data-post-id=@post.id
       .subtitle-container
         h5.subtitle Contact

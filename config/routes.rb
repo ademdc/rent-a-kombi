@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 
   resources :posts do
     get :search, on: :collection
-    delete :remove_attachment, on: :member
+
+    member do
+      delete :remove_attachment
+      post :available
+    end
+
   end
 
   resources :categories

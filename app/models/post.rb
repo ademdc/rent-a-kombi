@@ -46,4 +46,10 @@ class Post < ApplicationRecord
     self.images.first.present? ? self.images.first : 'cars/car.jpg'
   end
 
+  def available?(date_from, date_to)
+    from, to = date_from.to_datetime, date_to.to_datetime
+    self.slots.each { |slot| return false if slot.between_range?(from, to) }
+    true
+  end
+
 end

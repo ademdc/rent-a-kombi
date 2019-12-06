@@ -7,8 +7,6 @@ class Home
     @innitialize_flexslider()
 
   innitialize_daterangepicker: () ->
-    # $('.daterange').daterangepicker
-    #   locale: format: 'D/M/YYYY hh:mm'
     $('.daterange').flatpickr
       enableTime: true
       minDate: 'today'
@@ -16,8 +14,6 @@ class Home
       dateFormat: 'd/m/Y H:i'
       locale:
         firstDayOfWeek: 1
-
-
 
   innitialize_flexslider: () ->
     $('.flexslider').flexslider()

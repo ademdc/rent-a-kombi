@@ -23,4 +23,9 @@ module ToolboxHelper
     content_tag :i, '', class: "fa fa-heart #{klass}"
   end
 
+  def car_icon(text='', klass='')
+    icon = (content_tag :i, '', class: "fa fa-car #{klass}")
+    "#{text} #{icon}".html_safe
+  end
+
 end

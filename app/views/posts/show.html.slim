@@ -5,45 +5,47 @@
       hr
   .row
     .col-md-7
-      .subtitle-container
+      .subtitle-container style='height: 230px;'
         h5.subtitle Main Information
         hr
-      .row
-        .col-md-6
-          p
-            strong Category:
-            = @post.category.name
-          p
-            strong Model:
-            = @post.model
-          p
-            strong Milage:
-            = @post.milage
-          p
-            strong Number of seats:
-            = @post.number_of_seats
-        .col-md-6
-          p
-            strong Fuel:
-            = @post.fuel
-          p
-            strong Year:
-            = @post.production_year
-          p
-            strong Transmission:
-            = @post.transmission
-          p
-            strong HorsePower:
-            = @post.hp
+        .row
+          .col-md-6
+            p
+              strong Category:
+              = @post.category.name
+            p
+              strong Model:
+              = @post.model
+            p
+              strong Milage:
+              = @post.milage
+            p
+              strong Number of seats:
+              = @post.number_of_seats
+          .col-md-6
+            p
+              strong Fuel:
+              = @post.fuel
+            p
+              strong Year:
+              = @post.production_year
+            p
+              strong Transmission:
+              = @post.transmission
+            p
+              strong HorsePower:
+              = @post.hp
 
-      hr
-      .row
-        .col-md-12
-          .flexslider.show-flex
-            ul.slides
-              - @post.images.each do |image|
-                li
-                  = image_tag image, class: 'post-img'
+      .subtitle-container
+        h5.subtitle Images
+        hr
+        .row
+          .col-md-12
+            .flexslider.show-flex
+              ul.slides
+                - @post.images.each do |image|
+                  li
+                    = image_tag image, class: 'post-img'
 
     .col-md-5
       .subtitle-container  data-post-available-url=available_post_path(@post)
@@ -69,8 +71,9 @@
       .subtitle-container
         h5.subtitle Renter
         hr
-          p = @post.user.email
-          p = link_to "Message #{@post.user.full_name}", '#', class: 'btn btn-sm btn-success btn-rounded btn-app mb-4', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
+          = image_tag @post.user.profile_image, class: 'img-circle mx-2 my-2'
+          span.mr-2 = @post.user.full_name
+          span = link_to message_icon, '#', class: 'btn btn-sm btn-success btn-rounded btn-app', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
       .messaging data-conversation-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user.id data-post-id=@post.id
       .subtitle-container
         h5.subtitle Contact
@@ -83,6 +86,6 @@
           = @post.description
 
   - if current_ability.can?(:edit, @post)
-    = link_to 'Edit', edit_post_path(@post), class: 'btn btn-app'
+    = link_to 'Edit', edit_post_path(@post), class: 'btn btn-app btn-edit'
 
 = render 'shared/modals/contact_renter_modal', post: @post  unless current_user.my_post?(@post)

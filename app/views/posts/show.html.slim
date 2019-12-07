@@ -66,7 +66,7 @@
               .available style='display:none;'
                 = inline_svg 'check.svg', style: 'height: 40px; display: inline;'
                 span Car available in that range
-                span = button_tag car_icon('Reserve'), class: 'btn js-rent btn-success btn', style: 'width: 100%'
+                span = link_to car_icon('Reserve'), reservations_path, class: 'btn js-rent btn-success btn', style: 'width: 100%', method: :post
               .not-available style='display:none;'
                 = inline_svg 'letter-x.svg', style: 'height: 30px; display: inline;'
                 span Car unavailable in that range

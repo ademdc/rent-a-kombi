@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
+
+  resource :reservations, only: [:create, :destroy, :edit]
 end

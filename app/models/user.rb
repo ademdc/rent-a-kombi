@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :conversations, ->(user) { unscope(:where).where("recipient_id = :id OR sender_id = :id", id: user.id) }
   has_many :messages, through: :conversations
   has_many :favorite_posts, dependent: :destroy
+  has_many :reservations
 
   has_one_attached :avatar
 

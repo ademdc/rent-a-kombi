@@ -3,6 +3,7 @@ class Post < ApplicationRecord
 
   belongs_to :category
   belongs_to :user
+  has_many :reservations
   has_one :vehicle, dependent: :destroy
   has_many :slots, dependent: :destroy
   has_many :messages

@@ -1,9 +1,8 @@
 .post-show-container
   .row
     .col-md-12
-      / h1 = cookies[:availability_from]
-      / h1 = cookies[:availability_to]
-      h3 = @post.title
+      h3.d-inline.mr-3 = @post.title
+      = inline_svg "car_logos/#{@post.model}.svg", height: '60', width: '60'
       hr
   .row
     .col-md-7

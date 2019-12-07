@@ -71,11 +71,16 @@ class Posts
         method: 'POST'
         dataType: 'JSON'
         success: (data) =>
-          $('.available').css('display', 'inline')
-          $('.not-available').css('display', 'none')
+          console.log data
+          if data == true
+            $('.available').css('display', 'inline')
+            $('.not-available').css('display', 'none')
+          else
+            $('.not-available').css('display', 'inline')
+            $('.available').css('display', 'none')
+
         error: () =>
-          $('.not-available').css('display', 'inline')
-          $('.available').css('display', 'none')
+          console.log 'Error with checking availability'
 
   @innitialize_full_calendar: () ->
     url = $('#calendar').data('for-posts-url')

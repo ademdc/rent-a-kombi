@@ -62,7 +62,6 @@ class PostsController < ApplicationController
   end
 
   def available
-    byebug
     status = @post.available?(params[:available_from], params[:available_to])
 
     respond_to do |format|

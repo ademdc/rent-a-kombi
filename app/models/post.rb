@@ -23,8 +23,8 @@ class Post < ApplicationRecord
   scope :by_price_from, -> (price) { where('price > ?', price) }
   scope :by_price_to, -> (price) { where('price < ?', price) }
 
-  scope :by_availability_from, -> (availability) { where('price < ?', price) }
-  scope :by_availability_to, -> (availability) { where('price < ?', price) }
+  scope :by_availability_from, -> (availability) {  }
+  scope :by_availability_to, -> (availability) { }
 
 
   validates :title, :price, :model, presence: true

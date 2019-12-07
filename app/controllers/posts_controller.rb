@@ -56,10 +56,13 @@ class PostsController < ApplicationController
   end
 
   def search
+    cookies[:availability_from]  = params[:search][:availability_from]
+    cookies[:availability_to]  = params[:search][:availability_to]
     @posts = Post.filter(search_post_params).paginate(page: params[:page])
   end
 
   def available
+    byebug
     status = @post.available?(params[:available_from], params[:available_to])
 
     respond_to do |format|
@@ -96,7 +99,9 @@ class PostsController < ApplicationController
         :transmission,
         :year_from,
         :year_to,
-        :availability
+        :availability,
+        :availability_from,
+        :availability_to
         )
     end
 

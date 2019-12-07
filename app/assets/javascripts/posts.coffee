@@ -6,6 +6,7 @@ class Posts
 
   innitialize_listeners: () ->
     $(document).on 'click', '.js-add-favorite-post', (e) =>
+      e.preventDefault()
       $target = $(e.currentTarget)
 
       if $target.hasClass('btn-red')
@@ -29,11 +30,11 @@ class Posts
 
     $(document).on 'click', '.js-generate-slot', (e) =>
       e.preventDefault()
-      return if $('.daterange').val() == ''
+      return if $('#slot_start').val() == ''
 
       $post_id = $('#calendar').data('post-id')
-      start = $('.daterange').val().split('to')[0]
-      end = $('.daterange').val().split('to')[1]
+      start = $('#slot_start').val()
+      end = $('#slot_end').val()
       title = $('.js-title').val()
 
       data = { 'slot[post_id]': $post_id, 'slot[start]': start, 'slot[end]': end, 'slot[title]': title }
@@ -47,7 +48,8 @@ class Posts
         success: (data) =>
           toastr.success('New time slot successfully created')
           Posts.refresh_calendar()
-          $('#new_slot').val('')
+          $('#slot_start').val('')
+          $('#slot_end').val('')
           $('#title').val('')
         error: () =>
           toastr.error('Error occured')
@@ -90,6 +92,7 @@ class Posts
               center: 'title',
               right: 'month, basicWeek, basicDay',
             events: data,
+            firstDay: 1
             eventClick: (event, element) ->
               Posts.slot_delete(event, element)
            )

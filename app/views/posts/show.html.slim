@@ -1,6 +1,8 @@
 .post-show-container
   .row
     .col-md-12
+      / h1 = cookies[:availability_from]
+      / h1 = cookies[:availability_to]
       h3 = @post.title
       hr
   .row
@@ -55,9 +57,9 @@
             .col-md-12
               .flex-center-all
                 .input-group
-                  = text_field_tag :available_from, '',  class: "daterange js-post-availability-from", label: false, placeholder: 'Select date from'
+                  = text_field_tag :available_from, '',  class: "daterange js-post-availability-from picker-from", label: false, placeholder: 'Select date from', value: cookies[:availability_from]
                 .input-group
-                  = text_field_tag :available_to, '', class: "daterange js-post-availability-to", label: false, placeholder: 'Select date to'
+                  = text_field_tag :available_to, '', class: "daterange js-post-availability-to picker-to", label: false, placeholder: 'Select date to', value: cookies[:availability_to]
                 .input-group
                   = button_tag 'Check', class: 'btn btn-search js-check-availability btn-success btn-sm', style: 'width: 100%'
           .row
@@ -65,7 +67,7 @@
               .available style='display:none;'
                 = inline_svg 'check.svg', style: 'height: 40px; display: inline;'
                 span Car available in that range
-                span = button_tag car_icon('Rent'), class: 'btn js-rent btn-success btn', style: 'width: 100%'
+                span = button_tag car_icon('Reserve'), class: 'btn js-rent btn-success btn', style: 'width: 100%'
               .not-available style='display:none;'
                 = inline_svg 'letter-x.svg', style: 'height: 30px; display: inline;'
                 span Car unavailable in that range

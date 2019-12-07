@@ -74,9 +74,12 @@
             .row
               .js-calendar-container.calendar-container
                 .mb-5.text-center
-                  = text_field_tag "new_slot", nil, class: 'daterange w-300 m-r-sm', placeholder: 'Select daterange'
-                  = text_field_tag "title", nil, class: 'js-title w-300 m-r-sm', placeholder: 'Slot title'
-                  = link_to 'Generate slots', '#', class: 'btn btn-primary btn-app js-generate-slot'
+                  .flex-center-all
+                    = text_field_tag "slot_start", nil, class: 'daterange w-300 picker-from', placeholder: 'Select date from'
+                    = text_field_tag "slot_end", nil, class: 'daterange w-300 picker-to', placeholder: 'Select date to'
+
+                    = text_field_tag "title", nil, class: 'js-title w-300 picker-title m-r-sm', placeholder: 'Enter title'
+                    = link_to 'Generate slots', '#', class: 'btn btn-primary btn-app btn-generate js-generate-slot'
 
                 #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
 

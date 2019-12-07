@@ -15,6 +15,12 @@ class Home
       locale:
         firstDayOfWeek: 1
 
+    $('.picker-from').on 'change', (e) ->
+      $('.picker-to').trigger('focus')
+
+    $('.picker-to').on 'change', (e) ->
+      $('.picker-title').trigger('focus')
+
   innitialize_flexslider: () ->
     $('.flexslider').flexslider()
 

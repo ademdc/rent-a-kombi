@@ -5,6 +5,28 @@ class Posts
     Posts.innitialize_full_calendar()
 
   innitialize_listeners: () ->
+    $(document).on 'click', '.js-add-favorite-post', (e) =>
+      $target = $(e.currentTarget)
+
+      if $target.hasClass('btn-red')
+        toastr.warning 'This post is already in favorites'
+        return false
+
+      url = $target.data('url')
+      post_id = $target.data('post-id')
+      user_id = $target.data('user-id')
+
+      $.ajax
+        url: url
+        data: { post_id: post_id, user_id: user_id }
+        method: 'POST'
+        dataType: 'JSON'
+        success: (data) =>
+          toastr.success 'Post added to favorites'
+          $target.addClass('btn-red')
+        error: () =>
+          console.log 'Error occured'
+
     $(document).on 'click', '.js-generate-slot', (e) =>
       e.preventDefault()
       return if $('.daterange').val() == ''
@@ -48,8 +70,10 @@ class Posts
         dataType: 'JSON'
         success: (data) =>
           $('.available').css('display', 'inline')
+          $('.not-available').css('display', 'none')
         error: () =>
           $('.not-available').css('display', 'inline')
+          $('.available').css('display', 'none')
 
   @innitialize_full_calendar: () ->
     url = $('#calendar').data('for-posts-url')

@@ -19,4 +19,8 @@ module ToolboxHelper
     content_tag :i, '', class: "fa fa-upload #{klass}"
   end
 
+  def heart_icon(klass='')
+    content_tag :i, '', class: "fa fa-heart #{klass}"
+  end
+
 end

@@ -65,6 +65,7 @@
               .available style='display:none;'
                 = inline_svg 'check.svg', style: 'height: 40px; display: inline;'
                 span Car available in that range
+                span = button_tag 'Rent', class: 'btn js-rent btn-app btn-sm', style: 'width: 100%'
               .not-available style='display:none;'
                 = inline_svg 'letter-x.svg', style: 'height: 30px; display: inline;'
                 span Car unavailable in that range
@@ -73,7 +74,10 @@
         hr
           = image_tag @post.user.profile_image, class: 'img-circle mx-2 my-2'
           span.mr-2 = @post.user.full_name
-          span = link_to message_icon, '#', class: 'btn btn-sm btn-success btn-rounded btn-app', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
+          span = link_to message_icon, '#', class: 'btn btn-sm btn-success btn-rounded btn-app mr-2', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
+
+          - is_favorite_post = current_user.is_favorite_post?(@post) ? 'btn-red' : ''
+          span = link_to heart_icon, '#', class: "btn btn-sm btn-success btn-rounded btn-app js-add-favorite-post #{is_favorite_post}", data: { url: set_favorite_post_post_path(@post), post_id: @post.id, user_id: current_user.id } if current_user.present?
       .messaging data-conversation-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user.id data-post-id=@post.id
       .subtitle-container
         h5.subtitle Contact

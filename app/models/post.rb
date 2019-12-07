@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_one :vehicle, dependent: :destroy
   has_many :slots, dependent: :destroy
   has_many :messages
+  has_many :favorite_posts, dependent: :destroy
 
   has_many_attached :images
 
@@ -32,7 +33,7 @@ class Post < ApplicationRecord
   enum fuel: Posts::Filters::FUEL
   enum transmission: Posts::Filters::TRANSMISSION
 
-  self.per_page = 5
+  # self.per_page = 5
 
   def self.by_availability(range)
     from, to = range.split('to').map(&:to_datetime)

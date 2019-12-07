@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     member do
       delete :remove_attachment
       post :available
+      post :set_favorite_post
     end
 
   end

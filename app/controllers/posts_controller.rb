@@ -72,6 +72,10 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: request.referer)
   end
 
+  def set_favorite_post
+    FavoritePost.create!(user_id: params[:user_id], post_id: params[:post_id])
+  end
+
   private
 
     def set_post

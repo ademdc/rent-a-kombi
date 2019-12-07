@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :conversations, ->(user) { unscope(:where).where("recipient_id = :id OR sender_id = :id", id: user.id) }
   has_many :messages, through: :conversations
+  has_many :favorite_posts, dependent: :destroy
 
   has_one_attached :avatar
 
@@ -37,5 +38,9 @@ class User < ApplicationRecord
 
   def profile_image
     self.avatar.attached? ? self.avatar : 'user-photo.png'
+  end
+
+  def is_favorite_post?(post)
+    self.favorite_posts.pluck(:post_id).include?(post.id)
   end
 end

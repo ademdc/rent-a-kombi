@@ -12,11 +12,11 @@
 //
 //= require sweetalert
 //= require jquery
+//= require toastr
 //= require popper
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
-//= require toastr
 //= require jquery.flexslider
 //= require dataTable/datatables.js
 //= require datetimepicker/flatpickr.min

@@ -5,11 +5,11 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save
-      respond do |format|
+      respond_to do |format|
         format.html { redirect_to posts_path, notice: 'Reservation succesfully created' }
       end
     else
-      format.json { render json: @post.errors, status: :unprocessable_entity }
+      format.json { render json: @reservation.errors, status: :unprocessable_entity }
     end
   end
 

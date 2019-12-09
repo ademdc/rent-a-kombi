@@ -6,11 +6,13 @@ class Posts
 
   innitialize_listeners: () ->
     $(document).on 'click', '.js-add-favorite-post', (e) =>
+      console.log 'clicked fav'
       e.preventDefault()
       $target = $(e.currentTarget)
 
       if $target.hasClass('btn-red')
         toastr.warning 'This post is already in favorites'
+        console.log 'in'
         return false
 
       url = $target.data('url')
@@ -61,8 +63,10 @@ class Posts
       $("#calendar").fullCalendar('refetchEvents');
 
     $(document).on 'click', '.js-check-availability', (e) ->
-      from = $('input[name="available_from"]').val()
-      to = $('input[name="available_to"]').val()
+      e.preventDefault()
+
+      from = $('.picker-from').val()
+      to = $('.picker-to').val()
       url = $(e.currentTarget).parents('.subtitle-container').data('post-available-url')
 
       $.ajax

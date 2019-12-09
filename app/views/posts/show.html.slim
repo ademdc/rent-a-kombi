@@ -52,21 +52,26 @@
       .subtitle-container  data-post-available-url=available_post_path(@post)
         h5.subtitle Availability
         hr
+        = simple_form_for @reservation do |f|
           .row
             .col-md-12
               .flex-center-all
+                = f.input :user_id, as: :hidden, input_html: { value: current_user.id } if current_user.present?
+                = f.input :post_id, as: :hidden, input_html: { value: @post.id }
                 .input-group
-                  = text_field_tag :available_from, '',  class: "daterange js-post-availability-from picker-from", label: false, placeholder: 'Select date from', value: cookies[:availability_from]
+                  = f.input :start, as: :string, input_html: { class: "daterange js-post-availability-from picker-from" }, label: false, placeholder: 'Select date from', value: cookies[:availability_from], readonly: false
                 .input-group
-                  = text_field_tag :available_to, '', class: "daterange js-post-availability-to picker-to", label: false, placeholder: 'Select date to', value: cookies[:availability_to]
+                  = f.input :end, as: :string, input_html: { class: "daterange js-post-availability-to picker-to"}, label: false, placeholder: 'Select date to', value: cookies[:availability_to]
                 .input-group
-                  = button_tag 'Check', class: 'btn btn-search js-check-availability btn-success btn-sm', style: 'width: 100%'
+                  = button_tag 'Check', class: 'btn btn-search js-check-availability btn-success btn-sm', style: 'width: 100%; height: 38px;'
           .row
             .col-md-12
               .available style='display:none;'
                 = inline_svg 'check.svg', style: 'height: 40px; display: inline;'
                 span Car available in that range
-                span = link_to car_icon('Reserve'), reservations_path, class: 'btn js-rent btn-success btn', style: 'width: 100%', method: :post
+                span = button_tag car_icon('Reserve'), class: 'btn js-rent btn-success btn', style: 'width: 100%'
+          .row
+            .col-md-12
               .not-available style='display:none;'
                 = inline_svg 'letter-x.svg', style: 'height: 30px; display: inline;'
                 span Car unavailable in that range
@@ -75,11 +80,11 @@
         hr
           = image_tag @post.user.profile_image, class: 'img-circle mx-2 my-2'
           span.mr-2 = @post.user.full_name
-          span = link_to message_icon, '#', class: 'btn btn-sm btn-success btn-rounded btn-app mr-2', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
+          span = link_to message_icon, '#', class: 'btn btn-sm btn-success btn-rounded btn-app mr-2', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.present? && current_user.my_post?(@post)
 
-          - is_favorite_post = current_user.is_favorite_post?(@post) ? 'btn-red' : ''
+          - is_favorite_post = current_user.present? && current_user.is_favorite_post?(@post) ? 'btn-red' : ''
           span = link_to heart_icon, '#', class: "btn btn-sm btn-success btn-rounded btn-app js-add-favorite-post #{is_favorite_post}", data: { url: set_favorite_post_post_path(@post), post_id: @post.id, user_id: current_user.id } if current_user.present?
-      .messaging data-conversation-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user.id data-post-id=@post.id
+      .messaging data-conversation-url=conversations_path(sender_id: current_user.try(:id), recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user&.id data-post-id=@post.id
       .subtitle-container
         h5.subtitle Contact
         hr
@@ -93,4 +98,4 @@
   - if current_ability.can?(:edit, @post)
     = link_to 'Edit', edit_post_path(@post), class: 'btn btn-app btn-edit'
 
-= render 'shared/modals/contact_renter_modal', post: @post  unless current_user.my_post?(@post)
+= render 'shared/modals/contact_renter_modal', post: @post  unless current_user&.my_post?(@post)

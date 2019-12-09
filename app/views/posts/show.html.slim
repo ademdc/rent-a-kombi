@@ -52,29 +52,10 @@
       .subtitle-container  data-post-available-url=available_post_path(@post)
         h5.subtitle Availability
         hr
-        = simple_form_for @reservation do |f|
-          .row
-            .col-md-12
-              .flex-center-all
-                = f.input :user_id, as: :hidden, input_html: { value: current_user.id } if current_user.present?
-                = f.input :post_id, as: :hidden, input_html: { value: @post.id }
-                .input-group
-                  = f.input :start, as: :string, input_html: { class: "daterange js-post-availability-from picker-from" }, label: false, placeholder: 'Select date from', value: cookies[:availability_from], readonly: false
-                .input-group
-                  = f.input :end, as: :string, input_html: { class: "daterange js-post-availability-to picker-to"}, label: false, placeholder: 'Select date to', value: cookies[:availability_to]
-                .input-group
-                  = button_tag 'Check', class: 'btn btn-search js-check-availability btn-success btn-sm', style: 'width: 100%; height: 38px;'
-          .row
-            .col-md-12
-              .available style='display:none;'
-                = inline_svg 'check.svg', style: 'height: 40px; display: inline;'
-                span Car available in that range
-                span = button_tag car_icon('Reserve'), class: 'btn js-rent btn-success btn', style: 'width: 100%'
-          .row
-            .col-md-12
-              .not-available style='display:none;'
-                = inline_svg 'letter-x.svg', style: 'height: 30px; display: inline;'
-                span Car unavailable in that range
+        = upocoming_reservation(current_user, @post)
+        = render 'availability_form', post: @post
+
+
       .subtitle-container
         h5.subtitle Renter
         hr

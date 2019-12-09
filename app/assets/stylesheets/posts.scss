@@ -46,7 +46,7 @@
   }
 
   .input-group-text {
-    height: 38px;
+    height: 34px;
   }
   .form-group {
     margin-bottom: 0;
@@ -180,6 +180,10 @@
 
   .daterange {
     background: white;
+  }
+
+  .picker-from, .picker-to {
+    font-size: 14px;
   }
 
 }

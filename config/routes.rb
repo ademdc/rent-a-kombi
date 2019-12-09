@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   end
 
   resource :reservations, only: [:create, :destroy, :edit]
+
+  resources :profile, only: [:index]
 end

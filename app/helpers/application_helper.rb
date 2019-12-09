@@ -4,4 +4,8 @@ module ApplicationHelper
 
     "https://maps.googleapis.com/maps/api/js?key=#{ENV['GMAP_API_KEY']}&libraries=places&language=en"
   end
+
+  def logged_in?
+    current_user.present?
+  end
 end

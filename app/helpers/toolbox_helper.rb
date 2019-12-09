@@ -28,4 +28,8 @@ module ToolboxHelper
     "#{text} #{icon}".html_safe
   end
 
+  def warning_icon(klass='')
+    content_tag :i, '', class: "fa fa-warning text-warning #{klass}"
+  end
+
 end

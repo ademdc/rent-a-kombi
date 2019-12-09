@@ -44,4 +44,8 @@ class User < ApplicationRecord
   def is_favorite_post?(post)
     self.favorite_posts.pluck(:post_id).include?(post.id)
   end
+
+  def reservations_for(post)
+    Reservation.current_reservation_for(self, post)
+  end
 end

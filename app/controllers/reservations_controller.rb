@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       respond_to do |format|
-        format.html { redirect_to posts_path, notice: 'Reservation succesfully created' }
+        format.html { redirect_to profile_index_path, notice: 'Reservation succesfully created. Pending...' }
       end
     else
       format.json { render json: @reservation.errors, status: :unprocessable_entity }

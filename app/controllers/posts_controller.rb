@@ -59,6 +59,7 @@ class PostsController < ApplicationController
   def search
     cookies[:availability_from]  = params[:search][:availability_from]
     cookies[:availability_to]  = params[:search][:availability_to]
+
     @posts = Post.filter(search_post_params).paginate(page: params[:page])
   end
 

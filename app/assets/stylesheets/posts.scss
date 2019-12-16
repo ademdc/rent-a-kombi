@@ -119,7 +119,7 @@
       }
 
       button:hover {
-        transform: scale(1.10);
+        transform: scale(1.05);
       }
     }
   }
@@ -136,7 +136,7 @@
 }
 
 .list-group-item:hover {
-  transform: scale(1.10);
+  transform: scale(1.05);
 }
 
 
@@ -184,6 +184,22 @@
 
   .picker-from, .picker-to {
     font-size: 14px;
+  }
+
+  .main-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      padding: 15px;
+
+      i {
+        padding-right: 5px;
+        color: #323E5F;
+        font-size: 1.33333em;
+      }
+    }
   }
 
 }

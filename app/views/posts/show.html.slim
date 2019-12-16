@@ -6,36 +6,57 @@
       hr
   .row
     .col-md-7
-      .subtitle-container style='height: 230px;'
+      .subtitle-container style='height: 100px;'
         h5.subtitle Main Information
         hr
         .row
-          .col-md-6
-            p
-              strong Category:
-              = @post.category.name
-            p
-              strong Model:
-              = @post.model
-            p
-              strong Milage:
-              = @post.milage
-            p
-              strong Number of seats:
-              = @post.number_of_seats
-          .col-md-6
-            p
-              strong Fuel:
-              = @post.fuel
-            p
-              strong Year:
-              = @post.production_year
-            p
-              strong Transmission:
-              = @post.transmission
-            p
-              strong HorsePower:
-              = @post.hp
+          .col-md-12
+            .main-info
+              p
+                i.fa.fa-horse-head
+                = @post.hp
+              p
+                i.fa.fa-gas-pump
+                = @post.fuel.titleize
+              p
+                i.fa.fa-calendar
+                = @post.production_year
+              p
+                i.fa.fa-road
+                = @post.milage
+              p
+                i.fa.fa-chair
+                = @post.number_of_seats
+              p
+                i.fa.fa-cogs
+                = @post.transmission.titleize
+
+
+          /   p
+          /     strong Category:
+          /     = @post.category.name
+          /   p
+          /     strong Model:
+          /     = @post.model
+          /   p
+          /     strong Milage:
+          /     = @post.milage
+          /   p
+          /     strong Number of seats:
+          /     = @post.number_of_seats
+          / .col-md-6
+          /   p
+          /     strong Fuel:
+          /     = @post.fuel
+          /   p
+          /     strong Year:
+          /     = @post.production_year
+          /   p
+          /     strong Transmission:
+          /     = @post.transmission
+          /   p
+          /     strong HorsePower:
+          /     = @post.hp
 
       .subtitle-container
         h5.subtitle Images

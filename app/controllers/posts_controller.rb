@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   include PostsHelper
+  include AddressesAttributes
+
 
   before_action :set_post, only: [:show, :edit, :update, :destroy, :available]
   before_action :authenticate_user!, except: [:show, :search]
@@ -15,9 +17,11 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.build_address
   end
 
   def edit
+    @post.build_address unless @post.address.present?
   end
 
   def create
@@ -122,6 +126,7 @@ class PostsController < ApplicationController
         :price,
         :number_of_seats,
         :hp,
-        :kw)
+        :kw,
+        address_attributes: addresses_attributes)
     end
 end

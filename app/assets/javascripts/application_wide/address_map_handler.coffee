@@ -1,14 +1,16 @@
 class AddressMapHandler
 
   constructor: () ->
-    console.log 'inside google'
     @init_map()
 
 
   init_map: () ->
-    sarajevo =
-      lat: 43.84864
-      lng: 18.35644
+    lat = parseFloat(parseFloat($('#js-latitude').val()).toFixed(5))
+    lng = parseFloat(parseFloat($('#js-longitude').val()).toFixed(5))
+
+    location =
+      lat: lat
+      lng: lng
 
     element = $('#googleMap')
 
@@ -17,11 +19,11 @@ class AddressMapHandler
 
     map = new (google.maps.Map)(element[0],
       zoom: 15
-      center: sarajevo
+      center: location
       )
 
     marker = new (google.maps.Marker)(
-      position: sarajevo
+      position: location
       map: map)
     return
 

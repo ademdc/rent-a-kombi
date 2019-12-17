@@ -1,4 +1,7 @@
 .post-show-container
+  = hidden_field_tag 'js-latitude', @post.address.latitude
+  = hidden_field_tag 'js-longitude', @post.address.longitude
+
   .row
     .col-md-12
       h3.d-inline.mr-3 = @post.title

@@ -66,6 +66,9 @@
               = f.input :hp
             .col-md-6
               = f.input :price
+            .col-md-12
+              h3 Address
+            = render 'shared/addresses/fields', builder: f
           #photos-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
             .row
               .col-md-12

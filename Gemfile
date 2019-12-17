@@ -60,8 +60,7 @@ gem 'inline_svg'
 gem 'ejs'
 
 gem "will_paginate"
-
-
+gem 'countries'
 
 
 group :development, :test do

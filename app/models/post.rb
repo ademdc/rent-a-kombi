@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   include Filterable
+  include WithAddresses
 
   belongs_to :category
   belongs_to :user

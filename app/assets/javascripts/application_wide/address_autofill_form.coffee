@@ -62,3 +62,4 @@ class AddressAutofillForm
 
 $(document).ready ->
   new AddressAutofillForm($('.post-form-container'))
+  new AddressAutofillForm($('.edit-user-container'))

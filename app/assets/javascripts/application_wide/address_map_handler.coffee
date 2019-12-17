@@ -14,7 +14,7 @@ class AddressMapHandler
 
     element = $('#googleMap')
 
-    unless element.length > 0
+    unless element.length > 0 and (lat && lng)
       return false
 
     map = new (google.maps.Map)(element[0],

@@ -2,6 +2,7 @@ class Posts
   constructor: () ->
     @$calendar = $('#calendar')
     @innitialize_listeners()
+    @check_user_address()
     Posts.innitialize_full_calendar()
 
   innitialize_listeners: () ->
@@ -86,6 +87,11 @@ class Posts
         error: () =>
           console.log 'Error with checking availability'
 
+    $(document).on 'change', '#user_address_check', (e) =>
+      $target = $(e.currentTarget)
+      $container = $('.address-fields-container')
+      @toggle_user_address($target, $container)
+
   @innitialize_full_calendar: () ->
     url = $('#calendar').data('for-posts-url')
 
@@ -146,5 +152,31 @@ class Posts
             error: () =>
               toastr.error('Error occured while deleting')
 
+  check_user_address: () =>
+    $target = $('#user_address_check')
+    $container = $('.address-fields-container')
+    @toggle_user_address($target, $container)
+
+  toggle_user_address: ($target, $container) =>
+    if $target.is(':checked')
+      $container.css('display', 'none')
+      $container.find('#post_address_attributes_id').prop('disabled', 'disabled')
+      $container.find('.js-latitude').prop('disabled', 'disabled')
+      $container.find('.js-longitude').prop('disabled', 'disabled')
+      $container.find('.js-address').prop('disabled', 'disabled')
+      $container.find('.js-address-city').attr('disabled', 'disabled')
+      $container.find('.js-address-zip').attr('disabled', 'disabled')
+      $container.find('.js-address-country').attr('disabled', 'disabled')
+      $container.find('.js-address-street-number').attr('disabled', 'disabled')
+    else
+      $container.css('display', 'block')
+      $container.find('#post_address_attributes_id').removeAttr('disabled')
+      $container.find('.js-latitude').removeAttr('disabled')
+      $container.find('.js-longitude').removeAttr('disabled')
+      $container.find('.js-address').removeAttr('disabled')
+      $container.find('.js-address-city').removeAttr('disabled')
+      $container.find('.js-address-zip').removeAttr('disabled')
+      $container.find('.js-address-country').removeAttr('disabled')
+      $container.find('.js-address-street-number').removeAttr('disabled')
 $(document).ready ->
   posts = new Posts

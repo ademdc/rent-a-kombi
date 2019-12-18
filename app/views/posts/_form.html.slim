@@ -68,6 +68,9 @@
               = f.input :price
             .col-md-12
               h3 Address
+              .inline
+                = label_tag '', 'Use same address as user', class: 'mr-3'
+                = check_box_tag "user_address_check", "user_address_check", !address_exist_for?(@post)
               = render 'shared/addresses/fields', builder: f
           #photos-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
             .row

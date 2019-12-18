@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :available]
   before_action :authenticate_user!, except: [:show, :search]
   before_action :get_image, only: [:remove_attachment]
+  before_action :check_address, only: [:create, :update]
 
   def index
     @posts = Post.by_user(current_user).paginate(page: params[:page])
@@ -88,6 +89,11 @@ class PostsController < ApplicationController
 
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def check_address
+      checked = params[:user_address_check]
+      @post.use_user_address if checked
     end
 
     def get_image

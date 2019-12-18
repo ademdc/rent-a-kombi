@@ -55,4 +55,10 @@ class Post < ApplicationRecord
     true
   end
 
+  def use_user_address
+    user_address = self.user.address.dup
+    self.address.delete if self.address&.persisted?
+    self.address = user_address
+  end
+
 end

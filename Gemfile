@@ -62,6 +62,8 @@ gem 'ejs'
 gem 'rails-i18n'
 gem 'i18n-js'
 
+gem "will_paginate"
+gem 'countries'
 
 
 group :development, :test do

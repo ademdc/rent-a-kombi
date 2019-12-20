@@ -1,4 +1,4 @@
-.edit-post-container
+.post-form-container
   = simple_form_for @post do |f|
     - if @post.errors.any?
       #error_explanation
@@ -6,19 +6,28 @@
         ul
           - @post.errors.full_messages.each do |message|
             li = message
+
     .row
       .col-md-2
-        .edit-actions.mb-4
+        - if @post.persisted?
+          .edit-actions.mb-4
+            = submit_button
+            = navigation_button(:highlight, '#', 'btn-orange ')
+            = navigation_button(:show, post_path(@post))
+            = back_button
+            .clearfix
+            = delete_button(post_path)
+        - else
           = submit_button
-          = navigation_button(:highlight, '#', 'btn-orange ')
-          = navigation_button(:show, post_path(@post))
-          = back_button
-          = delete_button(post_path)
+
 
       .col-md-10
+        - unless @post.persisted?
+          h3 New rental
         ul#edit-post-tab-list.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"
           li.nav-item
             = link_to info_icon('fa-lg'), '#main-info-tab', class: 'nav-link active', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'home-just' }, role: 'tab'
+
           li.nav-item
             = link_to info_icon('fa-sm'), '#other-info-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'profile-just' }, role: 'tab'
           li.nav-item
@@ -55,6 +64,14 @@
               = f.input :number_of_seats
             .col-md-6
               = f.input :hp
+            .col-md-6
+              = f.input :price
+            .col-md-12
+              h3 Address
+              .inline
+                = label_tag '', 'Use same address as user', class: 'mr-3'
+                = check_box_tag "user_address_check", "user_address_check", !address_exist_for?(@post)
+              = render 'shared/addresses/fields', builder: f
           #photos-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
             .row
               .col-md-12
@@ -63,9 +80,12 @@
             .row
               .js-calendar-container.calendar-container
                 .mb-5.text-center
-                  = text_field_tag "new_slot", nil, class: 'daterange w-300 m-r-sm', placeholder: 'Select daterange'
-                  = text_field_tag "title", nil, class: 'js-title w-300 m-r-sm', placeholder: 'Slot title'
-                  = link_to 'Generate slots', '#', class: 'btn btn-primary btn-app js-generate-slot'
+                  .flex-center-all
+                    = text_field_tag "slot_start", nil, class: 'daterange w-300 picker-from', placeholder: 'Select date from'
+                    = text_field_tag "slot_end", nil, class: 'daterange w-300 picker-to', placeholder: 'Select date to'
+
+                    = text_field_tag "title", nil, class: 'js-title w-300 picker-title m-r-sm', placeholder: 'Enter title'
+                    = link_to 'Generate slots', '#', class: 'btn btn-primary btn-app btn-generate js-generate-slot'
 
                 #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
 

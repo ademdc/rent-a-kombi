@@ -11,7 +11,7 @@ body {
 .container {
   padding-top: 20px;
   min-height: 75vh;
-  background-color: white;
+  // background-color: white;
 }
 
 nav.navbar {
@@ -117,8 +117,31 @@ nav.navbar {
   color: white;
 }
 
+.btn-app:hover {
+  background: #CFDBE1;
+  color: black;
+}
+
+.btn-red {
+  background: red;
+  color: white;
+}
+
+.btn-red:hover {
+  background: darkred;
+  color: white;
+}
+
 .btn-orange:hover {
   background: #FFA500;
 }
 
+.flex-center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.hidden {
+  display: none !important;
+}

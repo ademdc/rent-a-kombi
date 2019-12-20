@@ -14,4 +14,22 @@ module ToolboxHelper
   def calendar_icon(klass='')
     content_tag :i, '', class: "fa fa-calendar #{klass}"
   end
+
+  def upload_icon(klass='')
+    content_tag :i, '', class: "fa fa-upload #{klass}"
+  end
+
+  def heart_icon(klass='')
+    content_tag :i, '', class: "fa fa-heart #{klass}"
+  end
+
+  def car_icon(text='', klass='')
+    icon = (content_tag :i, '', class: "fa fa-car #{klass}")
+    "#{text} #{icon}".html_safe
+  end
+
+  def warning_icon(klass='')
+    content_tag :i, '', class: "fa fa-warning text-warning #{klass}"
+  end
+
 end

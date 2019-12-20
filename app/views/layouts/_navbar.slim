@@ -13,10 +13,10 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
         - if current_user
           .mt-2.mr-3  = current_user.full_name
           = dropdown_navbar_item((render 'shared/users/navbar_photo'), '') do
+            = link_to t('navigation.profile'), profile_index_path, class: 'dropdown-item'
             = link_to t('navigation.account'), edit_user_registration_path, class: 'dropdown-item'
             = link_to t('navigation.logout'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
           end
-
         - else
           li.nav-item
             = link_to t('navigation.sign_in'), new_user_session_path, method: :get, class: 'nav-link'

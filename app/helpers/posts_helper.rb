@@ -1,5 +1,4 @@
 module PostsHelper
-
   def get_filtered_posts(params)
     @from, @to = params[:availability].split('to').map(&:to_datetime)
     range = @from.beginning_of_day..@to.end_of_day

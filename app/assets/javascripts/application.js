@@ -12,16 +12,17 @@
 //
 //= require sweetalert
 //= require jquery
+//= require toastr
 //= require popper
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
-//= require toastr
 //= require jquery.flexslider
 //= require dataTable/datatables.js
 //= require datetimepicker/flatpickr.min
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/locale-all
+//= require_tree ./application_wide
 //= require_tree .
 

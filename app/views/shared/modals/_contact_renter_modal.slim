@@ -1,4 +1,4 @@
-#modalContactForm.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" data-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id)
+#modalContactForm.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" data-url=conversations_path(sender_id: current_user&.id, recipient_id: @post.user.id)
   .modal-dialog role="document"
     .modal-content
       .modal-header.text-center
@@ -13,7 +13,7 @@
         .md-form
           i.fas.fa.fa-pencil.prefix.grey-text.mr-2
           label data-error="wrong" data-success="right" for="form8"  Your message
-          textarea#form8.md-textarea.form-control.js-message rows="4" type="text"
+          textarea#form8.md-textarea.form-control.js-message-container rows="4" type="text"
       .modal-footer.d-flex.justify-content-center
         button.btn.btn-unique.js-send-message
           | Send

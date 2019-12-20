@@ -1,0 +1,20 @@
+.address-fields-container
+  = builder.simple_fields_for :address do |address|
+    = address.input :latitude, as: :hidden, input_html: { class: 'js-latitude' }
+    = address.input :longitude, as: :hidden, input_html: { class: 'js-longitude' }
+    .row
+      .col-md-12
+        = address_autocomplete_input
+    .row
+      .col-md-6
+        = address.input :address, input_html: { class: 'js-address', id: 'route' }
+      .col-md-6
+        = address.input :city, input_html: { class: 'js-address-city', id: 'locality' }
+    .row
+      .col-md-6
+        = address.input :zip, input_html: { class: 'js-address-zip', id: 'postal_code' }
+      .col-md-6
+        = address.input :street_number, input_html: { class: 'js-address-street-number', id: 'street_number' }
+    .row
+      .col-md-12
+          = address.input :country, as: :select, collection: all_countries, input_html: { class: 'js-address-country', id: 'country' }

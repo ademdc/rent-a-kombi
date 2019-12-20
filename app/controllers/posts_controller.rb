@@ -1,22 +1,28 @@
 class PostsController < ApplicationController
   include PostsHelper
+  include AddressesAttributes
 
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :available, :check_address]
   before_action :authenticate_user!, except: [:show, :search]
   before_action :get_image, only: [:remove_attachment]
+  after_action :check_address, only: [:create, :update]
 
   def index
-    @posts = Post.by_user(current_user)
+    @posts = Post.by_user(current_user).paginate(page: params[:page])
   end
 
   def show
+    @reservation = Reservation.new
   end
 
   def new
     @post = Post.new
+    @post.build_address
   end
 
   def edit
+    @post.build_address unless @post.address.present?
   end
 
   def create
@@ -56,8 +62,18 @@ class PostsController < ApplicationController
   end
 
   def search
-    # @posts = get_filtered_posts(search_post_params)
-    @posts = Post.filter(search_post_params)
+    cookies[:availability_from]  = params[:search][:availability_from]
+    cookies[:availability_to]  = params[:search][:availability_to]
+
+    @posts = Post.filter(search_post_params).paginate(page: params[:page], per_page: 10)
+  end
+
+  def available
+    status = @post.available?(params[:available_from], params[:available_to])
+
+    respond_to do |format|
+      format.json { render json: status, status: :ok }
+    end
   end
 
   def remove_attachment
@@ -65,10 +81,19 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: request.referer)
   end
 
+  def set_favorite_post
+    FavoritePost.create!(user_id: params[:user_id], post_id: params[:post_id])
+  end
+
   private
 
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def check_address
+      checked = params[:user_address_check]
+      @post.use_user_address if checked && @post.persisted?
     end
 
     def get_image
@@ -85,7 +110,9 @@ class PostsController < ApplicationController
         :transmission,
         :year_from,
         :year_to,
-        :availability
+        :availability,
+        :availability_from,
+        :availability_to
         )
     end
 
@@ -105,6 +132,7 @@ class PostsController < ApplicationController
         :price,
         :number_of_seats,
         :hp,
-        :kw)
+        :kw,
+        address_attributes: addresses_attributes)
     end
 end

@@ -4,7 +4,14 @@
 
 .post-img {
   width: 100%;
+  transition: all .2s ease-in-out;
 }
+
+.post-img:hover {
+  transform: scale(1.10);
+  // transform: translate(0px, 5px);
+}
+
 
 .show-flex {
   width: 500px;
@@ -39,7 +46,7 @@
   }
 
   .input-group-text {
-    height: 38px;
+    height: 34px;
   }
   .form-group {
     margin-bottom: 0;
@@ -80,4 +87,128 @@
   }
 }
 
+.image-preview {
+  overflow: hidden;
+}
 
+.post-form-container {
+  .calendar-container {
+    width: 100%;
+  }
+
+  .btn-generate {
+    height: 35px;
+    width: 200px;
+  }
+  .edit-actions {
+    .btn-group {
+      width: 100%;
+
+      a {
+        width: 100%;
+      }
+
+      button {
+        border-radius: 0px;
+        margin: 0px;
+        width: 100%;
+        transition: all .2s ease-in-out;
+        span {
+          float: left;
+        }
+      }
+
+      button:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+.posts-container {
+  .upload-btn {
+    width: 100%;
+  }
+}
+
+.list-group-item {
+  transition: all .2s ease-in-out;
+}
+
+.list-group-item:hover {
+  transform: scale(1.05);
+}
+
+
+.post-show-container {
+  .subtitle-container {
+    margin-bottom: 25px;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.15) !important;
+    padding: 10px;
+
+    h5.subtitle {
+    }
+
+    hr {
+      margin: 0px 0px 5px 0px;
+    }
+
+    .daterange{
+      width: 100%;
+    }
+  }
+
+  .flexslider{
+    width: 100%;
+  }
+
+  #googleMap {
+    width: 100%;
+    height: 300px;
+  }
+
+  .btn-edit {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    border-radius:50px;
+  }
+
+  .form-group {
+    margin-bottom: 0px;
+  }
+
+  .daterange {
+    background: white;
+  }
+
+  .picker-from, .picker-to {
+    font-size: 14px;
+  }
+
+  .main-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      padding: 15px;
+
+      i {
+        padding-right: 5px;
+        color: #323E5F;
+        font-size: 1.33333em;
+      }
+    }
+  }
+
+}
+
+#searchMap{
+  width: 100%;
+  height: 300px;
+  //position: -webkit-sticky;
+  position: fixed;
+  top: 0;
+  z-index:100;
+}

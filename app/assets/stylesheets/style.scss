@@ -5,19 +5,51 @@
 @import 'datatable';
 
 body {
-  // background: #f2f2f2;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 
 .container {
   padding-top: 20px;
   min-height: 75vh;
-  background-color: white;
+  // background-color: white;
 }
 
-.navbar {
+nav.navbar {
   background-color: #323E5F !important;
   padding: 5px 100px;
+
+  .nav-link {
+    text-align: center;
+  }
+  .nav-link:hover {
+    background-color: #263343;
+    color: white !important;
+  }
+
+  li.nav-item {
+    color: black;
+    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+    width: 100%;
+  }
+
+  .navbar-dark .navbar-brand {
+    color: #fff;
+  }
+
+  .dropdown-menu {
+    width: 180px;
+  }
+
+  .language-icon {
+    margin-top: 11px;
+    margin-left: 10px;
+  }
+
+  .country-icon {
+    height: 40px;
+    margin-left: 5px;
+  }
 
 }
 
@@ -25,6 +57,7 @@ body {
   background-color: #3579F6;
   width: 100%;
 }
+
 .right {
   float: right;
 }
@@ -34,11 +67,15 @@ body {
 }
 
 .w-200 {
-  width: 300px;
+  width: 200px !important;
 }
 
 .w-300 {
-  width: 300px;
+  width: 300px !important;
+}
+
+.w-115 {
+  width: 115px !important;
 }
 
 .m-r-sm {
@@ -48,20 +85,6 @@ body {
 .img-circle {
   border-radius: 50%;
   width: 40px;
-}
-
-.nav-link:hover {
-  background-color: #263343;
-  color: white !important;
-
-}
-
-
-li.nav-item {
-  color: black;
-  display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
-  position: relative; /* All 'absolute'ly positioned elements are relative to this one */
-
 }
 
 .button__badge {
@@ -77,9 +100,6 @@ li.nav-item {
   right: 0;
 }
 
-.navbar-dark .navbar-brand {
-    color: #fff;
-}
 
 .gray-bg {
   background-color: #ededed;
@@ -93,4 +113,38 @@ li.nav-item {
 
 .btn-search:hover {
   background: #263343 !important;
+}
+
+.btn-app {
+  background: #323E5F;
+  color: white;
+}
+
+.btn-app:hover {
+  background: #CFDBE1;
+  color: black;
+}
+
+.btn-red {
+  background: red;
+  color: white;
+}
+
+.btn-red:hover {
+  background: darkred;
+  color: white;
+}
+
+.btn-orange:hover {
+  background: #FFA500;
+}
+
+.flex-center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none !important;
 }

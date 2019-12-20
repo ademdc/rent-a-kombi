@@ -1,13 +1,17 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include WithAddresses
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
-  has_one_attached :avatar
   has_many :conversations, ->(user) { unscope(:where).where("recipient_id = :id OR sender_id = :id", id: user.id) }
   has_many :messages, through: :conversations
+  has_many :favorite_posts, dependent: :destroy
+  has_many :reservations
+
+  has_one_attached :avatar
+
 
   def admin?
     is_admin
@@ -35,5 +39,13 @@ class User < ApplicationRecord
 
   def profile_image
     self.avatar.attached? ? self.avatar : 'user-photo.png'
+  end
+
+  def is_favorite_post?(post)
+    self.favorite_posts.pluck(:post_id).include?(post.id)
+  end
+
+  def reservations_for(post)
+    Reservation.current_reservation_for(self, post)
   end
 end

@@ -1,16 +1,12 @@
-/ = javascript_include_tag 'search'
+- lat = params[:search][:latitude]
+- lng = params[:search][:longitude]
 
-.container.py-5
-  .row.text-center.mb-5
-    .col-lg-7.mx-auto
-      h1.display-4 Available vehicles
-      p.lead.mb-0 = "These vehicles are available in the desired time range"
-      / p.lead.mb-0 = "From: #{@from.to_date} to: #{@to.to_date}"
+#searchMap data-latitude=lat data-longitude=lng
+.pt-3
   .row
     .col-md-3
       h3 Filter search
     .col-md-9
-      h3 Filters
       - params[:search].each do |key, value|
         - if value.present?
           .info-tag.mb-2

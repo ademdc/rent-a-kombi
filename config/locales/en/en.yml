@@ -31,3 +31,26 @@
 
 en:
   hello: "Hello world"
+  available: 'Available vehicles'
+  language: 'Language'
+  enter_address: Enter address
+  languages:
+    en: 'English'
+    bs: 'Bosnian'
+  navigation:
+    home: 'Home'
+    my_rentals: 'My Rentals'
+    messages: 'Messages'
+    sign_in: 'Sign in'
+    log_out: 'Logout'
+    account: 'Account'
+    profile: 'Profile'
+  buttons:
+    search: 'Search'
+  datetime:
+    select: 'Select date'
+    select_from: 'Select date from'
+    select_to: 'Select date to'
+  locale_change: "Language successfully changed to %{language}"
+
+

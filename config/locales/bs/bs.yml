@@ -1,0 +1,23 @@
+bs:
+  welcome: 'Dobro došli'
+  available: 'Slobodna vozila'
+  language: 'Jezik'
+  enter_address: Unesi adresu
+  languages:
+    en: 'Engleski'
+    bs: 'Bosanski'
+  navigation:
+    home: 'Početna'
+    my_rentals: 'Moja rentanja'
+    messages: 'Poruke'
+    sign_in: 'Prijavi se'
+    account: 'Račun'
+    logout: 'Odjaviti se'
+    profile: 'Profil'
+  buttons:
+    search: 'Traži'
+  datetime:
+    select: 'Odaberi datum'
+    select_from: 'Od datuma'
+    select_to: 'Do datuma'
+  locale_change: "Jezik je uspjesno promijenjen u %{language}"

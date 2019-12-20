@@ -1,58 +1,106 @@
-p#notice = notice
-.row
-  .col-md-7
-    hr
-    h3 About Post
-    p
-      strong Title:
-      = @post.title
-    p
-      strong Category:
-      = @post.category.name
-    p
-      strong Images:
-      .flexslider.show-flex
-        ul.slides
-          - @post.images.each do |image|
-            li
-              = image_tag image, class: 'post-img'
-  .col-md-5
-    - if current_ability.can?(:edit, @post)
-      #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
-.row
-  .col-md-6
-    p
-      strong Description:
-      = @post.description
-    p
-      strong Contact:
-      = @post.contact
-    p
-      strong Seller:
-      = @post.user.email
-      .messaging data-conversation-url=conversations_path(sender_id: current_user.id, recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user.id data-post-id=@post.id
-      = link_to "Message #{@post.user.full_name}", '#', class: 'btn btn-sm btn-success btn-rounded mb-4', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.my_post?(@post)
-    hr
-    h3 Vehicle
-    p
-      strong Model:
-      = @post.model
-    p
-      strong Milage:
-      = @post.milage
+.post-show-container
+  = hidden_field_tag 'js-latitude', @post.address&.latitude
+  = hidden_field_tag 'js-longitude', @post.address&.longitude
 
-    p
-      strong Fuel:
-      = @post.fuel
+  .row
+    .col-md-12
+      h3.d-inline.mr-3 = @post.title
+      = inline_svg "car_logos/#{@post.model}.svg", height: '60', width: '60'
+      hr
+  .row
+    .col-md-7
+      .subtitle-container style='height: 100px;'
+        h5.subtitle Main Information
+        hr
+        .row
+          .col-md-12
+            .main-info
+              p
+                i.fa.fa-horse-head
+                = @post.hp
+              p
+                i.fa.fa-gas-pump
+                = @post.fuel.titleize
+              p
+                i.fa.fa-calendar
+                = @post.production_year
+              p
+                i.fa.fa-road
+                = @post.milage
+              p
+                i.fa.fa-chair
+                = @post.number_of_seats
+              p
+                i.fa.fa-cogs
+                = @post.transmission.titleize
 
-    p
-      strong Year:
-      = @post.production_year
 
-    - if can?(:edit, @post)
-      = link_to 'Edit', edit_post_path(@post)
-    br
-    =< link_to 'Back', posts_path
+          /   p
+          /     strong Category:
+          /     = @post.category.name
+          /   p
+          /     strong Model:
+          /     = @post.model
+          /   p
+          /     strong Milage:
+          /     = @post.milage
+          /   p
+          /     strong Number of seats:
+          /     = @post.number_of_seats
+          / .col-md-6
+          /   p
+          /     strong Fuel:
+          /     = @post.fuel
+          /   p
+          /     strong Year:
+          /     = @post.production_year
+          /   p
+          /     strong Transmission:
+          /     = @post.transmission
+          /   p
+          /     strong HorsePower:
+          /     = @post.hp
 
-= render 'shared/modals/contact_renter_modal', post: @post  unless current_user.my_post?(@post)
+      .subtitle-container
+        h5.subtitle Images
+        hr
+        .row
+          .col-md-12
+            .flexslider.show-flex
+              ul.slides
+                - @post.images.each do |image|
+                  li
+                    = image_tag image, class: 'post-img'
 
+    .col-md-5
+      .subtitle-container  data-post-available-url=available_post_path(@post)
+        h5.subtitle Availability
+        hr
+        = upocoming_reservation(current_user, @post)
+        = render 'availability_form', post: @post
+
+
+      .subtitle-container
+        h5.subtitle Renter
+        hr
+          = image_tag @post.user.profile_image, class: 'img-circle mx-2 my-2'
+          span.mr-2 = @post.user.full_name
+          span = link_to message_icon, '#', class: 'btn btn-sm btn-success btn-rounded btn-app mr-2', data: { target: "#modalContactForm", toggle: "modal" } unless current_user.present? && current_user.my_post?(@post)
+
+          - is_favorite_post = current_user.present? && current_user.is_favorite_post?(@post) ? 'btn-red' : ''
+          span = link_to heart_icon, '#', class: "btn btn-sm btn-success btn-rounded btn-app js-add-favorite-post #{is_favorite_post}", data: { url: set_favorite_post_post_path(@post), post_id: @post.id, user_id: current_user.id } if current_user.present?
+      .messaging data-conversation-url=conversations_path(sender_id: current_user.try(:id), recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user&.id data-post-id=@post.id
+      .subtitle-container
+        h5.subtitle Contact
+        hr
+          = @post.contact
+        #googleMap
+      .subtitle-container
+        h5.subtitle Description
+        hr
+          = @post.description
+
+  - if current_ability.can?(:edit, @post)
+    = link_to 'Edit', edit_post_path(@post), class: 'btn btn-app btn-edit'
+
+= render 'shared/modals/contact_renter_modal', post: @post  unless current_user&.my_post?(@post)

@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_11_11_194923) do
+ActiveRecord::Schema.define(version: 2019_12_16_182033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +36,18 @@ ActiveRecord::Schema.define(version: 2019_11_11_194923) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "address"
+    t.string "city"
+    t.string "country"
+    t.string "zip"
+    t.string "street_number"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "reference_id"
+    t.string "reference_type"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -48,6 +59,13 @@ ActiveRecord::Schema.define(version: 2019_11_11_194923) do
     t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_posts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.index ["post_id"], name: "index_favorite_posts_on_post_id"
+    t.index ["user_id"], name: "index_favorite_posts_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -82,6 +100,18 @@ ActiveRecord::Schema.define(version: 2019_11_11_194923) do
     t.integer "hp"
     t.string "kw"
     t.index ["category_id"], name: "index_posts_on_category_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.boolean "confirmed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_reservations_on_post_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "slots", force: :cascade do |t|
@@ -128,5 +158,4 @@ ActiveRecord::Schema.define(version: 2019_11_11_194923) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "messages", "posts"
 end

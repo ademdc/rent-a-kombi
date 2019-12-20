@@ -8,6 +8,7 @@ class Home
 
   innitialize_daterangepicker: () ->
     $('.daterange').flatpickr
+      # mode: 'range'
       enableTime: true
       minDate: 'today'
       time_24hr: true
@@ -23,6 +24,7 @@ class Home
 
   innitialize_flexslider: () ->
     $('.flexslider').flexslider()
+
 
 $(document).ready ->
   home = new Home

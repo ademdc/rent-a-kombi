@@ -3,10 +3,10 @@ class PostsController < ApplicationController
   include AddressesAttributes
 
 
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :available]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :available, :check_address]
   before_action :authenticate_user!, except: [:show, :search]
   before_action :get_image, only: [:remove_attachment]
-  before_action :check_address, only: [:create, :update]
+  after_action :check_address, only: [:create, :update]
 
   def index
     @posts = Post.by_user(current_user).paginate(page: params[:page])
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
     cookies[:availability_from]  = params[:search][:availability_from]
     cookies[:availability_to]  = params[:search][:availability_to]
 
-    @posts = Post.filter(search_post_params).paginate(page: params[:page])
+    @posts = Post.filter(search_post_params).paginate(page: params[:page], per_page: 10)
   end
 
   def available
@@ -93,7 +93,7 @@ class PostsController < ApplicationController
 
     def check_address
       checked = params[:user_address_check]
-      @post.use_user_address if checked
+      @post.use_user_address if checked && @post.persisted?
     end
 
     def get_image

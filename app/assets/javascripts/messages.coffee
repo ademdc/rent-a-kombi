@@ -29,7 +29,7 @@ class Messages
       e.preventDefault()
 
       conversation_url = $('.messaging').data('conversation-url')
-      message = $('.js-message').val()
+      message = $('.js-message-container').val()
       current_user_id = $('.messaging').data('current-user-id')
       post_id = $('.messaging').data('post-id')
 

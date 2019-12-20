@@ -10,7 +10,7 @@ module AddressHelper
   end
 
   def address_exist_for?(post)
-    @post.address.persisted? || @post.user&.address&.present?
+    @post.address&.persisted? || @post.user&.address&.present?
   end
 
   def address_autocomplete_input

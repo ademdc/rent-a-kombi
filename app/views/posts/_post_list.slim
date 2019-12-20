@@ -1,8 +1,13 @@
 - edit ||= false
 
+.js-address-assets *{data: { car_icon: asset_path('car_icon.png')}}
+
 ul.list-group.shadow
   - posts.each do |post|
     li.list-group-item
+
+      .post-data data-latitude=post.address&.latitude data-longitude=post.address&.longitude data-post-id=post.id data-title=post.title
+
       .media.align-items-lg-center.flex-column.flex-lg-row.p-3
         .media-body.order-2.order-lg-1
           h5.mt-0.font-weight-bold.mb-2 = link_to post.title, post

@@ -43,6 +43,7 @@ en:
     sign_in: 'Sign in'
     log_out: 'Logout'
     account: 'Account'
+    profile: 'Profile'
   buttons:
     search: 'Search'
   datetime:

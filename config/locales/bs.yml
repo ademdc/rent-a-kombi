@@ -12,6 +12,7 @@ bs:
     sign_in: 'Prijavi se'
     account: 'Račun'
     logout: 'Odjaviti se'
+    profile: 'Profil'
   buttons:
     search: 'Traži'
   datetime:

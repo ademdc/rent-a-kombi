@@ -45,7 +45,7 @@ module LayoutHelper
   def navbar_item(url, name, current_user=nil, link_klass='')
     content_tag :li, class: "nav-item" do
       concat link_to t("navigation.#{name.to_s}"), url, class: "nav-link #{link_klass}"
-      concat content_tag :span, current_user&.unread_messages, class: 'button__badge' if current_user&.unread_messages.try(:present?)
+      # (concat content_tag :span, current_user&.unread_messages, class: 'button__badge') unless current_user&.unread_messages.try(:present?) && current_user&.unread_messages.try(:zero?)
     end
   end
 

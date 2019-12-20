@@ -24,6 +24,9 @@ class AddressAutofillForm
 
   init_autocomplete: ($scope) =>
     $autocomplete_input = @$scope.find('#address-autocomplete')[0]
+
+    return unless $autocomplete_input
+
     @$autocomplete = new google.maps.places.Autocomplete($autocomplete_input, types: [ 'geocode' ])
     @$autocomplete.setFields([ 'address_component', 'geometry' ])
 
@@ -63,3 +66,4 @@ class AddressAutofillForm
 $(document).ready ->
   new AddressAutofillForm($('.post-form-container'))
   new AddressAutofillForm($('.edit-user-container'))
+  new AddressAutofillForm($('#booking'))

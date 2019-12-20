@@ -42,13 +42,15 @@ class AddressMapHandler
         })
 
     element = $('#searchMap')
+    lat = element.data('latitude')
+    lng = element.data('longitude')
 
     unless element.length > 0
       return false
 
     map = new (google.maps.Map)(element[0],
       zoom: 12
-      center: { lat: 43.84864, lng: 18.35644 }
+      center: { lat: lat, lng: lng }
       )
 
     markers = map_data.map((data, i) =>

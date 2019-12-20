@@ -1,0 +1,6 @@
+bs:
+  home:
+    location: Lokacija
+    reserve: Napravi svoju rezervaciju
+    check_availability: Provjeri dostupnost
+    sub_title: Dobrodošli na najveću stranicu za rentanje vozila na našem tržištu

@@ -18,5 +18,6 @@ module RentAKombi
     # the framework and any gems in your application.
     config.i18n.available_locales = [:bs, :en]
     config.i18n.default_locale = :bs
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales','**', '*.{rb,yml}')]
   end
 end

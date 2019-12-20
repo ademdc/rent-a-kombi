@@ -18,6 +18,9 @@ nav.navbar {
   background-color: #323E5F !important;
   padding: 5px 100px;
 
+  .nav-link {
+    text-align: center;
+  }
   .nav-link:hover {
     background-color: #263343;
     color: white !important;

@@ -2,6 +2,7 @@ bs:
   welcome: 'Dobro došli'
   available: 'Slobodna vozila'
   language: 'Jezik'
+  enter_address: Unesi adresu
   languages:
     en: 'Engleski'
     bs: 'Bosanski'
@@ -17,4 +18,6 @@ bs:
     search: 'Traži'
   datetime:
     select: 'Odaberi datum'
+    select_from: 'Od datuma'
+    select_to: 'Do datuma'
   locale_change: "Jezik je uspjesno promijenjen u %{language}"

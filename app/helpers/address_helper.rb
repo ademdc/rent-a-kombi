@@ -15,7 +15,7 @@ module AddressHelper
 
   def address_autocomplete_input
     content_tag :div, class: 'form-group' do
-      concat text_field_tag :'address-autocomplete', '', class: 'form-control string', placeholder: 'Enter address'
+      concat text_field_tag :'address-autocomplete', '', class: 'form-control string', placeholder: t('enter_address')
     end
   end
 

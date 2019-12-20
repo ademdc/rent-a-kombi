@@ -6,15 +6,15 @@
       .row
         .col-md-12
           .input-group
-            = f.input :availability_from, input_html: { class: "daterange picker-from" }, as: :string, label: false, placeholder: 'Select date from'
+            = f.input :availability_from, input_html: { class: "daterange picker-from" }, as: :string, label: false, placeholder: t('datetime.select_from')
       .row
         .col-md-12
           .input-group
-            = f.input :availability_to, input_html: { class: "daterange picker-to" }, as: :string, label: false, placeholder: 'Select date to'
+            = f.input :availability_to, input_html: { class: "daterange picker-to" }, as: :string, label: false, placeholder: t('datetime.select_to')
       .row
         .col-md-12
           .input-group
-            = f.submit 'Check availability', class: 'btn btn-search btn-success'
+            = f.submit t('home.check_availability'), class: 'btn btn-search btn-success'
 
 #booking.section
   .section-center
@@ -22,16 +22,13 @@
       .row
         .col-md-7.col-md-push-5
           .booking-cta
-            h1 Make your reservation
-            p
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
-              | ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
-              | Perspiciatis.
+            h1 = t('home.reserve')
+            p  = t('home.sub_title')
         .col-md-4.col-md-pull-7
           .booking-form
             .row
               .form-group
-                span.form-label Location
+                span.form-label = t('home.location')
                 = address_autocomplete_input
               = search_box
 

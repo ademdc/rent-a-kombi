@@ -45,11 +45,18 @@ class AddressMapHandler
     lat = element.data('latitude')
     lng = element.data('longitude')
 
+    zoom = 12
+
+    unless lat && lng
+      lat = 43.8131
+      lng = 18.4233
+      zoom = 7.5
+
     unless element.length > 0
       return false
 
     map = new (google.maps.Map)(element[0],
-      zoom: 12
+      zoom: zoom
       center: { lat: lat, lng: lng }
       )
 
@@ -79,7 +86,6 @@ class AddressMapHandler
     # markerCluster = new MarkerClusterer(map, markers,
     #   imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
     # )
-
 
 $ ->
   new AddressMapHandler

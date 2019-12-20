@@ -73,6 +73,15 @@ class AddressMapHandler
 
       marker.addListener 'click', ->
         $('html, body').animate({ scrollTop: $("[data-post-id=#{data.post_id}]").offset().top }, 'slow')
+        $parent = $("[data-post-id=#{data.post_id}]").parents('.list-group-item')
+
+        $parent.addClass('scaled')
+
+        window.setTimeout (->
+          $parent.removeClass 'scaled'
+          return
+        ), 1500
+
 
       marker.addListener 'mouseover', ->
         infoWindow.open map, marker

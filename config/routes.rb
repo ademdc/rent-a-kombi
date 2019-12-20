@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root to: 'home#home'
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    root to: 'home#home'
+    get 'locale', to: 'application#locale'
 
   resources :posts do
     get :search, on: :collection
@@ -13,16 +15,22 @@ Rails.application.routes.draw do
 
   end
 
-  resources :categories
+    resources :posts do
+      get :search, on: :collection
+      delete :remove_attachment, on: :member
+    end
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+    resources :categories
 
-  resource :slots, only: [:create, :destroy] do
-    post :for_post, on: :collection
-  end
+    devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  resources :conversations do
-    resources :messages
+    resource :slots, only: [:create, :destroy] do
+      post :for_post, on: :collection
+    end
+
+    resources :conversations do
+      resources :messages
+    end
   end
 
   resource :reservations, only: [:create, :destroy, :edit]

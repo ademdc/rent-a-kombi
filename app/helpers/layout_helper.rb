@@ -42,4 +42,33 @@ module LayoutHelper
     end
   end
 
+  def navbar_item(url, name, current_user=nil, link_klass='')
+    content_tag :li, class: "nav-item" do
+      concat link_to t("navigation.#{name.to_s}"), url, class: "nav-link #{link_klass}"
+      # (concat content_tag :span, current_user&.unread_messages, class: 'button__badge') unless current_user&.unread_messages.try(:present?) && current_user&.unread_messages.try(:zero?)
+    end
+  end
+
+  def dropdown_navbar_item(title, title_class, &block)
+    content_tag :li, class: 'dropdown' do
+      concat (content_tag :div, class: 'dropdown-toggle', 'data-toggle': 'dropdown' do
+        content_tag :span, class: "#{title_class}" do
+          title
+        end
+      end)
+      concat (content_tag :div, class: 'dropdown-menu dropdown-menu-right' do
+        block.call
+      end)
+    end
+  end
+
+  def locale_selector
+    I18n.available_locales.map do |locale|
+      content_tag :div, class: 'dropdown-items' do
+        concat inline_svg("countries/#{locale}.svg", class: 'country-icon')
+        concat link_to t("languages.#{locale}"), locale_path(locale: locale), class: 'dropdown-item d-inline'
+      end
+    end.join("").html_safe
+  end
+
 end

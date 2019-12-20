@@ -1,18 +1,55 @@
 @import 'home';
 @import 'posts';
+@import 'messages';
+@import 'conversations';
+@import 'datatable';
 
 body {
-  background: #f2f2f2;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 
 .container {
   padding-top: 20px;
   min-height: 75vh;
+  // background-color: white;
 }
 
-.navbar {
-  background-color: #3579F6 !important;
+nav.navbar {
+  background-color: #323E5F !important;
   padding: 5px 100px;
+
+  .nav-link {
+    text-align: center;
+  }
+  .nav-link:hover {
+    background-color: #263343;
+    color: white !important;
+  }
+
+  li.nav-item {
+    color: black;
+    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+    width: 100%;
+  }
+
+  .navbar-dark .navbar-brand {
+    color: #fff;
+  }
+
+  .dropdown-menu {
+    width: 180px;
+  }
+
+  .language-icon {
+    margin-top: 11px;
+    margin-left: 10px;
+  }
+
+  .country-icon {
+    height: 40px;
+    margin-left: 5px;
+  }
 
 }
 
@@ -20,6 +57,7 @@ body {
   background-color: #3579F6;
   width: 100%;
 }
+
 .right {
   float: right;
 }
@@ -29,11 +67,15 @@ body {
 }
 
 .w-200 {
-  width: 300px;
+  width: 200px !important;
 }
 
 .w-300 {
-  width: 300px;
+  width: 300px !important;
+}
+
+.w-115 {
+  width: 115px !important;
 }
 
 .m-r-sm {
@@ -45,7 +87,64 @@ body {
   width: 40px;
 }
 
-.nav-link:hover {
-  background-color: darkblue;
-  color: white !important;
+.button__badge {
+  background-color: #fa3e3e;
+  border-radius: 2px;
+  color: white;
+
+  padding: 1px 3px;
+  font-size: 10px;
+
+  position: absolute; /* Position the badge within the relatively positioned button */
+  bottom: 0;
+  right: 0;
+}
+
+
+.gray-bg {
+  background-color: #ededed;
+}
+
+.btn-search {
+  background: #323E5F;
+  width: 200px;
+  color: white;
+}
+
+.btn-search:hover {
+  background: #263343 !important;
+}
+
+.btn-app {
+  background: #323E5F;
+  color: white;
+}
+
+.btn-app:hover {
+  background: #CFDBE1;
+  color: black;
+}
+
+.btn-red {
+  background: red;
+  color: white;
+}
+
+.btn-red:hover {
+  background: darkred;
+  color: white;
+}
+
+.btn-orange:hover {
+  background: #FFA500;
+}
+
+.flex-center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none !important;
 }

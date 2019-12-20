@@ -1,0 +1,40 @@
+.container-fluid
+  .row.content
+    .col-sm-3.sidenav.d-flex.flex-column.m-t
+      br/
+      ul.inbox-sidebar-list
+        li.active
+          a href="#all"  All
+        li
+          a href="#unread"  Unread
+        li
+          a href="#sent"  Sent
+
+      button.back-to-msgs-btn.btn
+        i.fa.fa-arrow-left
+
+    .col-sm-9
+      .conversation-container
+        table.datatable style='width: 100%;'
+          thead
+            tr
+              th To
+              th Message
+              th Time
+              th Actions
+          tbody
+            - recipient_conversations_for(current_user).each do |conversation|
+              tr data-recipient-id=conversation[:recipient].id data-message-url=conversation_messages_path(conversation[:conversation])
+                td = conversation[:recipient].full_name
+                td = conversation[:conversation].messages.last.body
+                td = conversation[:conversation].messages.last.message_time
+                td.text-center = message_icon('js-message')
+
+      .messages-container style='display: none;'
+
+
+/ .ui.segment
+/   h3 Mailbox
+/   .ui.list
+/     .item
+/       = conversations_per_user(current_user)

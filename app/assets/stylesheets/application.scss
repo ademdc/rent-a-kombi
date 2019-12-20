@@ -10,15 +10,17 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require daterangepicker
  */
 
 
-@import "bootstrap";
+@import 'bootstrap';
 @import 'toastr';
 @import 'flexslider';
 @import 'fullcalendar';
 @import 'sweetalert';
 @import 'sweetalert/themes/twitter';
 @import "font-awesome";
+@import 'dataTable/datatable';
+@import 'datetimepicker/flatpickr.min';
 @import 'style';
+

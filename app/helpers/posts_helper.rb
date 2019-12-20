@@ -1,6 +1,6 @@
 module PostsHelper
   def get_filtered_posts(params)
-    @from, @to = params[:availability].split('-').map(&:to_datetime)
+    @from, @to = params[:availability].split('to').map(&:to_datetime)
     range = @from.beginning_of_day..@to.end_of_day
 
     reserved_post_ids = Slot.where(start: range).or(Slot.where(end: range)).pluck(:post_id)

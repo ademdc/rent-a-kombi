@@ -1,66 +1,64 @@
-h2 = resource_name.to_s.humanize
+.edit-user-container
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .row
+      .col-md-6
+        .field
+          = f.input :email, autofocus: true, autocomplete: "email"
 
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
+        .field
+            = f.input :first_name, autofocus: true, autocomplete: "first_name"
+
+        .field
+          = f.input :last_name, autofocus: true, autocomplete: "last_name"
+
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          div = "Currently waiting confirmation for: #{resource.unconfirmed_email}"
+
+
+        .field
+          button.btn.btn-danger.btn-sm.my-4.js-change-password data-target=".password-fields" data-toggle="collapse" aria-expanded="false" Change password
+
+        .password-fields.m-b.collapse
+          .field
+            = f.input :password, input_html: { autocomplete: 'off' }
+            - if @minimum_password_length
+              br
+              em = "#{@minimum_password_length} characters minimum"
+
+          .field
+            = f.input :password_confirmation, input_html: { autocomplete: 'off' }
+
+        .field
+          = f.input :phone_number, autofocus: true, autocomplete: "phone_number"
+
+        h3 Address
+        .col-md-12
+          = render 'shared/addresses/fields', builder: f
+        .field
+          = render 'shared/modals/confirm_password_modal'
+
+        .actions
+          = link_to "Update user", '#', class: 'btn btn-sm btn-primary btn-rounded js-update-user mt-2', data: { target: "#confirm-changes-modal", toggle: "modal" }
+
+      .col-md-6
+        .input-group
+          .input-group-prepend
+            span.input-group-text id="inputGroupFileAddon01" Upload profile photo
+
+          .custom-file
+              = f.input :avatar, as: :file, label: false, input_html: { class: 'custom-file-input' }
+              label class="custom-file-label" for="inputGroupFile01" = "Choose file"
+        .field
+          = image_tag resource.avatar, class: 'post-img' if resource.avatar.attached?
+
+
+
+
+  = link_to "Back", :back, class: 'btn btn-info mt-2'
+
   .row
-    .col-md-6
-      .field
-        = f.input :email, autofocus: true, autocomplete: "email"
-
-      .field
-          = f.input :first_name, autofocus: true, autocomplete: "first_name"
-
-      .field
-        = f.input :last_name, autofocus: true, autocomplete: "last_name"
-
-      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-        div = "Currently waiting confirmation for: #{resource.unconfirmed_email}"
-
-      .field
-        = f.input :current_password, autocomplete: "current-password"
-
-      .field
-        = f.input :password, autocomplete: "new-password"
-        - if @minimum_password_length
-          br
-          em = "#{@minimum_password_length} characters minimum"
-
-      .field
-        = f.input :password_confirmation, autocomplete: "new-password"
-
-      .actions
-        = f.button :submit, class: 'btn btn-primary'
-
-    .col-md-6
-      .input-group
-        .input-group-prepend
-          span.input-group-text id="inputGroupFileAddon01" Upload profile photo
-
-        .custom-file
-            = f.input :avatar, as: :file, label: false, input_html: { class: 'custom-file-input' }
-            label class="custom-file-label" for="inputGroupFile01" = "Choose file"
-      .field
-        = image_tag resource.avatar, class: 'post-img' if resource.avatar.attached?
-
-      .field
-        = f.input :phone_number, autofocus: true, autocomplete: "phone_number"
-
-      h3 Address
-
-      .field
-        = f.input :city, autofocus: true, autocomplete: "city"
-
-      .field
-        = f.input :address, autofocus: true, autocomplete: "address"
-
-      .field
-        = f.input :dob, as: :date, autofocus: true, autocomplete: "dob"
-
-
-= link_to "Back", :back, class: 'btn btn-info mt-2'
-
-.row
-  .col.align-self-end
-    = button_to "Delete my account", registration_path(resource_name), class: 'btn btn-danger float-right mb-2', data: { confirm: "Are you sure?" }, method: :delete
+    .col.align-self-end
+      = button_to "Delete my account", registration_path(resource_name), class: 'btn btn-danger float-right mb-2', data: { confirm: "Are you sure?" }, method: :delete
 
 

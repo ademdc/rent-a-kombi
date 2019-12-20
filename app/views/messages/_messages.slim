@@ -1,0 +1,3 @@
+- messages.each do |message|
+  - to_render = current_user.id == message.user_id ? 'outgoing_message' : 'incoming_message'
+  = render to_render, message: message

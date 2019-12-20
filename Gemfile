@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -39,7 +39,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'momentjs-rails'
-gem 'bootstrap-daterangepicker-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'devise'
 gem 'toastr_rails', '2.1.3'
@@ -55,6 +54,17 @@ gem 'font-awesome-rails'
 
 gem 'sweetalert-rails'
 gem 'sidekiq'
+
+gem 'nexmo'
+gem 'inline_svg'
+gem 'ejs'
+
+gem 'rails-i18n'
+gem 'i18n-js'
+
+gem "will_paginate"
+gem 'countries'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

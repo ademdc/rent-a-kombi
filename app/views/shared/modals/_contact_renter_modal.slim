@@ -1,0 +1,20 @@
+#modalContactForm.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" data-url=conversations_path(sender_id: current_user&.id, recipient_id: @post.user.id)
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header.text-center
+        h6.modal-title.w-100.font-weight-bold =  "Send message to #{@post.user.full_name}"
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+      .modal-body.mx-3
+        .md-form.mb-5
+          i.fas.fa.fa-tag.prefix.grey-text.mr-2
+          label data-error="wrong" data-success="right" for="form32"  Subject
+          input#form32.form-control.validate type="text" value="#{@post.title}" disabled=true /
+        .md-form
+          i.fas.fa.fa-pencil.prefix.grey-text.mr-2
+          label data-error="wrong" data-success="right" for="form8"  Your message
+          textarea#form8.md-textarea.form-control.js-message-container rows="4" type="text"
+      .modal-footer.d-flex.justify-content-center
+        button.btn.btn-unique.js-send-message
+          | Send
+          i.fas.fa.fa-paper-plane-o.ml-1

@@ -1,0 +1,11 @@
+.incoming_msg
+  .incoming_msg_img
+    = image_tag @conversation.recipient_of(current_user).profile_image, class: 'img-circle'
+  .received_msg
+    .received_withd_msg
+      - if message.post
+        .attached_post
+          i.fa.fa-paperclip
+          = link_to message.post.title, post_path(message.post), target: '_blank'
+      p = message.body
+      span.time_date = message.message_time

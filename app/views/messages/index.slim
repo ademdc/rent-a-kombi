@@ -1,0 +1,22 @@
+.messaging-container
+  .inbox_msg
+    .inbox_people
+      .headind_srch
+        .recent_heading
+          h4 Recent
+        .srch_bar
+          .stylish-input-group
+            input.search-bar placeholder="Search" type="text" /
+            span.input-group-addon
+              button type="button"
+                i.fa.fa-search aria-hidden="true"
+      .inbox_chat
+        = render 'chat_list'
+    .mesgs
+      .msg_history
+        - if @over_ten
+          = link_to 'Show more', '?m=all'
+        = render 'messages', messages: @messages
+      .type_msg
+        .input_msg_write
+        = render 'form_send_message'

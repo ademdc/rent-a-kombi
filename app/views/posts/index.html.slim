@@ -1,4 +1,8 @@
-.container.py-5
-  .row
-    .col-lg-8.mx-auto
-      = render 'post_list', posts: @posts, edit: true
+.posts-container
+  .container.py-5
+    .row
+      .col-lg-8.mx-auto
+        = link_to upload_icon, new_post_path, class: 'btn btn-primary btn-app mb-5 upload-btn', title: 'Publish new rental'
+        h3 My rentals
+        hr
+        = render 'post_list', posts: @posts, edit: true

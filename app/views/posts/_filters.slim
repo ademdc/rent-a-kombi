@@ -1,13 +1,12 @@
 .filters-search.shadow
   = simple_form_for :search, url: search_posts_path, method: 'GET' do |f|
-    = f.input :latitude, as: :hidden, input_html: { class: 'js-latitude', value: sanitized_search_param(params, :latitude) }
-    = f.input :longitude, as: :hidden, input_html: { class: 'js-longitude', value: sanitized_search_param(params, :longitude) }
     .filter-card
       .filter-title-location
         h6 Location
       .filter-content.city-field.mb-3.ml-1
         = f.input :city, input_html: { class: 'js-address-autofill', value: sanitized_search_param(params, :city) }, label: false, placeholder: t('enter_address')
-
+        = f.input :latitude, as: :hidden, input_html: { class: 'js-latitude', value: sanitized_search_param(params, :latitude) }
+        = f.input :longitude, as: :hidden, input_html: { class: 'js-longitude', value: sanitized_search_param(params, :longitude) }
     .filter-card
       .filter-title data-target=".category-field" data-toggle="collapse" aria-expanded="false"
         span Category

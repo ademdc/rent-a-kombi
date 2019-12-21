@@ -1,61 +1,70 @@
 .filters-search.shadow
   = simple_form_for :search, url: search_posts_path, method: 'GET' do |f|
-    = f.input :latitude, as: :hidden, input_html: { class: 'js-latitude' }
-    = f.input :longitude, as: :hidden, input_html: { class: 'js-longitude' }
-    h6 Location
-    .filter-content.price-field.mb-3.ml-1
-      = f.input :city, input_html: { class: 'js-address-autofill', value: sanitized_search_param(params, :city) }, label: false, placeholder: t('enter_address')
+    = f.input :latitude, as: :hidden, input_html: { class: 'js-latitude', value: sanitized_search_param(params, :latitude) }
+    = f.input :longitude, as: :hidden, input_html: { class: 'js-longitude', value: sanitized_search_param(params, :longitude) }
+    .filter-card
+      .filter-title-location
+        h6 Location
+      .filter-content.city-field.mb-3.ml-1
+        = f.input :city, input_html: { class: 'js-address-autofill', value: sanitized_search_param(params, :city) }, label: false, placeholder: t('enter_address')
 
-    .filter-title data-target=".category-field" data-toggle="collapse" aria-expanded="false"
-      span Category
-      .checked-filter.hidden
-    .filter-content.collapse.category-field
-      = f.input :category, as: :select, collection: Category.all, include_blank: 'Select category', label: false, selected: sanitized_search_param(params, :category)
+    .filter-card
+      .filter-title data-target=".category-field" data-toggle="collapse" aria-expanded="false"
+        span Category
+        .checked-filter.hidden
+      .filter-content.collapse.category-field
+        = f.input :category, as: :select, collection: Category.all, include_blank: 'Select category', label: false, selected: sanitized_search_param(params, :category)
 
-    .filter-title data-target=".models-field" data-toggle="collapse" aria-expanded="false"
-      span Model
-      .checked-filter.hidden
-    .filter-content.models-field.collapse
-      = f.input :model, as: :select, collection: capitalized_models, include_blank: 'Select model', label_method: :titleize, label: false, selected: sanitized_search_param(params, :model)
+    .filter-card
+      .filter-title data-target=".models-field" data-toggle="collapse" aria-expanded="false"
+        span Model
+        .checked-filter.hidden
+      .filter-content.models-field.collapse
+        = f.input :model, as: :select, collection: capitalized_models, include_blank: 'Select model', label_method: :titleize, label: false, selected: sanitized_search_param(params, :model)
 
-    .filter-title data-target=".price-field" data-toggle="collapse" aria-expanded="false"
-      span Price
-      .checked-filter.hidden
-    .filter-content.collapse.price-field
-      .row
-        .col-md-6
-          = f.input :price_from, min: 0, max: 10000, input_html: { type: 'number', class: '', value: sanitized_search_param(params, :price_from) }, label: false, placeholder: 'From..'
-        .col-md-6
-          = f.input :price_to, min: 0, max: 10000, input_html: { type: 'number', class: '',  value: sanitized_search_param(params, :price_to) }, label: false, placeholder: 'To...'
+    .filter-card
+      .filter-title data-target=".price-field" data-toggle="collapse" aria-expanded="false"
+        span Price
+        .checked-filter.hidden
+      .filter-content.collapse.price-field
+        .row
+          .col-md-6
+            = f.input :price_from, min: 0, max: 10000, input_html: { type: 'number', class: '', value: sanitized_search_param(params, :price_from) }, label: false, placeholder: 'From..'
+          .col-md-6
+            = f.input :price_to, min: 0, max: 10000, input_html: { type: 'number', class: '',  value: sanitized_search_param(params, :price_to) }, label: false, placeholder: 'To...'
 
-    .filter-title data-target=".fuel-field" data-toggle="collapse" aria-expanded="false"
-      span Fuel
-      .checked-filter.hidden
-    .filter-content.collapse.fuel-field
-      = f.input :fuel, as: :select, collection: capitalized_fuels, include_blank: 'Select fuel', label: false, label_method: :titleize, selected: sanitized_search_param(params, :fuel)
+    .filter-card
+      .filter-title data-target=".fuel-field" data-toggle="collapse" aria-expanded="false"
+        span Fuel
+        .checked-filter.hidden
+      .filter-content.collapse.fuel-field
+        = f.input :fuel, as: :select, collection: capitalized_fuels, include_blank: 'Select fuel', label: false, label_method: :titleize, selected: sanitized_search_param(params, :fuel)
 
+    .filter-card
+      .filter-title data-target=".transmission-field" data-toggle="collapse" aria-expanded="false"
+        span Transmission
+        .checked-filter.hidden
+      .filter-content.collapse.transmission-field
+        = f.input :transmission, as: :select, collection: capitalized_transmissions, include_blank: 'Select transmission', label: false, label_method: :titleize, selected: sanitized_search_param(params, :transmission)
 
-    .filter-title data-target=".transmission-field" data-toggle="collapse" aria-expanded="false"
-      span Transmission
-      .checked-filter.hidden
-    .filter-content.collapse.transmission-field
-      = f.input :transmission, as: :select, collection: capitalized_transmissions, include_blank: 'Select transmission', label: false, label_method: :titleize, selected: sanitized_search_param(params, :transmission)
+    .filter-card
+      .filter-title data-target=".year-field" data-toggle="collapse" aria-expanded="false"
+        span Year
+        .checked-filter.hidden
+      .filter-content.collapse.year-field
+        .row
+          .col-md-6
+            = f.input :year_from, min: 1990, max: DateTime.now.year, input_html: { type: 'number', value: sanitized_search_param(params, :year_from) }, label: false, placeholder: 'From...'
+          .col-md-6
+            = f.input :year_to, min: 1990, max: DateTime.now.year, input_html: { type: 'number', value: sanitized_search_param(params, :year_to) }, label: false, placeholder: 'To...'
 
-    .filter-title data-target=".year-field" data-toggle="collapse" aria-expanded="false"
-      span Year
-      .checked-filter.hidden
-    .filter-content.collapse.year-field
-      .row
-        .col-md-6
-          = f.input :year_from, min: 1990, max: DateTime.now.year, input_html: { type: 'number', value: sanitized_search_param(params, :year_from) }, label: false, placeholder: 'From...'
-        .col-md-6
-          = f.input :year_to, min: 1990, max: DateTime.now.year, input_html: { type: 'number', value: sanitized_search_param(params, :year_to) }, label: false, placeholder: 'To...'
+    .filter-card
+      .filter-title data-target=".daterange-field" data-toggle="collapse" aria-expanded="false"
+        span Availability
+        .checked-filter.hidden
+      .filter-content.collapse.daterange-field
+        = f.input :availability, input_html: { class: "daterange", value: sanitized_search_param(params, :availability)}, as: :string, label: false, include_blank: ''
 
+    = f.submit 'Refresh', class: 'btn btn-sm btn-block btn-app btn-lg js-refresh-filter mt-3'
 
-    .filter-title data-target=".daterange-field" data-toggle="collapse" aria-expanded="false"
-      span Availability
-      .checked-filter.hidden
-    .filter-content.collapse.daterange-field
-      = f.input :availability, input_html: { class: "daterange", value: sanitized_search_param(params, :availability)}, as: :string, label: false, include_blank: ''
-
-    = f.submit 'Refresh', class: 'btn btn-sm btn-block btn-search js-refresh-filter mt-3'
+    = button_tag 'Reset filters', class: 'js-reset-filters btn btn-danger btn-sm mt-2 btn-block hidden'

@@ -51,6 +51,9 @@
   .form-group {
     margin-bottom: 0;
   }
+  .js-address-autofill {
+    font-size: 14px
+  }
 }
 
 .info-tag {
@@ -228,3 +231,6 @@
   margin: 6px 6px 0px 0px;
 }
 
+.js-refresh-filter {
+  transition: all .2s ease-in-out;
+}

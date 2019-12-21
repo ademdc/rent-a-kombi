@@ -3,6 +3,9 @@
     = simple_form_for :search, url: search_posts_path, method: 'GET' do |f|
       = f.input :latitude, as: :hidden, input_html: { class: 'js-latitude' }
       = f.input :longitude, as: :hidden, input_html: { class: 'js-longitude' }
+      .form-group
+        = f.input :city,  input_html: { class: 'form-control string js-address-autofill mb-5', placeholder: t('enter_address') }, label: false
+
       .row
         .col-md-12
           .input-group
@@ -27,8 +30,5 @@
         .col-md-4.col-md-pull-7
           .booking-form
             .row
-              .form-group
-                span.form-label = t('home.location')
-                = address_autocomplete_input
               = search_box
 

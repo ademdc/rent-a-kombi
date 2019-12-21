@@ -13,17 +13,17 @@ class AddressAutofillForm
     @init_autocomplete($container)
 
   init_listeners: ($scope) ->
-    $scope.find('#address-autocomplete').on 'focus', (e) =>
+    $scope.find('.js-address-autofill').on 'focus', (e) =>
       @geolocate()
 
-    $scope.find('#address-autocomplete').on 'keyup keypress', (e) ->
+    $scope.find('.js-address-autofill').on 'keyup keypress', (e) ->
       keyCode = e.keyCode or e.which
       if keyCode == 13
         e.preventDefault()
         return false
 
   init_autocomplete: ($scope) =>
-    $autocomplete_input = @$scope.find('#address-autocomplete')[0]
+    $autocomplete_input = @$scope.find('.js-address-autofill')[0]
 
     return unless $autocomplete_input
 
@@ -67,3 +67,5 @@ $(document).ready ->
   new AddressAutofillForm($('.post-form-container'))
   new AddressAutofillForm($('.edit-user-container'))
   new AddressAutofillForm($('#booking'))
+  new AddressAutofillForm($('.filters-search'))
+

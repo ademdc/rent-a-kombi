@@ -112,7 +112,8 @@ class PostsController < ApplicationController
         :year_to,
         :availability,
         :availability_from,
-        :availability_to
+        :availability_to,
+        :city
         )
     end
 

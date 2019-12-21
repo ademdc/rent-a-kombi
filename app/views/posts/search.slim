@@ -8,10 +8,10 @@
       h3 Filter search
     .col-md-9
       - params[:search].each do |key, value|
-        - if value.present?
+        - if value.present? && PostsHelper::IGNORE_PARAMS.exclude?(key.to_sym)
           .info-tag.mb-2
-            span.left = key
-            span.right = value
+            span.left = key.titleize
+            span.right = sanitize(value.titleize)
   .row
     .col-md-3
       = render 'posts/filters'

@@ -153,3 +153,12 @@ nav.navbar {
   background: #CFDBE1;
   color: black;
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    .navbar-dark .navbar-brand {
+    font-size: 17px;
+    }
+  }
+
+}

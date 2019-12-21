@@ -154,10 +154,10 @@ nav.navbar {
   color: black;
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 800px) {
   .navbar {
-    .navbar-dark .navbar-brand {
-    font-size: 17px;
+    .navbar-brand {
+      font-size: 17px;
     }
   }
 

@@ -16,4 +16,8 @@
     .col-md-3
       = render 'posts/filters'
     .col-md-9
-      = render 'post_list', posts: @posts
+      - if @posts.present?
+        = render 'post_list', posts: @posts
+      - else
+        h4.mt-4 = 'No available vehicles for those filters'
+        h6 = 'Try reseting your filters'

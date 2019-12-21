@@ -101,3 +101,16 @@
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);
 }
+
+
+@media only screen and (max-width: 800px) {
+  .section .section-center {
+    top: 43%;
+    .booking-cta {
+      margin-top: 0px;
+      h1 {
+        font-size: 42px;
+      }
+    }
+  }
+}

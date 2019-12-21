@@ -16,4 +16,8 @@ module ApplicationHelper
   def logged_in?
     current_user.present?
   end
+
+  def sanitize(string)
+    string.split(',').first
+  end
 end

@@ -24,6 +24,7 @@ class Post < ApplicationRecord
   scope :by_year_to, -> (year) { where('production_year < ?', year) }
   scope :by_price_from, -> (price) { where('price > ?', price) }
   scope :by_price_to, -> (price) { where('price < ?', price) }
+  scope :by_city, -> (city) { includes(:address).where(addresses: { city: city.split(',').first }) }
 
   scope :by_availability_from, -> (availability) {  }
   scope :by_availability_to, -> (availability) { }
@@ -36,6 +37,11 @@ class Post < ApplicationRecord
   enum transmission: Posts::Filters::TRANSMISSION
 
   # self.per_page = 5
+
+  # def self.by_city(city)
+  #   city = city.split(',').first
+  #   joins(:address).where(addresses: { city: city })
+  # end
 
   def self.by_availability(range)
     from, to = range.split('to').map(&:to_datetime)

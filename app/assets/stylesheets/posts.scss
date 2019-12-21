@@ -136,7 +136,7 @@
 }
 
 .list-group-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .scaled {
@@ -217,3 +217,14 @@
   top: 0;
   z-index:100;
 }
+
+
+.checked-filter {
+  width: 10px;
+  height: 10px;
+  background: orange;
+  float: right;
+  vertical-align: middle;
+  margin: 6px 6px 0px 0px;
+}
+

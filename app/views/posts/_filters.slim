@@ -13,7 +13,7 @@
         span Category
         .checked-filter.hidden
       .filter-content.collapse.category-field
-        = f.input :category, as: :select, collection: Category.all, include_blank: 'Select category', label: false, selected: sanitized_search_param(params, :category)
+        = f.input :category, as: :select, collection: Category.all.map(&:name), include_blank: 'Select category', label: false, selected: sanitized_search_param(params, :category)
 
     .filter-card
       .filter-title data-target=".models-field" data-toggle="collapse" aria-expanded="false"

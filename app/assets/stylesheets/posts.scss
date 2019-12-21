@@ -198,9 +198,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 
     p {
       padding: 15px;
+      margin-top: 1rem;
 
       i {
         padding-right: 5px;

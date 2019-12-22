@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_182033) do
+ActiveRecord::Schema.define(version: 2019_12_22_165755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 2019_12_16_182033) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.bigint "category_id"
-    t.string "images"
     t.text "description"
     t.string "contact"
     t.datetime "created_at", null: false
@@ -138,23 +137,9 @@ ActiveRecord::Schema.define(version: 2019_12_16_182033) do
     t.string "phone_number"
     t.boolean "verified", default: false
     t.string "gender"
-    t.string "city"
-    t.string "address"
     t.datetime "dob"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "vehicles", force: :cascade do |t|
-    t.string "model"
-    t.string "string"
-    t.integer "production_year"
-    t.string "gas_type"
-    t.integer "milage"
-    t.bigint "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_vehicles_on_post_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -5,7 +5,6 @@ class Post < ApplicationRecord
   belongs_to :category
   belongs_to :user
   has_many :reservations
-  has_one :vehicle, dependent: :destroy
   has_many :slots, dependent: :destroy
   has_many :messages
   has_many :favorite_posts, dependent: :destroy
@@ -38,11 +37,6 @@ class Post < ApplicationRecord
 
   # self.per_page = 5
 
-  # def self.by_city(city)
-  #   city = city.split(',').first
-  #   joins(:address).where(addresses: { city: city })
-  # end
-
   def self.by_availability(range)
     from, to = range.split('to').map(&:to_datetime)
     range = from.beginning_of_day..to.end_of_day
@@ -53,6 +47,10 @@ class Post < ApplicationRecord
 
   def cover_image
     self.images.first.present? ? self.images.first : 'cars/car.jpg'
+  end
+
+  def listing_image
+     self.images.first.present? ? self.images.first.variant(resize: '400x400') : 'cars/car.jpg'
   end
 
   def available?(date_from, date_to)

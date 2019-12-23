@@ -25,9 +25,9 @@ class Messages
         method: 'GET'
         dataType: 'JSON'
         success: (data) =>
-          console.log data
-          Messages.render_messages(data)
-          # $('.js-receiver-name').html(data[0].conversation.recipient)
+          @render_messages(data)
+          $('.js-receiver-name').html(data[0].conversation.recipient)
+          $('#message_body').focus()
         error: () =>
           toastr.error('Message could not be seen')
 
@@ -63,10 +63,8 @@ class Messages
         error: () =>
           toastr.error('Error')
 
-  @render_messages: (data) ->
-    console.log $('.js-current-user-id').val()
-    console.log @$current_user_id
-    template = JST['templates/messages'](data: data, current_user_id: $('.js-current-user-id').val() )
+  render_messages: (data) =>
+    template = JST['templates/messages'](data: data, current_user_id: @$current_user_id )
     $('.messages-container').html(template)
 
   innitialize_messages_pane: () ->

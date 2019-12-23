@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
     if @message.save
       respond_to do |format|
         format.json { render json: @conversation, status: :ok }
-        format.html { redirect_to conversation_messages_path(@conversation) }
+        format.html { redirect_to conversations_path, notice: 'Message sent succesfully'}
       end
     end
   end

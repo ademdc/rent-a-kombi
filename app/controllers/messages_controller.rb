@@ -23,11 +23,6 @@ class MessagesController < ApplicationController
     end
 
     @message = @conversation.messages.new
-
-    respond_to do |format|
-      format.json { render json: @messages }
-      format.html { @message = @conversation.messages.new }
-    end
   end
 
   def new

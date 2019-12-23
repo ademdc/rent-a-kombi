@@ -1,11 +1,45 @@
-<h1>Message</h1>
+<h3>Message <%= data[0].conversation.recipient%></h3>
+
 <% for (var i = 0; i < data.length; i++) { %>
-  <div class="outgoing_msg">
-    <div class="sent_msg">
-      <p><%= data[i].body %></p>
-      <span class='time_date'><%= data[i].created_at %> </span>
+  <% if(data[i].user_id == current_user_id) { %>
+    <div class="outgoing_msg">
+      <div class="sent_msg">
+        <% if(data[i].post) { %>
+          <div class="attached_post mt-3">
+            <a target="_blank" href=<%=data[i].post.url%>> <%=data[i].post.title%></a>
+            <i class='i fa fa-paperclip'> </i>
+          </div>
+        <% } %>
+        <p><%= data[i].body %></p>
+        <span class='time_date'><%= data[i].created_at %> </span>
+      </div>
     </div>
-
-  </div>
-
+  <% }else {  %>
+    <div class="incoming_msg">
+      <div class="received_msg">
+        <div class="received_withd_msg">
+          <% if(data[i].post) { %>
+          <div class="attached_post mt-3">
+            <a target="_blank" href=<%=data[i].post.url%>> <%=data[i].post.title%></a>
+            <i class='i fa fa-paperclip'> </i>
+          </div>
+        <% } %>
+          <p><%= data[i].body %></p>
+          <span class='time_date'><%= data[i].created_at %> </span>
+        </div>
+      </div>
+    </div>
+  <% } %>
 <% } %>
+
+  <form class="ui reply form" id="new_message" action="<%=data[0].conversation.url%>" accept-charset="UTF-8" method="post">
+    <input name="utf8" type="hidden" value="✓">
+    <input type="hidden" name="authenticity_token" value="z4gIoo/vrNiXUb0uotFFsIQ4p6So1Nj34ocjcELVz1PI0P2BEExmbz5DW3xxCh4De+ecfSD6az1+Svr4db31kw==">
+    <div class="field">
+        <input class="form-control" placeholder="Write your message" type="text" name="message[body]" autofocus id="message_body">
+        <input value="1" type="hidden" name="message[user_id]" id="message_user_id">
+    </div>
+    <div>
+        <input type="submit" name="commit" value="Send" class="btn btn-primary btn-app" data-disable-with="Send">
+    </div>
+</form>

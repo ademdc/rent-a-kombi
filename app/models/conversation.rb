@@ -27,6 +27,6 @@ class Conversation < ActiveRecord::Base
   end
 
   def self.per_latest_message_for(current_user)
-    Conversation.per_user(current_user.id).includes(:messages).order('messages.created_at DESC')
+    Conversation.per_user(current_user.id).includes(:messages).order('messages.created_at ASC')
   end
 end

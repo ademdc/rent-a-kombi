@@ -93,7 +93,7 @@ img{ max-width:100%;}
 }
 
  .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: $app-blue none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0; color:#fff;
@@ -158,7 +158,7 @@ ul.inbox-sidebar-list{
 
   li {
     margin: 2px 0px;
-    background-color: #CFDBE1 ;
+    background-color: $app-blue-light ;
     height: 40px;
     border-radius: 5px;
     padding: 8px 0px 0px 10px;
@@ -172,7 +172,7 @@ ul.inbox-sidebar-list{
 
   li:hover {
     color: white !important;
-    background-color: #323E5F;
+    background-color: $app-blue-dark;
     a{
       color: white;
     }
@@ -180,6 +180,20 @@ ul.inbox-sidebar-list{
 }
 
 .back-to-msgs-btn {
-  background-color: #323E5F;
+  background-color: $app-blue-dark;
   color: white;
+}
+
+.messages-container{
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.receiver-name {
+  background: #05728f;
+  margin-top:20px;
+  border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
 }

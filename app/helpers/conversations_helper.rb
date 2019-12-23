@@ -8,7 +8,8 @@ module ConversationsHelper
         else
           recipient = User.find(conversation.sender_id)
         end
-          conversations << { recipient: recipient, conversation: conversation }
+          unread = conversation.has_unread_messages_for?(user)
+          conversations << { recipient: recipient, conversation: conversation, unread: unread}
       end
     end
     conversations

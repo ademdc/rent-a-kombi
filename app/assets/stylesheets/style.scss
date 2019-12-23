@@ -1,3 +1,4 @@
+@import 'custom/colors';
 @import 'home';
 @import 'posts';
 @import 'messages';
@@ -13,9 +14,8 @@ body {
   min-height: 75vh;
   // background-color: white;
 }
-
-nav.navbar {
-  background-color: #323E5F !important;
+.navbar {
+  background-color: $app-blue-dark !important;
   padding: 5px 100px;
 
   .nav-link {
@@ -87,6 +87,20 @@ nav.navbar {
   width: 40px;
 }
 
+
+.nav-link:hover {
+  background-color: $app-blue-dark;
+  color: white !important;
+
+}
+
+li.nav-item {
+  color: black;
+  display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+  position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+
+}
+
 .button__badge {
   background-color: #fa3e3e;
   border-radius: 2px;
@@ -116,12 +130,12 @@ nav.navbar {
 }
 
 .btn-app {
-  background: #323E5F;
+  background: $app-blue-main;
   color: white;
 }
 
 .btn-app:hover {
-  background: #CFDBE1;
+  background: $app-blue-light;
   color: black;
 }
 

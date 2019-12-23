@@ -1,0 +1,6 @@
+- recipient_conversations_for(current_user).each do |conversation|
+  tr.js-message-action data-recipient-id=conversation[:recipient].id data-message-url=conversation_messages_path(conversation[:conversation])
+    td = conversation[:recipient].full_name
+    td = conversation[:conversation].messages.last.body
+    td = conversation[:conversation].messages.last.message_time
+    td.text-center = message_icon

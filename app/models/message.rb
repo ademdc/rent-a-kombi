@@ -16,10 +16,10 @@ class Message < ActiveRecord::Base
   end
 
   def receiver
-    if conversation.sender_id == user.id
+    if user.id == conversation.sender_id
+      User.find(conversation.recipient_id)
+    else user.id == conversation.recipient_id
       User.find(conversation.sender_id)
-    else
-      User.find(conversation.receiver_id)
     end
   end
 end

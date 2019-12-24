@@ -186,7 +186,9 @@ ul.inbox-sidebar-list{
 
 .messages-container{
   height: 500px;
+  padding: 20px;
   overflow-y: scroll;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
 .receiver-name {

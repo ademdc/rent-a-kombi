@@ -9,7 +9,7 @@ class Conversation < ActiveRecord::Base
     where("(conversations.sender_id = ? AND conversations.recipient_id =?) OR (conversations.sender_id = ? AND conversations.recipient_id =?)", sender_id, recipient_id, recipient_id, sender_id)
   end
 
-  scope :per_user, -> (user_id) { where(sender_id: user_id).or(where(recipient_id: user_id)) }
+  scope :per_user, -> (user_id) { includes(:messages).where('sender_id = :user_id OR recipient_id = :user_id', user_id: user_id) }
 
   def recipient_of(user)
     if self.sender_id == user.id || self.recipient_id == user.id

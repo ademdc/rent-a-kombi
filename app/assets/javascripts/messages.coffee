@@ -64,7 +64,8 @@ class Messages
           toastr.error('Error')
 
   render_messages: (data) =>
-    template = JST['templates/messages'](data: data, current_user_id: @$current_user_id )
+    csrf_token = $('meta[name="csrf-token"]').attr('content')
+    template = JST['templates/messages'](data: data, current_user_id: @$current_user_id, csrf_token: csrf_token)
     $('.messages-container').html(template)
 
   innitialize_messages_pane: () ->
@@ -78,6 +79,7 @@ class Messages
       paging: false,
       searching: true,
       label: true,
+      order: [],
       select: true)
 
     $('.dataTables_wrapper').removeClass('form-inline')

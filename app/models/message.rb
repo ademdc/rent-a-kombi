@@ -10,4 +10,16 @@ class Message < ActiveRecord::Base
   def message_time
     message_datetime(created_at)
   end
+
+  def sender
+    user
+  end
+
+  def receiver
+    if conversation.sender_id == user.id
+      User.find(conversation.sender_id)
+    else
+      User.find(conversation.receiver_id)
+    end
+  end
 end

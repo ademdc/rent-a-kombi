@@ -16,9 +16,10 @@ class MessagesController < ApplicationController
       @messages = @conversation.messages.order('created_at ASC')
     end
 
-    if @messages.last
-      if @messages.last.user_id != current_user.id
-        @messages.last.update(read: true)
+    @messages.map do |m|
+      if m.user_id != current_user.id
+        m.read=true
+        m.save!
       end
     end
 

@@ -48,4 +48,8 @@ class User < ApplicationRecord
   def reservations_for(post)
     Reservation.current_reservation_for(self, post)
   end
+
+  def favorite_posts
+    Post.favorite_posts_for(self)
+  end
 end

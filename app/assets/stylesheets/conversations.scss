@@ -26,3 +26,9 @@
 .unread-message {
   font-weight: bold;
 }
+
+.datatable {
+  thead {
+    background-color: $app-blue-light;
+  }
+}

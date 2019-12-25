@@ -1,18 +1,72 @@
 
 .row
   .col-md-6
-    h3 Outgoing reservations
-    - @outgoing_reservations.each do |reservation|
-      p
-        strong Title
-        = link_to reservation.post.title, post_path(reservation.post)
-      p
-        strong Confirmed:
-        = reservation.confirmed
+    .outgoing-reservations-container
+      h3 Outgoing reservations
+      hr
+      - @outgoing_reservations.each do |reservation|
+        .outgoing-reservation
+          .row
+            .col-md-6
+              p
+                strong Title:
+                = link_to reservation.post.title, post_path(reservation.post), target: '_blank'
+              p
+                strong Confirmed:
+                = reservation.confirmed
+            .col-md-6
+              p
+                strong From:
+                = formated_date(reservation.start)
+              p
+                strong To:
+                = formated_date(reservation.end)
+        hr
 
   .col-md-6
-    h3 Incoming reservations
-    - @incoming_reservations.each do |reservation|
-      p = reservation.user.full_name
-      p = reservation.post.title
-      p = reservation.confirmed
+    .outgoing-reservations-container
+      h3 Incoming reservations
+      hr
+      - @incoming_reservations.each do |reservation|
+        .incoming-reservation
+          .row
+            .col-md-6
+              p
+                strong User:
+                = reservation.user.full_name
+              p
+                strong Post:
+                = link_to reservation.post.title, post_path(reservation.post), target: '_blank'
+              p
+                strong Confirmed:
+                = reservation.confirmed
+                = check_box_tag ''
+            .col-md-6
+              p
+                strong From:
+                = formated_date(reservation.start)
+              p
+                strong To:
+                = formated_date(reservation.end)
+          hr
+
+.row
+  .col-md-8
+    .my-posts-container
+      h3 My posts
+      hr
+      - if @my_posts.present?
+        = render 'posts/post_list', posts: @my_posts
+      - else
+        h4.mt-4 = 'You have not uploaded any posts.'
+        = link_to 'Uplaod a post', new_post_path
+  .col-md-4
+    .favorite-posts-container
+      h3 Favorite posts
+      hr
+      - @favorite_posts.each do |post|
+        .favorite-posts
+          p = link_to post.post.title, post_path(post.post), target: '_blank'
+
+
+

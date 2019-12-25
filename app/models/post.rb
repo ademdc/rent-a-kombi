@@ -45,6 +45,10 @@ class Post < ApplicationRecord
     Post.all_except(reserved_post_ids)
   end
 
+  def self.favorite_posts_for(user)
+    FavoritePost.where(user_id: user.id)
+  end
+
   def cover_image
     self.images.first.present? ? self.images.first : 'cars/car.jpg'
   end

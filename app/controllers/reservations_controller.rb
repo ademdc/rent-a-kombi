@@ -25,6 +25,11 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation.destroy!
+
+    respond_to do |format|
+      format.json { render json: { message: 'Succesfully deleted reservation' } }
+    end
   end
 
   private

@@ -37,4 +37,9 @@ module ToolboxHelper
     "#{text} #{icon}".html_safe
   end
 
+  def trash_icon(text='', klass='')
+    icon = (content_tag :i, '', class: "fa fa-trash #{klass}")
+    "#{text} #{icon}".html_safe
+  end
+
 end

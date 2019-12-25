@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:edit, :destroy]
+  before_action :set_reservation, only: [:destroy, :update]
 
   def create
     @reservation = Reservation.new(reservation_params)
@@ -13,7 +13,15 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def edit
+  def update
+    respond_to do |format|
+      if @reservation.update(reservation_params)
+        format.json { render json: { message: 'Reservation updated succesfully' }, status: :ok }
+      else
+        byebug
+        format.json { render json: { message:  @post.errors }, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

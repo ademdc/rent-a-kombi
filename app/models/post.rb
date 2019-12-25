@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   scope :all_except, -> (ids) { where.not(id: ids) }
   scope :by_user, -> (user) { where(user_id: user.id) }
 
-  scope :slot_in_range, -> (range) { joins(:slots).where(slots: { start: range }).or(joins(:slots).where(slots: { end: range })) }
+  scope :with_slots_in_range, -> (range) { joins(:slots).where(slots: { start: range }).or(joins(:slots).where(slots: { end: range })).or(joins(:slots).where('slots.start > ? AND slots.end < ?', range.first, range.last)) }
   scope :by_category, -> (category) { joins(:category).where('categories.name = ?', category) }
   scope :by_model, -> (model) { where(model: model) }
   scope :by_fuel, -> (fuel) { where(fuel: fuel) }

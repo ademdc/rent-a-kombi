@@ -4,16 +4,16 @@ Rails.application.routes.draw do
     root to: 'home#home'
     get 'locale', to: 'application#locale'
 
-  resources :posts do
-    get :search, on: :collection
+    resources :posts do
+      get :search, on: :collection
 
-    member do
-      delete :remove_attachment
-      post :available
-      post :set_favorite_post
+      member do
+        delete :remove_attachment
+        post :available
+        post :set_favorite_post
+      end
+
     end
-
-  end
 
     resources :posts do
       get :search, on: :collection
@@ -31,9 +31,10 @@ Rails.application.routes.draw do
     resources :conversations do
       resources :messages
     end
+
+
+    resource :reservations, only: [:create, :destroy, :update]
+
+    resources :profile, only: [:index]
   end
-
-  resource :reservations, only: [:create, :destroy, :edit]
-
-  resources :profile, only: [:index]
 end

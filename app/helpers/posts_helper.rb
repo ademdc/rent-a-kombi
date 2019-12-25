@@ -70,5 +70,9 @@ module PostsHelper
     end
   end
 
+  def posts_with_slots_in_range_for?(slot)
+    Post.where(id: slot.post.id).with_slots_in_range(slot.start..slot.end)
+  end
+
 
 end

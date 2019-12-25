@@ -13,7 +13,7 @@
                 = link_to reservation.post.title, post_path(reservation.post), target: '_blank'
               p
                 strong Confirmed:
-                = reservation.confirmed
+                = reservation.confirmed.to_s.titleize
             .col-md-6
               p
                 strong From:
@@ -24,11 +24,11 @@
         hr
 
   .col-md-6
-    .outgoing-reservations-container
+    .incoming-reservations-container
       h3 Incoming reservations
       hr
       - @incoming_reservations.each do |reservation|
-        .incoming-reservation
+        .incoming-reservation data-url=slots_path data-post-id=reservation.post.id data-reservation-start=reservation.start data-reservation-end=reservation.end data-user-name=reservation.user.full_name data-post-title=reservation.post.title data-reservation-url=reservations_path data-reservation-id=reservation.id
           .row
             .col-md-6
               p
@@ -39,8 +39,11 @@
                 = link_to reservation.post.title, post_path(reservation.post), target: '_blank'
               p
                 strong Confirmed:
-                = reservation.confirmed
-                = check_box_tag ''
+                - if reservation.confirmed
+                  = reservation.confirmed.to_s.titleize
+                - else
+                  = button_tag check_icon('Confirm'), class: 'js-confirm-reservation btn btn-success btn-sm mr-2'
+                  = info_icon('fa-info-circle js-reservation-info', 'Make sure to contact the user. When confirmed, the user will get a notification.')
             .col-md-6
               p
                 strong From:

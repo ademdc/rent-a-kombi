@@ -16,18 +16,14 @@ class MessagesController < ApplicationController
       @messages = @conversation.messages.order('created_at ASC')
     end
 
-    if @messages.last
-      if @messages.last.user_id != current_user.id
-        @messages.last.update(read: true)
+    @messages.map do |m|
+      if m.user_id != current_user.id
+        m.read=true
+        m.save!
       end
     end
 
     @message = @conversation.messages.new
-
-    respond_to do |format|
-      format.json { render json: @messages }
-      format.html { @message = @conversation.messages.new }
-    end
   end
 
   def new
@@ -40,7 +36,7 @@ class MessagesController < ApplicationController
     if @message.save
       respond_to do |format|
         format.json { render json: @conversation, status: :ok }
-        format.html { redirect_to conversation_messages_path(@conversation) }
+        format.html { redirect_to conversations_path, notice: 'Message sent succesfully'}
       end
     end
   end

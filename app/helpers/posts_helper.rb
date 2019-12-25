@@ -43,4 +43,32 @@ module PostsHelper
 
     html.html_safe
   end
+
+  def send_message_icon(current_user)
+    url = new_user_session_path
+    data_target = ''
+    data_toggle = ''
+
+    if current_user.present? && !current_user.my_post?(@post)
+      url = '#'
+      data_target = '#modalContactForm'
+      data_toggle = 'modal'
+    end
+
+    content_tag :span, '' do
+      link_to message_icon, url, class: 'btn btn-sm btn-success btn-rounded btn-app mr-2', data: { target: data_target, toggle: data_toggle }
+    end
+  end
+
+  def favorite_post_icon(current_user)
+    return unless current_user.present?
+
+    is_favorite_post = current_user.present? && current_user.is_favorite_post?(@post) ? 'btn-red' : ''
+
+    content_tag :span, '' do
+      link_to heart_icon, '#', class: "btn btn-sm btn-success btn-rounded btn-app js-add-favorite-post #{is_favorite_post}", data: { url: set_favorite_post_post_path(@post), post_id: @post.id, user_id: current_user.id }
+    end
+  end
+
+
 end

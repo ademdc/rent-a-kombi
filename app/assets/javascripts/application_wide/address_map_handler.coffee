@@ -63,7 +63,6 @@ class AddressMapHandler
     markers = map_data.map((data, i) =>
       marker = new (google.maps.Marker)(
         position: data.coordinates
-        map: map
         icon: @$car_icon
       )
 
@@ -92,9 +91,8 @@ class AddressMapHandler
       return marker
     )
 
-    # markerCluster = new MarkerClusterer(map, markers,
-    #   imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-    # )
+    markerCluster = new MarkerClusterer(map, markers, imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m')
+
 
 $ ->
   new AddressMapHandler

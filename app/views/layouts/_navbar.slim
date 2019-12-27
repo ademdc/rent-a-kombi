@@ -4,7 +4,6 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
     span.navbar-toggler-icon
   #collapsibleNavbar.collapse.navbar-collapse
     ul.navbar-nav
-      = navbar_item(root_path, :home)
       - if current_user
         = navbar_item(profile_index_path, :profile, nil)
         = navbar_item(conversations_path, :messages, current_user)
@@ -22,3 +21,6 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
           = dropdown_navbar_item('', 'language-icon fa fa-language') do
             = locale_selector
           end
+        li
+          = link_to plus_icon('','plus-icon'), new_post_path, class: 'nav-link publish-post'
+

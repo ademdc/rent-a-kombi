@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   include PostsHelper
   include AddressesAttributes
 
-
   before_action :set_post, only: [:show, :edit, :update, :destroy, :available, :check_address]
   before_action :authenticate_user!, except: [:show, :search]
   before_action :get_image, only: [:remove_attachment]

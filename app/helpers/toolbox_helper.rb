@@ -42,4 +42,10 @@ module ToolboxHelper
     "#{text} #{icon}".html_safe
   end
 
+  def plus_icon(text='', klass='')
+    icon = (content_tag :i, '', class: "fa fa-plus-circle #{klass}", 'data-toggle':'tooltip', title: 'Publish new post')
+    "#{text} #{icon}".html_safe
+  end
+
+
 end

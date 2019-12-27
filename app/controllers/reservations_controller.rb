@@ -4,12 +4,14 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
 
-    if @reservation.save
-      respond_to do |format|
+    respond_to do |format|
+      if @reservation.save
+        format.json { render json: { message: 'Reservation created successfully.' } , status: :ok }
         format.html { redirect_to profile_index_path, notice: 'Reservation succesfully created. Pending...' }
+      else
+        format.json { render json: { message: @reservation.errors }, status: :unprocessable_entity }
+        format.html { redirect_to @reservation.post, alert: "Reservation could not be made!" }
       end
-    else
-      format.json { render json: @reservation.errors, status: :unprocessable_entity }
     end
   end
 
@@ -18,8 +20,7 @@ class ReservationsController < ApplicationController
       if @reservation.update(reservation_params)
         format.json { render json: { message: 'Reservation updated succesfully' }, status: :ok }
       else
-        byebug
-        format.json { render json: { message:  @post.errors }, status: :unprocessable_entity }
+        format.json { render json: { message:  @reservation.errors }, status: :unprocessable_entity }
       end
     end
   end
@@ -32,6 +33,13 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def for_post
+    @reservations = Reservation.for_post(params[:post_id])
+    respond_to do |format|
+      format.json { render json: @reservations, status: :ok }
+    end
+  end
+
   private
 
     def reservation_params
@@ -40,7 +48,8 @@ class ReservationsController < ApplicationController
         :user_id,
         :start,
         :end,
-        :confirmed)
+        :confirmed,
+        :title)
     end
 
     def set_reservation

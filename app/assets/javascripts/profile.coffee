@@ -3,17 +3,12 @@ class Profile
     @init_listeners()
 
   init_listeners: () ->
-
     $(document).on 'click', '.js-confirm-reservation', (e) =>
       $target   = $(e.currentTarget)
 
       $parent    = $target.parents('.incoming-reservation')
-      url        = $parent.data('url')
-      post_id    = $parent.data('post-id')
       post_title = $parent.data('post-title')
       user_name  = $parent.data('user-name')
-      start      = $parent.data('reservation-start')
-      end        = $parent.data('reservation-end')
 
       swal {
         title: "Confirm reservation to #{user_name} for post #{post_title}?"
@@ -24,23 +19,10 @@ class Profile
         confirmButtonText: 'Confirm'
         closeOnConfirm: yes
       }, =>
-            $.ajax
-              url: url
-              method: 'POST'
-              data: { 'slot[post_id]': post_id, 'slot[title]': user_name, 'slot[start]': start, 'slot[end]': end }
-              dataType: 'JSON'
-              success: (data) =>
-                toastr.success data.message
-                @confirm_reservation($target)
-              error: (data) =>
-                toastr.error data.responseJSON.message.base
+          @confirm_reservation($target)
 
     $(document).on 'click', '.js-delete-reservation', (e) =>
       $target   = $(e.currentTarget)
-      $parent   = $target.parents('.incoming-reservation')
-      reservation_url = $parent.data('reservation-url')
-      reservation_id  = $parent.data('reservation-id')
-
       swal {
         title: "Delete reservation?"
         type: 'info'
@@ -49,27 +31,13 @@ class Profile
         confirmButtonText: 'Confirm'
         closeOnConfirm: yes
       }, =>
-          $.ajax
-            url: reservation_url
-            method: 'DELETE'
-            data: { 'id': reservation_id }
-            dataType: 'JSON'
-            success: (data) =>
-              toastr.success data.message
-              $parent.fadeOut('slow')
-            error: (data) =>
-              toastr.error data.responseText
-
-
-  handle_reservation_update: ($target) ->
-    $target.addClass('hidden')
-    $target.parents('.incoming-reservation').find('.js-reservation-info').css('hidden')
-    $target.parents('p').append('True')
+          @delete_reservation($target)
 
   confirm_reservation: ($target) =>
     $parent         = $target.parents('.incoming-reservation')
     reservation_url = $parent.data('reservation-url')
     reservation_id  = $parent.data('reservation-id')
+
     $.ajax
       url: reservation_url
       method: 'PATCH'
@@ -79,9 +47,32 @@ class Profile
         toastr.success data.message
         @handle_reservation_update($target)
       error: (data) =>
+        console.log data
+        toastr.error data.responseJSON.message.base
+
+  delete_reservation: ($target) ->
+    $parent   = $target.parents('.incoming-reservation')
+    reservation_url = $parent.data('reservation-url')
+    reservation_id  = $parent.data('reservation-id')
+
+    $.ajax
+      url: reservation_url
+      method: 'DELETE'
+      data: { 'id': reservation_id }
+      dataType: 'JSON'
+      success: (data) =>
+        @handle_reservation_delete($parent, data)
+      error: (data) =>
         toastr.error data.responseText
 
+  handle_reservation_update: ($target) ->
+    $target.addClass('hidden')
+    $target.parents('.incoming-reservation').find('.js-reservation-info').addClass('hidden')
+    $target.parents('p').append('True')
 
+  handle_reservation_delete: ($target, data) ->
+    toastr.success data.message
+    $target.fadeOut('slow')
 
 $(document).ready ->
   search = new Profile

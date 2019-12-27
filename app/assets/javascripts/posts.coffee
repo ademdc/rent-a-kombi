@@ -31,17 +31,18 @@ class Posts
         error: () =>
           console.log 'Error occured'
 
-    $(document).on 'click', '.js-generate-slot', (e) =>
+    $(document).on 'click', '.js-generate-reservation', (e) =>
       e.preventDefault()
-      return if $('#slot_start').val() == ''
+      return if $('#reservation_start').val() == ''
 
       $post_id = $('#calendar').data('post-id')
-      start = $('#slot_start').val()
-      end = $('#slot_end').val()
+      start = $('#reservation_start').val()
+      end = $('#reservation_end
+        ').val()
       title = $('.js-title').val()
 
-      data = { 'slot[post_id]': $post_id, 'slot[start]': start, 'slot[end]': end, 'slot[title]': title }
-      url = $('#calendar').data('slot-url')
+      data = { 'reservation[post_id]': $post_id, 'reservation[start]': start, 'reservation[end]': end, 'reservation[title]': title,  'reservation[confirmed]': true }
+      url = $('#calendar').data('reservation-url')
 
       $.ajax
         url: url
@@ -49,19 +50,17 @@ class Posts
         method: 'POST'
         dataType: 'JSON'
         success: (data) =>
-          toastr.success('New time slot successfully created')
+          toastr.success('New reservation successfully created')
           Posts.refresh_calendar()
-          $('#slot_start').val('')
-          $('#slot_end').val('')
+          $('#reservation_start').val('')
+          $('#reservation_end').val('')
           $('#title').val('')
         error: () =>
           toastr.error('Error occured')
 
-    $(document).on 'click', '.js-refetch-slot', (e) =>
+    $(document).on 'click', '.js-refetch-reservations', (e) =>
       e.preventDefault()
-      events = [ { title  : 'event1', start  : '2019-10-06', end:  '2019-10-10 01:00' } ]
-      $("#calendar").fullCalendar('addEventSource', events);
-      $("#calendar").fullCalendar('refetchEvents');
+      Posts.refresh_calendar()
 
     $(document).on 'click', '.js-check-availability', (e) ->
       e.preventDefault()
@@ -109,7 +108,7 @@ class Posts
             events: data,
             firstDay: 1
             eventClick: (event, element) ->
-              Posts.slot_delete(event, element)
+              Posts.rerservation_delete(event, element)
            )
         error: () =>
           toastr.error('Error occured while loading calendar')
@@ -128,9 +127,9 @@ class Posts
         error: () =>
           toastr.error('Error occured while loading calendar')
 
-  @slot_delete: (event, element) =>
+  @rerservation_delete: (event, element) =>
     swal {
-      title: 'Do you really want to delete time slot?'
+      title: 'Do you really want to delete time reservation?'
       text: 'Delete?'
       type: 'warning'
       showCancelButton: true
@@ -138,7 +137,7 @@ class Posts
       confirmButtonText: 'Delete'
       closeOnConfirm: yes
     }, ->
-          url = $('#calendar').data('slot-url')
+          url = $('#calendar').data('reservation-url')
           $post_id = $('#calendar').data('post-id')
           data = { 'id': event.id}
           $.ajax
@@ -147,7 +146,7 @@ class Posts
             method: 'DELETE'
             dataType: 'JSON'
             success: (data) =>
-              toastr.success('Time slot successfully deleted')
+              toastr.success('Reservation successfully deleted')
               Posts.refresh_calendar()
             error: () =>
               toastr.error('Error occured while deleting')

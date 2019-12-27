@@ -28,12 +28,12 @@
       h3 Incoming reservations
       hr
       - @incoming_reservations.each do |reservation|
-        .incoming-reservation data-url=slots_path data-post-id=reservation.post.id data-reservation-start=reservation.start data-reservation-end=reservation.end data-user-name=reservation.user.full_name data-post-title=reservation.post.title data-reservation-url=reservations_path data-reservation-id=reservation.id
+        .incoming-reservation data-post-id=reservation.post.id  data-user-name=reservation.user&.full_name data-post-title=reservation.post.title data-reservation-url=reservations_path data-reservation-id=reservation.id
           .row
             .col-md-6
               p
                 strong User:
-                = reservation.user.full_name
+                = reservation.user&.full_name
               p
                 strong Post:
                 = link_to reservation.post.title, post_path(reservation.post), target: '_blank'

@@ -6,7 +6,7 @@ module PostsHelper
     @from, @to = params[:availability].split('to').map(&:to_datetime)
     range = @from.beginning_of_day..@to.end_of_day
 
-    reserved_post_ids = Slot.where(start: range).or(Slot.where(end: range)).pluck(:post_id)
+    reserved_post_ids = Reservation.where(start: range).or(Reservation.where(end: range)).pluck(:post_id)
     @posts = Post.all_except(reserved_post_ids)
   end
 
@@ -70,8 +70,8 @@ module PostsHelper
     end
   end
 
-  def posts_with_slots_in_range_for?(slot)
-    Post.where(id: slot.post.id).with_slots_in_range(slot.start..slot.end)
+  def posts_with_reservations_in_range_for?(reservation)
+    Post.where(id: reservation.post.id).with_reservations_in_range(reservation.start..reservation.end)
   end
 
 

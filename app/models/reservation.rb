@@ -1,11 +1,13 @@
 class Reservation < ApplicationRecord
   belongs_to :post
-  belongs_to :user
-  validates :user_id, :post_id, :start, :end, presence: true
+  belongs_to :user, optional: true
+  validates  :post_id, :start, :end, presence: true
 
-  validate :my_post?
+  validate :not_my_post?
+  validate :does_not_overlap?
 
-  scope :current_reservation_for, ->(user, post) { where('user_id = ? AND post_id = ? AND start < ?', user.id, post.id, Time.now ) }
+  scope :current_reservation_for, ->(user, post) { where('user_id = ? AND post_id = ? AND start > ?', user.id, post.id, Time.now ) }
+  scope :for_post, -> (post_id) { where('post_id = ? AND confirmed = ?', post_id, true) }
 
   def self.outgoing_reservation_for(user)
     Reservation.where(user_id: user.id)
@@ -15,10 +17,17 @@ class Reservation < ApplicationRecord
     Reservation.includes(:post).where(posts: { user_id: user.id })
   end
 
-  private
+  def between_range?(from, to)
+    (from..to).include?(self.start) || (from..to).include?(self.end)
+  end
 
-    def my_post?
-      return false if self.user_id == self.post.user.id
-      true
+  protected
+
+    def not_my_post?
+      self.errors[:base] << 'Can not reserve your own post!' if self.user_id == self.post.user.id
+    end
+
+    def does_not_overlap?
+      self.errors[:base] << 'Post is reserved for that range' if ApplicationController.helpers.posts_with_reservations_in_range_for?(self).present?
     end
 end

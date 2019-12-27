@@ -13,6 +13,6 @@ class Slot < ApplicationRecord
   protected
 
     def does_not_have_overlaping_slots_in_same_post?
-      self.errors[:base] << 'Post is reserved for that range' if posts_with_slots_in_range_for?(self).present?
+      self.errors[:base] << 'Post is reserved for that range' if posts_with_reservations_in_range_for?(self).present?
     end
 end

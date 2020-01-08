@@ -2,7 +2,7 @@ class User < ApplicationRecord
   include WithAddresses
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :posts, dependent: :destroy
   has_many :conversations, ->(user) { unscope(:where).where("recipient_id = :id OR sender_id = :id", id: user.id) }
@@ -11,7 +11,6 @@ class User < ApplicationRecord
   has_many :reservations
 
   has_one_attached :avatar
-
 
   def admin?
     is_admin

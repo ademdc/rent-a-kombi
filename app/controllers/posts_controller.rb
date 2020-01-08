@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   include AddressesAttributes
 
   before_action :set_post, only: [:show, :edit, :update, :destroy, :available, :check_address]
-  before_action :authenticate_user!, except: [:show, :search]
+  before_action :authenticate_user!, except: [:show, :search, :available]
   before_action :get_image, only: [:remove_attachment]
   after_action :check_address, only: [:create, :update]
 

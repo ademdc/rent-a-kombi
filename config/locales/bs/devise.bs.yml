@@ -1,0 +1,65 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+bs:
+  devise:
+    confirmations:
+      confirmed: "Vaša e-mail adresa je uspješno potvrdjena."
+      send_instructions: "Dobiti ćete email intrukcije kako potvriditi vaš račun uskoro."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+    failure:
+      already_authenticated: "Već ste prijavljeni."
+      inactive: "Račun vam još nije aktivan."
+      invalid: "Invalid %{authentication_keys} or password."
+      locked: "Vaš račun je zaključan."
+      last_attempt: "You have one more attempt before your account is locked."
+      not_found_in_database: "Invalid %{authentication_keys} or password."
+      timeout: "Your session expired. Please sign in again to continue."
+      unauthenticated: "Morate se prijaviti prije nego sto mozete nastaviti."
+      unconfirmed: "Morate potvrditi e-mail adresu prije nego nastavite."
+    mailer:
+      confirmation_instructions:
+        subject: "Instrukcije za potvrdu"
+      reset_password_instructions:
+        subject: "Reset password instructions"
+      unlock_instructions:
+        subject: "Instrukcije za otključavanje"
+      email_changed:
+        subject: "Email promjenjen."
+      password_change:
+        subject: "Lozinka promjenjena."
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Your password has been changed successfully. You are now signed in."
+      updated_not_active: "Your password has been changed successfully."
+    registrations:
+      destroyed: "Ćao! Vaš račun je uspjesno ugasen. Nadamo se da cemo vas vidjeti uskoro ponovo."
+      signed_up: "Dobrodošli! Uspješno ste se registrovali."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "Poruka sa linkom za potvrdu računa je poslata na e-mail adresu. Kliknite ga kako biste aktivirali račun. Provjerite spam folder."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
+      updated: "Uspješno ste ažurirali račun"
+      updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
+    sessions:
+      signed_in: "Uspješna prijava."
+      signed_out: "Uspješno ste se odjavili."
+      already_signed_out:  "Uspješno ste se odjavili."
+    unlocks:
+      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
+      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+  errors:
+    messages:
+      already_confirmed: "Već je potvrdjeno, pokusajte se prijaviti."
+      confirmation_period_expired: "treba da se potvrdi u roku od %{period}, zatražite novi molim."
+      expired: "je isteklo, zatražite novi"
+      not_found: "Nije pronadjeno"
+      not_locked: "nije zaključano"
+      not_saved:
+        one: "1 greška zabranila ovaj %{resource} od spašavanja"
+        other: "%{count} greški zabranilo ovaj %{resource} od spašavanja:"

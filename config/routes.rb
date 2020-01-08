@@ -22,7 +22,10 @@ Rails.application.routes.draw do
 
     resources :categories
 
-    devise_for :users, controllers: { registrations: 'users/registrations' }
+    devise_for :users, controllers: {
+      registrations: 'users/registrations',
+      confirmations: 'users/confirmations'
+    }
 
     resource :slots, only: [:create, :destroy] do
       post :for_post, on: :collection

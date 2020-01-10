@@ -1,0 +1,6 @@
+bs:
+  mailer:
+    reservation:
+      successfull: 'Imate novu rezervaciju od %{user_name} za %{post_title}'
+      see_reservation: 'Pogledajte rezervaciju'
+      upcoming_reservation: 'Rezervacija za %{title}'

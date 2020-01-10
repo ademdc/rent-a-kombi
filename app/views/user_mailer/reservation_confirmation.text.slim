@@ -1,1 +1,2 @@
-= "You got a new reservation from #{@reservation.user.full_name} for #{@reservation.post.title}"
+= I18n.t('mailer.reservation.successfull', user_name: @reservation.user.full_name, post_title: @reservation.post.title)
+= link_to I18n.t('mailer.reservation.see_reservation'), profile_index_url

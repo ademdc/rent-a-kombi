@@ -2,8 +2,12 @@ bs:
   user:
     sign_up: 'Registruj se'
     sign_in: 'Prijavi se'
-    forgot_password: 'Zaboravio sam lozinku'
+    forgot_password: 'Zaboravljena lozinka?'
     no_confirmation_instructions: 'Nisam primio e-mail za potvrdu računa'
     no_unlock_instructions: 'Nisam dobio instrukcije za otkljucavanje racuna'
     remember_me: 'Zapamti me'
     sign_in_omniauthable: "Sign in with #{provider}"
+    send_reset_pass: 'Posalji instrukcije za resetovanje lozinke'
+    new_password: 'Nova lozinka'
+    confirm_password: 'Potvrdi novu lozinku'
+    change_password: 'Promjeni lozinku'

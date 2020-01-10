@@ -6,3 +6,7 @@ en:
     no_confirmation_instructions: "Didn't receive confirmation instructions?"
     no_unlock_instructions: "Didn't receive unlock instructions?"
     remember_me: 'Remember me'
+    send_reset_pass: 'Send me reset password instructions'
+    new_password: 'New password'
+    confirm_password: 'Confirm new password'
+    change_password: 'Change my password'

@@ -1,0 +1,8 @@
+en:
+  user:
+    sign_up: 'Sign up'
+    sign_in: 'Sign in'
+    forgot_password: 'Forgot password'
+    no_confirmation_instructions: "Didn't receive confirmation instructions?"
+    no_unlock_instructions: "Didn't receive unlock instructions?"
+    remember_me: 'Remember me'

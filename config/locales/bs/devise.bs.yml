@@ -32,13 +32,13 @@ bs:
       success: "Uspješno potvrdjeno %{kind} račun."
     passwords:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
-      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_instructions: "Primiti ćete email kako resetovati vašu lozinku u narednih nekoliko minuta."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       updated: "Your password has been changed successfully. You are now signed in."
-      updated_not_active: "Your password has been changed successfully."
+      updated_not_active: "Vaša lozinka je uspješno promijenjena."
     registrations:
       destroyed: "Ćao! Vaš račun je uspjesno ugasen. Nadamo se da cemo vas vidjeti uskoro ponovo."
-      signed_up: "Dobrodošli! Uspješno ste se registrovali."
+      signed_up: "Dobrodošli! Uspješno ste se registrovali. Poslan vam je email sa instrukcijama za potvrdu računa."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
       signed_up_but_unconfirmed: "Poruka sa linkom za potvrdu računa je poslata na e-mail adresu. Kliknite ga kako biste aktivirali račun. Provjerite spam folder."

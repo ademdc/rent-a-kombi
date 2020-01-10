@@ -1,0 +1,9 @@
+bs:
+  user:
+    sign_up: 'Registruj se'
+    sign_in: 'Prijavi se'
+    forgot_password: 'Zaboravio sam lozinku'
+    no_confirmation_instructions: 'Nisam primio e-mail za potvrdu računa'
+    no_unlock_instructions: 'Nisam dobio instrukcije za otkljucavanje racuna'
+    remember_me: 'Zapamti me'
+    sign_in_omniauthable: "Sign in with #{provider}"

@@ -7,20 +7,19 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
       - if current_user
         = navbar_item(profile_index_path, :profile, nil)
         = navbar_item(conversations_path, :messages, current_user)
-    .navbar-collapse.collapse.w-100.order-3.dual-collapse2
-      ul.navbar-nav.ml-auto.text-white
-        - if current_user
-          .mt-2.mr-3  = current_user.full_name
-          = dropdown_navbar_item((render 'shared/users/navbar_photo'), '') do
-            = link_to t('navigation.account'), edit_user_registration_path, class: 'dropdown-item'
-            = link_to t('navigation.logout'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
-          end
-        - else
-          li.nav-item
-            = link_to t('navigation.sign_in'), new_user_session_path, method: :get, class: 'nav-link'
-          = dropdown_navbar_item('', 'language-icon fa fa-language') do
-            = locale_selector
-          end
-        li
-          = link_to plus_icon('','plus-icon'), new_post_path, class: 'nav-link publish-post'
+    ul.navbar-nav.ml-auto.text-white
+      - if current_user
+        .mt-2.mr-3.text-center = current_user.full_name
+        = dropdown_navbar_item((render 'shared/users/navbar_photo'), '') do
+          = link_to t('navigation.account'), edit_user_registration_path, class: 'dropdown-item'
+          = link_to t('navigation.logout'), destroy_user_session_path, method: :delete, class: 'dropdown-item'
+        end
+      - else
+        li.nav-item
+          = link_to t('navigation.sign_in'), new_user_session_path, method: :get, class: 'nav-link'
+        = dropdown_navbar_item('', 'language-icon fa fa-language') do
+          = locale_selector
+        end
+      li
+        = link_to plus_icon('','plus-icon add-post'), new_post_path, class: 'nav-link publish-post'
 

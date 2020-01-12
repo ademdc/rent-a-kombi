@@ -48,6 +48,8 @@ body {
 .img-circle {
   border-radius: 50%;
   width: 33px;
+  height: 33px;
+  object-fit: cover;
 }
 
 .button__badge {

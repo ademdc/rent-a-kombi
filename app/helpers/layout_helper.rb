@@ -53,7 +53,7 @@ module LayoutHelper
   end
 
   def dropdown_navbar_item(title, title_class, &block)
-    content_tag :li, class: 'dropdown' do
+    content_tag :li, class: 'dropdown text-center' do
       concat (content_tag :div, class: 'dropdown-toggle', 'data-toggle': 'dropdown' do
         content_tag :span, class: "#{title_class}" do
           title

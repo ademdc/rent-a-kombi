@@ -1,0 +1,31 @@
+en:
+  simple_form:
+    "yes": 'Da'
+    "no": 'Ne'
+    required:
+      text: 'potrebno'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Provjerite probleme ispod:"
+    # Examples
+    # labels:
+      defaults:
+        password: 'Lozinka'
+      user:
+        new:
+          email: 'E-mail da biste se prijavili.'
+        edit:
+          email: 'E-mail.'
+    hints:
+      defaults:
+        username: 'Korisnicko ime za prijavu.'
+        password: 'Bez posebnih znakova, molim vas.'
+    include_blanks:
+      defaults:
+        age: 'Ne bih rekao/la'
+    prompts:
+      defaults:
+        age: 'Izaberite svoje godine'

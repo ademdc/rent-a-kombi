@@ -2,15 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.outgoing-reservations-container, .incoming-reservations-container, .favorite-posts-container, .my-posts-container {
+.my-reservations-container, .incoming-reservations-container, .favorite-posts-container, .my-posts-container {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   padding: 10px;
   margin-top: 10px;
-  height: 300px;
+  height: 600px;
   overflow: auto;
   margin-bottom: 20px;
 }
-.outgoing-reservation, .incoming-reservation, .favorite-posts {
+.my-reservation, .incoming-reservation, .favorite-posts {
   padding: 10px;
-  margin-top: 10px
+  //margin-top: 10px
+}
+
+.user-info-container {
+  text-align: center;
+
+  .user-full-name {
+    margin: 20px 0px;
+  }
+
+  .count {
+    font-weight: bold;
+  }
+
+  .img-circle {
+    height: 100px;
+    width: 100px;
+  }
 }

@@ -1,0 +1,10 @@
+en:
+  mailer:
+    reservation:
+      successfull: 'You got a new reservation from %{user_name} for %{post_title}'
+      see_reservation: 'See reservation'
+      upcoming_reservation: 'Upcoming reservation for %{title}'
+    registration:
+      welcome: 'Welcome %{email}'
+      message: 'You can confirm your account email through the link below:'
+      confirm: 'Confirm my account'

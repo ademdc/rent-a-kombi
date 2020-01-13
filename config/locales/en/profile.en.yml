@@ -19,3 +19,7 @@ en:
     info_confirm: 'Once confirmed, you will be prompted for payment of 2% of the total amount'
     removed_favorite: 'Favorite post successfully removed'
     error: 'Error occured'
+    upload_post: 'Upload a post'
+    no_posts: 'You have not uploaded any posts.'
+    no_reservations: 'You have not made any reservation yet. What are your waiting for..'
+    no_incoming: 'No one made a reservation for your posts yet.'

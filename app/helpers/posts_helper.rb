@@ -6,7 +6,7 @@ module PostsHelper
     @from, @to = params[:availability].split('to').map(&:to_datetime)
     range = @from.beginning_of_day..@to.end_of_day
 
-    reserved_post_ids = Slot.where(start: range).or(Slot.where(end: range)).pluck(:post_id)
+    reserved_post_ids = Reservation.where(start: range).or(Reservation.where(end: range)).pluck(:post_id)
     @posts = Post.all_except(reserved_post_ids)
   end
 
@@ -68,6 +68,10 @@ module PostsHelper
     content_tag :span, '' do
       link_to heart_icon, '#', class: "btn btn-sm btn-success btn-rounded btn-app js-add-favorite-post #{is_favorite_post}", data: { url: set_favorite_post_post_path(@post), post_id: @post.id, user_id: current_user.id }
     end
+  end
+
+  def posts_with_reservations_in_range_for?(reservation)
+    Post.where(id: reservation.post.id).with_reservations_in_range(reservation.start..reservation.end)
   end
 
 

@@ -23,6 +23,8 @@
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/locale-all
+//= require direct_upload
+//= require i18n/translations
 //= require_tree ./application_wide
 //= require_tree .
 

@@ -2,9 +2,9 @@ class PostsController < ApplicationController
   include PostsHelper
   include AddressesAttributes
 
-
   before_action :set_post, only: [:show, :edit, :update, :destroy, :available, :check_address]
-  before_action :authenticate_user!, except: [:show, :search]
+  before_action :check_post_owner, only: [:edit]
+  before_action :authenticate_user!, except: [:show, :search, :available]
   before_action :get_image, only: [:remove_attachment]
   after_action :check_address, only: [:create, :update]
 
@@ -85,6 +85,10 @@ class PostsController < ApplicationController
     FavoritePost.create!(user_id: params[:user_id], post_id: params[:post_id])
   end
 
+  def delete_favorite_post
+    FavoritePost.find(params[:favorite_post_id]).destroy
+  end
+
   private
 
     def set_post
@@ -94,6 +98,10 @@ class PostsController < ApplicationController
     def check_address
       checked = params[:user_address_check]
       @post.use_user_address if checked && @post.persisted?
+    end
+
+    def check_post_owner
+      redirect_to root_path unless @post.user == current_user
     end
 
     def get_image

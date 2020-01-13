@@ -9,11 +9,11 @@
       .row
         .col-md-12
           .input-group
-            = f.input :availability_from, input_html: { class: "daterange picker-from" }, as: :string, label: false, placeholder: t('datetime.select_from')
+            = f.input :availability_from, input_html: { class: "daterange picker-from", value: formated_date(DateTime.now) }, as: :string, label: false, placeholder: t('datetime.select_from')
       .row
         .col-md-12
           .input-group
-            = f.input :availability_to, input_html: { class: "daterange picker-to" }, as: :string, label: false, placeholder: t('datetime.select_to')
+            = f.input :availability_to, input_html: { class: "daterange picker-to", value: formated_date(DateTime.now + 7.days)  }, as: :string, label: false, placeholder: t('datetime.select_to')
       .row
         .col-md-12
           .input-group

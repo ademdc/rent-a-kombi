@@ -3,7 +3,10 @@
 @import 'posts';
 @import 'messages';
 @import 'conversations';
+@import 'profile';
 @import 'datatable';
+@import 'navbar';
+@import 'direct_upload';
 
 body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -12,45 +15,6 @@ body {
 .container {
   padding-top: 20px;
   min-height: 75vh;
-  // background-color: white;
-}
-.navbar {
-  background-color: $app-blue-dark !important;
-  padding: 5px 100px;
-
-  .nav-link {
-    text-align: center;
-  }
-  .nav-link:hover {
-    background-color: #263343;
-    color: white !important;
-  }
-
-  li.nav-item {
-    color: black;
-    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
-    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
-    width: 100%;
-  }
-
-  .navbar-dark .navbar-brand {
-    color: #fff;
-  }
-
-  .dropdown-menu {
-    width: 180px;
-  }
-
-  .language-icon {
-    margin-top: 11px;
-    margin-left: 10px;
-  }
-
-  .country-icon {
-    height: 40px;
-    margin-left: 5px;
-  }
-
 }
 
 .page-footer {
@@ -84,21 +48,9 @@ body {
 
 .img-circle {
   border-radius: 50%;
-  width: 40px;
-}
-
-
-.nav-link:hover {
-  background-color: $app-blue-dark;
-  color: white !important;
-
-}
-
-li.nav-item {
-  color: black;
-  display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
-  position: relative; /* All 'absolute'ly positioned elements are relative to this one */
-
+  width: 33px;
+  height: 33px;
+  object-fit: cover;
 }
 
 .button__badge {
@@ -166,13 +118,4 @@ li.nav-item {
 .light-blue-bg {
   background: #CFDBE1;
   color: black;
-}
-
-@media only screen and (max-width: 800px) {
-  .navbar {
-    .navbar-brand {
-      font-size: 17px;
-    }
-  }
-
 }

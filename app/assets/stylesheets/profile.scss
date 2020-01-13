@@ -1,3 +1,77 @@
 // Place all the styles related to the profile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.user-profile-container {
+
+  .tab-pane {
+    padding: 0px;
+  }
+
+  .list-group-item {
+    border: none;
+  }
+
+  .card {
+    border: none;
+  }
+
+  a {
+    color: $app-blue-main;
+    // text-decoration: none;
+  }
+
+  .nav-item {
+    font-weight: bold;
+  }
+
+  .my-reservations-container, .incoming-reservations-container, .favorite-posts-container, .my-posts-container {
+    //box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    height: 600px;
+    overflow: auto;
+  }
+
+  .my-reservation, .incoming-reservation, .favorite-posts {
+    padding: 10px;
+    margin-top: 40px
+  }
+
+  .user-info-container {
+    text-align: center;
+
+    .user-full-name {
+      margin: 20px 0px;
+    }
+
+    .count {
+      font-weight: bold;
+    }
+
+    .img-circle {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  p strong::after {
+    content: ': ';
+  }
+
+  .my-reservation, .incoming-reservation {
+    position: relative;
+    border-bottom: 1px solid lightgray;
+
+    .status {
+      position: absolute;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+
+      h6 {
+        margin: 5px;
+        font-size: 13px;
+      }
+    }
+  }
+}

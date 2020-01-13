@@ -1,22 +1,44 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:edit, :destroy]
+  before_action :set_reservation, only: [:destroy, :update]
 
   def create
     @reservation = Reservation.new(reservation_params)
 
-    if @reservation.save
-      respond_to do |format|
+    respond_to do |format|
+      if @reservation.save
+        UserMailer.with(reservation: @reservation).reservation_confirmation.deliver_now
+        format.json { render json: { message: 'Reservation created successfully.' } , status: :ok }
         format.html { redirect_to profile_index_path, notice: 'Reservation succesfully created. Pending...' }
+      else
+        format.json { render json: { message: @reservation.errors }, status: :unprocessable_entity }
+        format.html { redirect_to @reservation.post, alert: "Reservation could not be made!" }
       end
-    else
-      format.json { render json: @reservation.errors, status: :unprocessable_entity }
     end
   end
 
-  def edit
+  def update
+    respond_to do |format|
+      if @reservation.update(reservation_params)
+        format.json { render json: { message: 'Reservation updated succesfully' }, status: :ok }
+      else
+        format.json { render json: { message:  @reservation.errors }, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
+    @reservation.destroy!
+
+    respond_to do |format|
+      format.json { render json: { message: 'Succesfully deleted reservation' } }
+    end
+  end
+
+  def for_post
+    @reservations = Reservation.for_post(params[:post_id])
+    respond_to do |format|
+      format.json { render json: @reservations, status: :ok }
+    end
   end
 
   private
@@ -27,7 +49,8 @@ class ReservationsController < ApplicationController
         :user_id,
         :start,
         :end,
-        :confirmed)
+        :confirmed,
+        :title)
     end
 
     def set_reservation

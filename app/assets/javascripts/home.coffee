@@ -3,6 +3,7 @@ class Home
     @innitialize_plugins()
 
   innitialize_plugins: () ->
+    @enable_tooltip()
     @innitialize_daterangepicker()
     @innitialize_flexslider()
 
@@ -24,6 +25,9 @@ class Home
 
   innitialize_flexslider: () ->
     $('.flexslider').flexslider()
+
+  enable_tooltip: () ->
+    $('[data-toggle="tooltip"]').tooltip()
 
 
 $(document).ready ->

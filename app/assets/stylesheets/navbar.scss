@@ -1,0 +1,77 @@
+.navbar {
+  background-color: $app-blue-dark !important;
+  padding: 0px 100px;
+
+  .nav-link {
+    text-align: center;
+  }
+
+  .publish-post {
+    padding: 0;
+    margin: 5px 0px 0px 8px;
+    .plus-icon {
+      font-size: 25px !important;
+    }
+  }
+
+  .nav-link:hover {
+    background-color: #263343;
+    color: white !important;
+  }
+
+  li.nav-item {
+    color: black;
+    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+    width: 100%;
+  }
+
+  .navbar-dark .navbar-brand {
+    color: #fff;
+  }
+
+  .dropdown-menu {
+    width: 180px;
+  }
+
+  .language-icon {
+    margin-top: 11px;
+    margin-left: 10px;
+  }
+
+  .country-icon {
+    height: 40px;
+    margin-left: 5px;
+  }
+
+  .nav-link:hover {
+  background-color: $app-blue-dark;
+  color: white !important;
+
+  }
+
+  li.nav-item {
+    color: black;
+    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .navbar {
+    .navbar-brand {
+      font-size: 17px;
+    }
+    .add-post {
+      display: none;
+    }
+
+    .dropdown-menu {
+      width: 100%;
+      .dropdown-item, .dropdown-items {
+        text-align: center;
+      }
+    }
+  }
+}

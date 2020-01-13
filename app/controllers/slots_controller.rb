@@ -8,7 +8,7 @@ class SlotsController < ApplicationController
       if @slot.save
         format.json { render json: { message: 'Slot created successfully.' } , status: :ok }
       else
-        format.json { render json: @slot.errors, status: :unprocessable_entity }
+        format.json { render json: { message: @slot.errors }, status: :unprocessable_entity }
       end
     end
   end

@@ -1,8 +1,9 @@
 = simple_form_for @reservation do |f|
   .row
     .col-md-12
-      .flex-center-all
+      .availability-from
         = f.input :user_id, as: :hidden, input_html: { value: current_user.id } if logged_in?
+        = f.input :title, as: :hidden, input_html: { value: current_user.full_name } if logged_in?
         = f.input :post_id, as: :hidden, input_html: { value: post.id }
         .input-group
           = f.input :start, as: :string, input_html: { class: "daterange js-post-availability-from picker-from", value: cookies[:availability_from], readonly: false }, label: false, placeholder: 'Select date from'

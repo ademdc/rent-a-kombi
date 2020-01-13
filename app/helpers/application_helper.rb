@@ -20,4 +20,8 @@ module ApplicationHelper
   def sanitize(string)
     string.split(',').first
   end
+
+  def direct_upload_url
+    '/rails/active_storage/direct_uploads'
+  end
 end

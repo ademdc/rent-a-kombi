@@ -81,11 +81,11 @@
               .js-calendar-container.calendar-container
                 .mb-5.text-center
                   .flex-center-all
-                    = text_field_tag "slot_start", nil, class: 'daterange w-300 picker-from', placeholder: 'Select date from'
-                    = text_field_tag "slot_end", nil, class: 'daterange w-300 picker-to', placeholder: 'Select date to'
+                    = text_field_tag "reservation_start", nil, class: 'daterange w-300 picker-from', placeholder: 'Select date from'
+                    = text_field_tag "reservation_end", nil, class: 'daterange w-300 picker-to', placeholder: 'Select date to'
 
                     = text_field_tag "title", nil, class: 'js-title w-300 picker-title m-r-sm', placeholder: 'Enter title'
-                    = link_to 'Generate slots', '#', class: 'btn btn-primary btn-app btn-generate js-generate-slot'
-
-                #calendar data-post-id=@post.id data-slot-url=slots_path data-for-posts-url=for_post_slots_path(post_id: @post.id, format: 'json')
+                    = link_to 'Generate reservation', '#', class: 'btn btn-primary btn-app btn-generate js-generate-reservation'
+                    = link_to 'Refetch reservations', '#', class: 'btn btn-primary btn-app js-refetch-reservations'
+                #calendar data-post-id=@post.id data-reservation-url=reservations_path data-for-posts-url=for_post_reservations_path(post_id: @post.id, format: 'json')
 

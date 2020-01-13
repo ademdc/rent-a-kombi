@@ -20,4 +20,8 @@ module DateTimeHelper
     (Time.current.to_date - created_at.to_date).to_i
   end
 
+  def formated_date(date)
+    date.strftime('%d/%m/%Y')
+  end
+
 end

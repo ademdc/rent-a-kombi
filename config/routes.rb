@@ -4,16 +4,20 @@ Rails.application.routes.draw do
     root to: 'home#home'
     get 'locale', to: 'application#locale'
 
-  resources :posts do
-    get :search, on: :collection
+    resources :posts do
 
-    member do
-      delete :remove_attachment
-      post :available
-      post :set_favorite_post
+      collection do
+        get :search
+        delete :delete_favorite_post
+      end
+
+      member do
+        delete :remove_attachment
+        post :available
+        post :set_favorite_post
+      end
+
     end
-
-  end
 
     resources :posts do
       get :search, on: :collection
@@ -22,7 +26,10 @@ Rails.application.routes.draw do
 
     resources :categories
 
-    devise_for :users, controllers: { registrations: 'users/registrations' }
+    devise_for :users, controllers: {
+      registrations: 'users/registrations',
+      confirmations: 'users/confirmations'
+    }
 
     resource :slots, only: [:create, :destroy] do
       post :for_post, on: :collection
@@ -31,9 +38,12 @@ Rails.application.routes.draw do
     resources :conversations do
       resources :messages
     end
+
+
+    resource :reservations, only: [:create, :destroy, :update] do
+      post :for_post, on: :collection
+    end
+
+    resources :profile, only: [:index]
   end
-
-  resource :reservations, only: [:create, :destroy, :edit]
-
-  resources :profile, only: [:index]
 end

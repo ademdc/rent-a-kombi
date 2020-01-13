@@ -4,7 +4,7 @@ class Post < ApplicationRecord
 
   belongs_to :category
   belongs_to :user
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
   has_many :slots, dependent: :destroy
   has_many :messages
   has_many :favorite_posts, dependent: :destroy
@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   scope :all_except, -> (ids) { where.not(id: ids) }
   scope :by_user, -> (user) { where(user_id: user.id) }
 
-  scope :slot_in_range, -> (range) { joins(:slots).where(slots: { start: range }).or(joins(:slots).where(slots: { end: range })) }
+  scope :with_reservations_in_range, -> (range) { joins(:reservations).where(reservations: { start: range, confirmed: true }).or(joins(:reservations).where(reservations: { end: range, confirmed: true })).or(joins(:reservations).where('reservations.start > ? AND reservations.end < ? AND reservations.confirmed = ?', range.first, range.last, true)) }
   scope :by_category, -> (category) { joins(:category).where('categories.name = ?', category) }
   scope :by_model, -> (model) { where(model: model) }
   scope :by_fuel, -> (fuel) { where(fuel: fuel) }
@@ -41,8 +41,12 @@ class Post < ApplicationRecord
     from, to = range.split('to').map(&:to_datetime)
     range = from.beginning_of_day..to.end_of_day
 
-    reserved_post_ids = Slot.where(start: range).or(Slot.where(end: range)).pluck(:post_id)
+    reserved_post_ids = Reservation.where(start: range).or(Reservation.where(end: range)).pluck(:post_id)
     Post.all_except(reserved_post_ids)
+  end
+
+  def self.favorite_posts_for(user)
+    FavoritePost.where(user_id: user.id)
   end
 
   def cover_image
@@ -55,7 +59,7 @@ class Post < ApplicationRecord
 
   def available?(date_from, date_to)
     from, to = date_from.to_datetime, date_to.to_datetime
-    self.slots.each { |slot| return false if slot.between_range?(from, to) }
+    self.reservations.each { |reservation| return false if (reservation.between_range?(from, to) && reservation.confirmed) }
     true
   end
 

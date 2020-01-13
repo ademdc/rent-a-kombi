@@ -1,32 +1,31 @@
 .user-profile-container
   .row
-    .col-md-2
+    .col-md-3
       .user-info-container
         = image_tag current_user.profile_image, class: 'img-circle'
         h5.user-full-name = current_user.full_name
         hr
-        p = 'Total number of reservations'
+        p = t('profile.total_reservations')
         span.count = @my_reservations.count
         hr
-        p = 'Total number of uploaded posts'
+        p = t('profile.total_uploaded')
         span.count = @my_posts.count
         hr
-        p = 'Total number of favorite posts'
+        p = t('profile.total_favorite')
         span.count = @favorite_posts.count
         hr
 
-        = link_to 'Edit profile', edit_user_registration_path
-    .col-md-10
+        = link_to t('profile.edit_profile'), edit_user_registration_path
+    .col-md-9
       ul#edit-post-tab-list.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"
         li.nav-item
-          = link_to 'My reservations', '#my-reservations-tab', class: 'nav-link active', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'home-just' }, role: 'tab'
-
+          = link_to t('profile.tabs.my_reservations'), '#my-reservations-tab', class: 'nav-link active', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'home-just' }, role: 'tab'
         li.nav-item
-          = link_to 'Incoming reservations', '#incoming-reservations-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'profile-just' }, role: 'tab'
+          = link_to t('profile.tabs.incoming_reservations'), '#incoming-reservations-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'profile-just' }, role: 'tab'
         li.nav-item
-          = link_to 'My posts', '#my-posts-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
+          = link_to t('profile.tabs.my_posts'), '#my-posts-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
         li.nav-item
-          = link_to 'Favorite posts', '#favorite-posts-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
+          = link_to t('profile.tabs.favorite_posts'), '#favorite-posts-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
 
       #edit-post-tab.tab-content.card
 
@@ -36,52 +35,45 @@
             .my-reservations-container
               - @my_reservations.each do |reservation|
                 .my-reservation
+                  .status style="background: #{reservation.confirmed ? 'lightgreen' : 'lightblue' }"
+                    h6 = reservation_status(reservation.confirmed)
                   .row
                     .col-md-6
-                      p
-                        strong Title:
+                      h5
                         = link_to reservation.post.title, post_path(reservation.post), target: '_blank'
-                      p
-                        strong Confirmed:
-                        = reservation.confirmed.to_s.titleize
                     .col-md-6
                       p
-                        strong From:
+                        strong = t('profile.from')
                         = formated_date(reservation.start)
                       p
-                        strong To:
+                        strong = t('profile.to')
                         = formated_date(reservation.end)
-                hr
         #incoming-reservations-tab.tab-pane.fade aria-labelledby="profile-tab-just" role="tabpanel"
          .row
           .col-md-12
             .incoming-reservations-container
               - @incoming_reservations.each do |reservation|
                 .incoming-reservation data-post-id=reservation.post.id  data-user-name=reservation.user&.full_name data-post-title=reservation.post.title data-reservation-url=reservations_path data-reservation-id=reservation.id
+                  .status style="background: #{reservation.confirmed ? 'lightgreen' : 'lightblue' }"
+                    h6 = reservation_status(reservation.confirmed)
                   .row
                     .col-md-6
-                      p
-                        strong User:
-                        = reservation.user&.full_name
-                      p
-                        strong Post:
+                      h5
                         = link_to reservation.post.title, post_path(reservation.post), target: '_blank'
-                      p
-                        strong Confirmed:
-                        - if reservation.confirmed
-                          = reservation.confirmed.to_s.titleize
-                        - else
-                          = button_tag check_icon('Confirm'), class: 'js-confirm-reservation btn btn-success btn-sm mr-2'
-                          = info_icon('fa-info-circle js-reservation-info', 'Make sure to contact the user. When confirmed, the user will get a notification.')
-                        = button_tag trash_icon('Delete'), class: 'js-delete-reservation btn btn-danger btn-sm'
+                        = info_icon('fa-info-circle ml-2 js-reservation-info', t('profile.info_confirm')) unless reservation.confirmed
+                      - unless reservation.confirmed
+                        = button_tag check_icon('Confirm'), class: 'js-confirm-reservation btn btn-success btn-sm mr-2'
+                      = button_tag trash_icon('Delete'), class: 'js-delete-reservation btn btn-danger btn-sm'
                     .col-md-6
                       p
-                        strong From:
+                        strong = t('profile.user')
+                        = reservation.user&.full_name
+                      p
+                        strong = t('profile.from')
                         = formated_date(reservation.start)
                       p
-                        strong To:
+                        strong = t('profile.to')
                         = formated_date(reservation.end)
-                  hr
 
         #my-posts-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
           .row
@@ -96,7 +88,7 @@
           .row
             .col-md-12
               .favorite-posts-container
-
                 - @favorite_posts.each do |post|
-                  .favorite-posts
-                    p = link_to post.post.title, post_path(post.post), target: '_blank'
+                  .favorite-posts data-post-id=post.id data-delete-url=delete_favorite_post_posts_path
+                    = link_to post.post.title, post_path(post.post), target: '_blank'
+                    = button_tag trash_icon, class: 'js-delete-favorite-post btn btn-danger btn-sm ml-2'

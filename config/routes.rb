@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     get 'locale', to: 'application#locale'
 
     resources :posts do
-      get :search, on: :collection
+
+      collection do
+        get :search
+        delete :delete_favorite_post
+      end
 
       member do
         delete :remove_attachment

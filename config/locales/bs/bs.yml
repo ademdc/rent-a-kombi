@@ -21,3 +21,4 @@ bs:
     select_from: 'Od datuma'
     select_to: 'Do datuma'
   locale_change: "Jezik je uspjesno promijenjen u %{language}"
+  edit: 'Uredi'

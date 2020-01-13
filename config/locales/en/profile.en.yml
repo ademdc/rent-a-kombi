@@ -1,0 +1,21 @@
+en:
+  profile:
+    total_reservations: 'Total number of reservations'
+    total_uploaded: 'Total number of uploaded posts'
+    total_favorite: 'Total number of favorite posts'
+    tabs:
+      my_reservations: 'My reservations'
+      incoming_reservations: 'Incoming reservations'
+      my_posts: 'My posts'
+      favorite_posts: 'Favorite posts'
+    from: 'From'
+    to: 'To'
+    title: 'Title'
+    user: 'User'
+    confirmed: 'Confirmed'
+    pending: 'Pending'
+    post: 'Post'
+    edit_profile: 'Edit profile'
+    info_confirm: 'Once confirmed, you will be prompted for payment of 2% of the total amount'
+    removed_favorite: 'Favorite post successfully removed'
+    error: 'Error occured'

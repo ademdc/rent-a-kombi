@@ -7,7 +7,6 @@ class Posts
 
   innitialize_listeners: () ->
     $(document).on 'click', '.js-add-favorite-post', (e) =>
-      console.log 'clicked fav'
       e.preventDefault()
       $target = $(e.currentTarget)
 

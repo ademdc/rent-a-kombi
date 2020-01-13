@@ -3,6 +3,26 @@ class Profile
     @init_listeners()
 
   init_listeners: () ->
+    $(document).on 'click', '.js-delete-favorite-post', (e) =>
+      e.preventDefault()
+      $target = $(e.currentTarget)
+      $parent = $target.parents('.favorite-posts')
+
+      url = $parent .data('delete-url')
+      post_id = $parent.data('post-id')
+
+      $.ajax
+        url: url
+        method: 'DELETE'
+        data: { 'favorite_post_id': post_id }
+        dataType: 'JSON'
+        success: (data) =>
+          toastr.success I18n.t('profile.removed_favorite')
+          $parent.fadeOut('slow')
+        error: (data) =>
+          toastr.error I18n.t('profile.error')
+
+
     $(document).on 'click', '.js-confirm-reservation', (e) =>
       $target   = $(e.currentTarget)
 

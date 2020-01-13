@@ -85,6 +85,10 @@ class PostsController < ApplicationController
     FavoritePost.create!(user_id: params[:user_id], post_id: params[:post_id])
   end
 
+  def delete_favorite_post
+    FavoritePost.find(params[:favorite_post_id]).destroy
+  end
+
   private
 
     def set_post

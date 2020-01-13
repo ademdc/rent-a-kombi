@@ -52,5 +52,6 @@ en:
     select_from: 'Select date from'
     select_to: 'Select date to'
   locale_change: "Language successfully changed to %{language}"
+  edit: 'Edit'
 
 

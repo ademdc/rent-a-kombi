@@ -10,3 +10,4 @@ en:
     new_password: 'New password'
     confirm_password: 'Confirm new password'
     change_password: 'Change my password'
+    sign_up: 'Sign up'

@@ -13,6 +13,6 @@ h2 = I18n.t('user.sign_up')
   .field
     = f.input :password_confirmation, autocomplete: 'off'
   .actions
-    = f.submit "Sign up", class: 'btn btn-primary btn-sm btn-app'
+    = f.submit t('user.sign_up'), class: 'btn btn-primary btn-sm btn-app'
 
 = render "users/shared/links"

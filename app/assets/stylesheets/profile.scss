@@ -35,6 +35,10 @@
     margin-top: 40px
   }
 
+   .my-reservation:hover, .incoming-reservation:hover, .favorite-posts:hover {
+    background-color: $app-blue-light;
+  }
+
   .user-info-container {
     text-align: center;
 

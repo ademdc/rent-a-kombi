@@ -11,3 +11,4 @@ bs:
     new_password: 'Nova lozinka'
     confirm_password: 'Potvrdi novu lozinku'
     change_password: 'Promjeni lozinku'
+    sign_up: 'Registruj se'

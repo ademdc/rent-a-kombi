@@ -1,0 +1,43 @@
+bs:
+  activerecord:
+    attributes:
+      post:
+        title: 'Naslov'
+        category_id: 'Kategorija'
+        model: 'Model'
+        description: 'Opis'
+        transmission: 'Transmisija'
+        production_year: 'Godina proizvodnje'
+        milage: 'Kilometraža'
+        fuel: 'Gorivo'
+        contact: 'Kontakt'
+        hp: 'Konjske Snage'
+        price: 'Cijena'
+        number_of_seats: 'Broj sjedišta'
+      user:
+        first_name: 'Ime'
+        last_name: 'Prezime'
+        email: 'Email'
+        password: 'Lozinka'
+        password_confirmation: 'Potvrda lozinke'
+        phone_number: 'Broj telefona'
+        verified: 'Potvrdjen'
+        is_admin: 'Je admin'
+        gender: 'Spol'
+        dob: 'Datum rodjenja'
+      address:
+        address: 'Naziv ulice'
+        city: 'Grad'
+        street_number: 'Br. ulice'
+        zip: 'Poštanski br.'
+        country: 'Država'
+      reservation:
+        title: 'Naslov'
+        start: 'Početak'
+        end: 'Kraj'
+        post_id: 'Objava'
+        confirmed: 'Potvrdjeno'
+        user_id: 'Korisnik'
+      conversation:
+        sender_id: 'Pošiljalac'
+        receiver_id: 'Primalac'

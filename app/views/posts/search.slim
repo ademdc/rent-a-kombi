@@ -5,12 +5,12 @@
 .pt-3
   .row
     .col-md-3
-      h3 Filter search
+      h3 = t('search.filter_search')
     .col-md-9
       - params[:search].each do |key, value|
         - if value.present? && PostsHelper::IGNORE_PARAMS.exclude?(key.to_sym)
           .info-tag.mb-2
-            span.left = key.titleize
+            span.left = t("search.#{key}")
             span.right = sanitize(value.titleize)
   .row
     .col-md-3

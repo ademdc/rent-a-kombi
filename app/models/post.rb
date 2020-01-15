@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   include Filterable
   include WithAddresses
+  include PostsHelper
 
   belongs_to :category
   belongs_to :user
@@ -67,6 +68,10 @@ class Post < ApplicationRecord
     user_address = self.user.address.dup
     self.address.delete if self.address&.persisted?
     self.address = user_address
+  end
+
+  def price_w_currency
+    "#{self.price} #{currency_for_locale(self.user.locale)}"
   end
 
 end

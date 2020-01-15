@@ -14,15 +14,15 @@ module PostsHelper
   end
 
   def capitalized_models
-    Vehicles::Models::MODELS.map(&:to_s)
+    Vehicles::Models::MODELS.map { |model|  t("search.models.#{model}") }
   end
 
   def capitalized_fuels
-    Posts::Filters::FUEL.map(&:to_s)
+    Posts::Filters::FUEL.map { |fuel|  t("search.fuels.#{fuel}") }
   end
 
   def capitalized_transmissions
-    Posts::Filters::TRANSMISSION.map(&:to_s)
+    Posts::Filters::TRANSMISSION.map { |transmission|  t("search.transmissions.#{transmission}") }
   end
 
   def sanitized_search_param(params, param)
@@ -72,6 +72,17 @@ module PostsHelper
 
   def posts_with_reservations_in_range_for?(reservation)
     Post.where(id: reservation.post.id).with_reservations_in_range(reservation.start..reservation.end)
+  end
+
+  def currency_for_locale(locale)
+    case locale
+    when 'bs'
+      'KM'
+    when 'en'
+      '€'
+    else
+      'KM'
+    end
   end
 
 

@@ -16,17 +16,17 @@ ul.list-group.shadow
             h6.font-weight-bold.my-2 = "#{post.price} KM"
           .d-flex.align-items-center.justify-content-between.mt-1 style='flex-wrap: wrap;'
             .info-tag
-              span.left Fuel
-              span.right = post.fuel&.titleize
+              span.left = t('search.fuel')
+              span.right = t("search.fuels.#{post.fuel}")
             .info-tag
-              span.left Transmission
-              span.right = post.transmission&.titleize
+              span.left = t('search.transmission')
+              span.right = t("search.transmissions.#{post.transmission}")
             .info-tag
-              span.left Year
+              span.left = t('search.year')
               span.right = post.production_year
             .info-tag
-              span.left Model
-              span.right = post.model&.titleize
+              span.left = t('search.model')
+              span.right = t("search.models.#{post.model}")
           h6.mt-0.font-weight-bold.mb-2.mt-4 = link_to t('edit'), edit_post_path(post) if edit
 
         = image_tag post.cover_image, class: 'img ml-lg-5 order-1 order-lg-2 w-200'

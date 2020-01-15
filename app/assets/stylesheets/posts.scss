@@ -200,6 +200,20 @@
     font-size: 14px;
   }
 
+  p.price {
+    background-color: $app-blue-main;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 27px;
+    margin-bottom: 0;
+    .fa {
+      color: white;
+      margin-right: 10px;
+    }
+  }
+
   .main-info {
     display: flex;
     justify-content: center;
@@ -209,7 +223,6 @@
     p {
       padding: 15px;
       margin-top: 1rem;
-
       i {
         padding-right: 5px;
         color: #323E5F;
@@ -243,11 +256,14 @@
   transition: all .2s ease-in-out;
 }
 
-@media only screen and (max-width: 700px) {
-  .availability-form {
+@media only screen and (max-width: 1000px) {
+  .availability-from {
     display: block !important;
     .form-group {
       width: 100%;
+      input {
+        text-align: center;
+      }
     }
   }
 }

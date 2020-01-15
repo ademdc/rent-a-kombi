@@ -5,7 +5,7 @@
   .row
     .col-md-12
       h3.d-inline.mr-3 = @post.title
-      = inline_svg "car_logos/#{@post.model}.svg", height: '60', width: '60'
+      = inline_svg "car_logos/#{@post.model}.svg", height: '60px', width: '60px'
       hr
   .row
     .col-md-7
@@ -14,6 +14,9 @@
         hr
         .row
           .col-md-12
+            p.price
+                i.fa.fa-money-bill
+                = @post.price_w_currency
             .main-info
               p
                 i.fa.fa-horse-head

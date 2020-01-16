@@ -5,19 +5,12 @@
         = image_tag @user.profile_image, class: 'img-circle'
         h5.user-full-name = @user.full_name
         hr
-        p = t('user.total_uploaded')
-        span.count = @user.posts.count
+        = user_posts_count(@user.posts.count)
         hr
-        p = t('user.phone_number')
-        - if @user.phone_number.present?
-          span.count = @user.phone_number
-        - else
-          span.count = t('na')
+        = user_phone_number( @user.phone_number)
         hr
-        - if @user.address
-          p = t('user.address')
-          span.count = @user.address.full_address
-          hr
+        = user_address(@user.address)
+        hr
         / = send_message_icon(current_user, post)
     .col-md-9
       ul#user-tab-list.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"

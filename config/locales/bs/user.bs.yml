@@ -16,5 +16,5 @@ bs:
     address: 'Adresa'
     no_posts: 'Korisnik još nije objavio niti jedno vozilo...'
     phone_number: 'Broj telefona'
-    total_uploaded: 'Total number of posts'
+    total_uploaded: 'Ukupan broj objava'
 

@@ -15,4 +15,5 @@ en:
     address: 'Address'
     no_posts: 'User did not uplaod any posts yet.'
     phone_number: 'Phone number'
-    total_uploaded: 'Ukupan broj objava'
+    total_uploaded: 'Total number of posts'
+

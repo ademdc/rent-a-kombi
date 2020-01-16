@@ -5,4 +5,8 @@ class Address < ApplicationRecord
   def full_address
     pp_join([address, city, country].compact, ', ')
   end
+
+  def short_address
+    pp_join([city, country].compact, ', ')
+  end
 end

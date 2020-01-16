@@ -10,15 +10,15 @@
         .input-group
           = f.input :end, as: :string, input_html: { class: "daterange js-post-availability-to picker-to", value: cookies[:availability_to] }, label: false, placeholder: 'Select date to'
         .input-group
-          = button_tag 'Check', class: 'btn btn-search js-check-availability btn-success btn-sm', style: 'width: 100%; height: 38px;'
+          = button_tag t('post.check'), class: 'btn btn-search js-check-availability btn-success btn-sm', style: 'width: 100%; height: 38px;'
   .row
     .col-md-12
       .available style='display:none;'
         = inline_svg 'check.svg', style: 'height: 40px; display: inline;'
-        span Car available in that range
-        span = button_tag car_icon('Reserve'), class: 'btn js-rent btn-success btn', style: 'width: 100%'
+        span = t('post.car_available')
+        span = button_tag car_icon(t('post.reserve')), class: 'btn js-rent btn-success btn', style: 'width: 100%'
   .row
     .col-md-12
       .not-available style='display:none;'
         = inline_svg 'letter-x.svg', style: 'height: 30px; display: inline;'
-        span Car unavailable in that range
+        span = t('post.car_unavailable')

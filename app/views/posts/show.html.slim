@@ -10,7 +10,7 @@
   .row
     .col-md-7
       .subtitle-container
-        h5.subtitle Main Information
+        h5.subtitle = t('post.main_information')
         hr
         .row
           .col-md-12
@@ -23,7 +23,7 @@
                 = @post.hp
               p
                 i.fa.fa-gas-pump
-                = @post.fuel.titleize
+                = t("search.fuels.#{@post.fuel}")
               p
                 i.fa.fa-calendar
                 = @post.production_year
@@ -35,7 +35,7 @@
                 = @post.number_of_seats
               p
                 i.fa.fa-cogs
-                = @post.transmission.titleize
+                = t("search.transmissions.#{@post.transmission}")
 
 
           /   p
@@ -65,7 +65,7 @@
           /     = @post.hp
 
       .subtitle-container
-        h5.subtitle Images
+        h5.subtitle = t('post.images')
         hr
         .row
           .col-md-12
@@ -77,14 +77,14 @@
 
     .col-md-5
       .subtitle-container  data-post-available-url=available_post_path(@post)
-        h5.subtitle Availability
+        h5.subtitle = t('post.availability')
         hr
         = upocoming_reservation(current_user, @post)
         = render 'availability_form', post: @post
 
 
       .subtitle-container
-        h5.subtitle Renter
+        h5.subtitle = t('post.renter')
         hr
           = image_tag @post.user.profile_image, class: 'img-circle mx-2 my-2'
           span.mr-2 = @post.user.full_name
@@ -92,16 +92,16 @@
           = favorite_post_icon(current_user)
       .messaging data-conversation-url=conversations_path(sender_id: current_user.try(:id), recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user&.id data-post-id=@post.id
       .subtitle-container
-        h5.subtitle Contact
+        h5.subtitle = t('post.location')
         hr
           = @post.contact
         #googleMap
       .subtitle-container
-        h5.subtitle Description
+        h5.subtitle = t('post.description')
         hr
           = @post.description
 
   - if current_ability.can?(:edit, @post)
-    = link_to 'Edit', edit_post_path(@post), class: 'btn btn-app btn-edit'
+    = link_to t('post.edit'), edit_post_path(@post), class: 'btn btn-app btn-edit'
 
 = render 'shared/modals/contact_renter_modal', post: @post  unless current_user&.my_post?(@post)

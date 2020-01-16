@@ -1,3 +1,19 @@
 en:
   post:
     title: 'Title'
+    main_information: 'Main information'
+    availability: 'Availability'
+    renter: 'Renter'
+    contact: 'Contact'
+    location: 'Location'
+    description: 'Description'
+    images: 'Images'
+    reserve: 'Reserve'
+    check: 'Check'
+    car_available: 'Car available in that range'
+    car_unavailable: 'Car unavailable in that range'
+    have_reservation: "You have a %{reservation_confirmed} reservation for this post"
+    pending: 'Pending'
+    confirmed: 'Confirmed'
+    see_reservations: 'See reservations'
+    edit: 'Edit'

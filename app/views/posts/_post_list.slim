@@ -29,6 +29,6 @@ ul.list-group.shadow.post-list
               span.right = t("search.models.#{post.model}")
           h6.mt-0.font-weight-bold.mb-2.mt-4 = link_to t('edit'), edit_post_path(post) if edit
 
-        = image_tag post.cover_image, class: 'img ml-lg-5 order-1 order-lg-2 w-200'
+        = image_tag post.cover_image, class: 'img ml-lg-5 order-1 order-lg-2 post-image'
 
 = will_paginate posts

@@ -19,6 +19,14 @@ ul.post-list {
     color: white;
     padding: 10px;
     width: 80px;
+    border-radius: 0.25rem;
+  }
+
+  .post-image {
+    width: 222px;
+    height: 140px;
+    border-radius: 0.25rem;
+    object-fit: cover;
   }
 }
 
@@ -80,7 +88,7 @@ ul.post-list {
   border: 1px solid #e2e2e2;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 0.25rem;
   height: 18px;
 
   span.left {

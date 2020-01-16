@@ -1,3 +1,19 @@
 bs:
   post:
-    title: 'Naslov'
+    title: 'Title'
+    main_information: 'Glavne informacije'
+    availability: 'Dostupnost'
+    renter: 'Iznajmljivač'
+    contact: 'Kontakt'
+    location: 'Lokacija'
+    description: 'Opis'
+    images: 'Slike'
+    reserve: 'Rezerviši'
+    check: 'Provjeri'
+    car_available: 'Auto je dostupno u tom periodu'
+    car_unavailable: 'Auto nije dostupno u tom periodu'
+    have_reservation: "Imate %{reservation_confirmed} rezervaciju za ovu objavu"
+    pending: 'Poslatu'
+    confirmed: 'Potvrdjenu'
+    see_reservations: 'Pogledaj rezervacije'
+    edit: 'Uredi'

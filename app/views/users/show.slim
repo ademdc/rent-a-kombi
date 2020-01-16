@@ -1,0 +1,34 @@
+.user-profile-container
+  .row
+    .col-md-3
+      .user-info-container
+        = image_tag @user.profile_image, class: 'img-circle'
+        h5.user-full-name = @user.full_name
+        hr
+        p = t('user.total_uploaded')
+        span.count = @user.posts.count
+        hr
+        p = t('user.phone_number')
+        - if @user.phone_number.present?
+          span.count = @user.phone_number
+        - else
+          span.count = t('na')
+        hr
+        - if @user.address
+          p = t('user.address')
+          span.count = @user.address.full_address
+          hr
+        / = send_message_icon(current_user, post)
+    .col-md-9
+      ul#user-tab-list.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"
+        li.nav-item
+          = link_to t('user.uploads'), '#uploads-tab', class: 'nav-link active', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'home-just' }, role: 'tab'
+
+      #uploads-tab.tab-pane.fade.show.active aria-labelledby="home-tab-just" role="tabpanel"
+        .row
+          .col-md-12
+            .my-posts-container
+              - if @posts.present?
+                = render 'posts/post_list', posts: @posts
+              - else
+                h5.mt-4 = t('user.no_posts')

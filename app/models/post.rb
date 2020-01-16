@@ -29,7 +29,6 @@ class Post < ApplicationRecord
   scope :by_availability_from, -> (availability) {  }
   scope :by_availability_to, -> (availability) { }
 
-
   validates :title, :price, :model, :production_year, presence: true
 
   enum model: Vehicles::Models::MODELS

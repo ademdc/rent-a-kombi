@@ -12,3 +12,9 @@ bs:
     confirm_password: 'Potvrdi novu lozinku'
     change_password: 'Promjeni lozinku'
     sign_up: 'Registruj se'
+    uploads: 'Objave'
+    address: 'Adresa'
+    no_posts: 'Korisnik još nije objavio niti jedno vozilo...'
+    phone_number: 'Broj telefona'
+    total_uploaded: 'Total number of posts'
+

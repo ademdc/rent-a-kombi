@@ -87,7 +87,7 @@
                   = render 'posts/post_list', posts: @my_posts, edit: true
                 - else
                   h4.mt-4 = t('profile.no_posts')
-                  = link_to t('profile.upload_post')
+                  = link_to t('profile.upload_post'), new_post_path
         #favorite-posts-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
           .row
             .col-md-12

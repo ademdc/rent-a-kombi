@@ -11,3 +11,8 @@ en:
     confirm_password: 'Confirm new password'
     change_password: 'Change my password'
     sign_up: 'Sign up'
+    uploads: 'Uploads'
+    address: 'Address'
+    no_posts: 'User did not uplaod any posts yet.'
+    phone_number: 'Phone number'
+    total_uploaded: 'Ukupan broj objava'

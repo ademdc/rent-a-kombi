@@ -7,8 +7,24 @@
   transition: all .2s ease-in-out;
 }
 
+ul.post-list {
+  .post-title {
+    a {
+      color: $app-blue-dark;
+    }
+  }
+
+  .post-price {
+    background-color: $app-blue-main;
+    color: white;
+    padding: 10px;
+    width: 80px;
+  }
+}
+
+
 .post-img:hover {
-  transform: scale(1.10);
+  // transform: scale(1.10);
   // transform: translate(0px, 5px);
 }
 
@@ -201,6 +217,7 @@
   }
 
   p.price {
+    transition: all .2s ease-in-out;
     background-color: $app-blue-main;
     color: white;
     border-radius: 5px;
@@ -211,6 +228,16 @@
     .fa {
       color: white;
       margin-right: 10px;
+    }
+  }
+
+  p.price:hover {
+    transform: scale(1.05);
+    background: $app-blue-light;
+    color: $app-blue-dark;
+
+    .fa {
+      color: $app-blue-dark;
     }
   }
 

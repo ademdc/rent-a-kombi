@@ -1,7 +1,7 @@
 bs:
   search:
     filter_search: 'Filteri'
-    category: 'Katerogija'
+    category: 'Kategorija'
     model: 'Model'
     price: 'Cijena'
     fuel: 'Gorivo'

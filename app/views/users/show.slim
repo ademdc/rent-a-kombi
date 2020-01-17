@@ -11,7 +11,7 @@
         hr
         = user_address(@user.address)
         hr
-        / = send_message_icon(current_user, post)
+        = send_message_icon(current_user)
     .col-md-9
       ul#user-tab-list.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"
         li.nav-item
@@ -25,3 +25,7 @@
                 = render 'posts/post_list', posts: @posts
               - else
                 h5.mt-4 = t('user.no_posts')
+
+.messaging data-conversation-url=conversations_path(sender_id: current_user.try(:id), recipient_id: @user.id, format: 'json') data-current-user-id=current_user&.id
+= render 'shared/modals/contact_renter_modal', sender: current_user, recipient: @user, subject: false, post: false if current_user.present?
+

@@ -44,19 +44,19 @@ module PostsHelper
     html.html_safe
   end
 
-  def send_message_icon(current_user, post)
+  def send_message_icon(current_user)
     url = new_user_session_path
     data_target = ''
     data_toggle = ''
 
-    if current_user.present? && !current_user.my_post?(post)
+    if current_user.present?
       url = '#'
       data_target = '#modalContactForm'
       data_toggle = 'modal'
     end
 
     content_tag :span, '' do
-      link_to message_icon, url, class: 'btn btn-sm btn-success btn-rounded btn-app mr-2', data: { target: data_target, toggle: data_toggle }
+      link_to message_icon, url, class: 'btn btn-sm btn-success btn-rounded btn-app mr-2 btn-send-msg', data: { target: data_target, toggle: data_toggle }
     end
   end
 

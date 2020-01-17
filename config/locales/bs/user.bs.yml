@@ -17,4 +17,9 @@ bs:
     no_posts: 'Korisnik još nije objavio niti jedno vozilo...'
     phone_number: 'Broj telefona'
     total_uploaded: 'Ukupan broj objava'
+    messaging:
+      subject: 'Naslov'
+      your_message: 'Vaša poruka'
+      send: 'Pošalji'
+      send_message_to: 'Pošalji poruku korisniku %{user}'
 

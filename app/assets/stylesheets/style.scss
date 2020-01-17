@@ -106,6 +106,15 @@ body {
   background: #FFA500;
 }
 
+.btn-send-msg {
+  color: white !important;
+}
+
+
+.btn-send-msg:hover {
+  color: black !important;
+}
+
 .flex-center-all {
   display: flex;
   justify-content: center;

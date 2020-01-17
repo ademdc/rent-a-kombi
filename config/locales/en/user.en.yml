@@ -16,4 +16,9 @@ en:
     no_posts: 'User did not uplaod any posts yet.'
     phone_number: 'Phone number'
     total_uploaded: 'Total number of posts'
+    messaging:
+      subject: 'Subject'
+      your_message: 'Your message'
+      send: 'Send'
+      send_message_to: 'Send message to %{user}'
 

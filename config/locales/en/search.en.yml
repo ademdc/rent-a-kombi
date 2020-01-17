@@ -54,5 +54,6 @@ en:
       fiat: 'Fiat'
       lamborghini: 'Lamborghini'
       alfa_romeo: 'Alfa Romeo'
+    no_vehicles_for_filter: 'No available vehicles for those filters'
 
 

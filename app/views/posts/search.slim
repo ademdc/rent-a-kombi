@@ -19,5 +19,5 @@
       - if @posts.present?
         = render 'post_list', posts: @posts
       - else
-        h4.mt-4 = 'No available vehicles for those filters'
-        h6 = 'Try reseting your filters'
+        h4.mt-4 = t('search.no_vehicles_for_filter')
+        h6 = t('search.reset_filters')

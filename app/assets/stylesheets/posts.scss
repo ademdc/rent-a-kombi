@@ -308,5 +308,13 @@ ul.post-list {
       }
     }
   }
+
+  ul.post-list {
+    .post-image {
+      width: 100%;
+      height: 220px;
+      margin-bottom: 15px;
+    }
+  }
 }
 

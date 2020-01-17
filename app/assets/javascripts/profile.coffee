@@ -31,12 +31,13 @@ class Profile
       user_name  = $parent.data('user-name')
 
       swal {
-        title: "Confirm reservation to #{user_name} for post #{post_title}?"
-        text: 'Confirm?'
+        title: I18n.t('profile.confirm?')
+        text:  I18n.t('profile.confirm_reservation', { user_name: user_name, post_title: post_title })
         type: 'info'
         showCancelButton: true
         confirmButtonColor: '#DD6B55'
-        confirmButtonText: 'Confirm'
+        confirmButtonText: I18n.t('profile.confirm?')
+        cancelButtonText: I18n.t('profile.cancel')
         closeOnConfirm: yes
       }, =>
           @confirm_reservation($target)
@@ -44,11 +45,12 @@ class Profile
     $(document).on 'click', '.js-delete-reservation', (e) =>
       $target   = $(e.currentTarget)
       swal {
-        title: "Delete reservation?"
+        title: I18n.t('profile.delete_reservation')
         type: 'info'
         showCancelButton: true
         confirmButtonColor: '#DD6B55'
-        confirmButtonText: 'Confirm'
+        confirmButtonText: I18n.t('profile.confirm?')
+        cancelButtonText: I18n.t('profile.cancel')
         closeOnConfirm: yes
       }, =>
           @delete_reservation($target)

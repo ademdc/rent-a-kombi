@@ -1,0 +1,6 @@
+en:
+  message:
+    enter_message: 'Enter a message'
+    sent: 'Message sent succesfully.'
+    error: 'Message could not be sent'
+    can_not_see: 'Message could not be seen'

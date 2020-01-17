@@ -1,0 +1,6 @@
+bs:
+  message:
+    enter_message: 'Unesite poruku'
+    sent: 'Poruka je uspješno poslata.'
+    error: 'Poruka nije mogla biti poslata.'
+    can_not_see: 'Poruka se nije mogla učitati.'

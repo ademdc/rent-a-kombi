@@ -12,7 +12,7 @@ html
     = javascript_include_tag google_map_url
     = javascript_include_tag google_map_clusters
     = javascript_include_tag font_awesome_url
-  body
+  body data-locale=I18n.locale
     = render 'layouts/navbar'
     .container
       = yield

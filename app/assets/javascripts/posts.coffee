@@ -11,8 +11,7 @@ class Posts
       $target = $(e.currentTarget)
 
       if $target.hasClass('btn-red')
-        toastr.warning 'This post is already in favorites'
-        console.log 'in'
+        toastr.warning I18n.t('post.already_favorite')
         return false
 
       url = $target.data('url')
@@ -25,10 +24,10 @@ class Posts
         method: 'POST'
         dataType: 'JSON'
         success: (data) =>
-          toastr.success 'Post added to favorites'
+          toastr.success I18n.t('post.added_favorites')
           $target.addClass('btn-red')
         error: () =>
-          console.log 'Error occured'
+          console.log I18n.t('error')
 
     $(document).on 'click', '.js-generate-reservation', (e) =>
       e.preventDefault()
@@ -36,8 +35,7 @@ class Posts
 
       $post_id = $('#calendar').data('post-id')
       start = $('#reservation_start').val()
-      end = $('#reservation_end
-        ').val()
+      end = $('#reservation_end').val()
       title = $('.js-title').val()
 
       data = { 'reservation[post_id]': $post_id, 'reservation[start]': start, 'reservation[end]': end, 'reservation[title]': title,  'reservation[confirmed]': true }
@@ -49,13 +47,13 @@ class Posts
         method: 'POST'
         dataType: 'JSON'
         success: (data) =>
-          toastr.success('New reservation successfully created')
+          toastr.success I18n.t('post.new_reservation_crated')
           Posts.refresh_calendar()
           $('#reservation_start').val('')
           $('#reservation_end').val('')
           $('#title').val('')
         error: () =>
-          toastr.error('Error occured')
+          toastr.error I18n.t('error')
 
     $(document).on 'click', '.js-refetch-reservations', (e) =>
       e.preventDefault()
@@ -83,7 +81,7 @@ class Posts
             $('.available').css('display', 'none')
 
         error: () =>
-          console.log 'Error with checking availability'
+          console.log I18n.t('error')
 
     $(document).on 'change', '#user_address_check', (e) =>
       $target = $(e.currentTarget)
@@ -110,7 +108,7 @@ class Posts
               Posts.rerservation_delete(event, element)
            )
         error: () =>
-          toastr.error('Error occured while loading calendar')
+          toastr.error I18n.t('error')
 
   @refresh_calendar: () ->
     url = $('#calendar').data('for-posts-url')
@@ -124,12 +122,12 @@ class Posts
           $("#calendar").fullCalendar('addEventSource', data);
           $("#calendar").fullCalendar('refetchEvents');
         error: () =>
-          toastr.error('Error occured while loading calendar')
+          toastr.error I18n.t('error')
 
   @rerservation_delete: (event, element) =>
     swal {
-      title: 'Do you really want to delete time reservation?'
-      text: 'Delete?'
+      title: I18n.t('post.delete_reservation?')
+      text: I18n.t('delete') + '?'
       type: 'warning'
       showCancelButton: true
       confirmButtonColor: '#DD6B55'
@@ -145,10 +143,10 @@ class Posts
             method: 'DELETE'
             dataType: 'JSON'
             success: (data) =>
-              toastr.success('Reservation successfully deleted')
+              toastr.success I18n.t('post.reservation_deleted')
               Posts.refresh_calendar()
             error: () =>
-              toastr.error('Error occured while deleting')
+              toastr.error I18n.t('error')
 
   check_user_address: () =>
     $target = $('#user_address_check')

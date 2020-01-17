@@ -29,7 +29,7 @@ class Messages
           $('.js-receiver-name').html(data[0].conversation.recipient)
           $('#message_body').focus()
         error: () =>
-          toastr.error('Message could not be seen')
+          toastr.error I18n.t('message.can_not_see')
 
     $(document).on 'click', '.js-send-message', (e) =>
       e.preventDefault()
@@ -40,7 +40,7 @@ class Messages
       post_id = $('.messaging').data('post-id')
 
       if !message
-        toastr.warning 'Enter message'
+        toastr.warning(I18n.t('message.enter_message'))
         return
       # first get conversation data between current user and owner of post
       $.ajax
@@ -56,12 +56,12 @@ class Messages
             data: params
             dataType: 'JSON'
             success: (data) =>
-              toastr.success('Message sent succesfully')
+              toastr.success I18n.t('message.sent')
               $('.modal').modal('hide')
             error: () =>
-              toastr.error('Message could not be sent')
+              toastr.error I18n.t('message.error')
         error: () =>
-          toastr.error('Error')
+          toastr.error I18n.t('message.error')
 
   render_messages: (data) =>
     csrf_token = $('meta[name="csrf-token"]').attr('content')

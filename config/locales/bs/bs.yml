@@ -25,3 +25,5 @@ bs:
   from: 'Od'
   to: 'Do'
   na: 'N/A'
+  error: 'Desila se pogreška'
+  delete: 'Izbrisati'

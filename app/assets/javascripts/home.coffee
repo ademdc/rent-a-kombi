@@ -1,6 +1,10 @@
 class Home
   constructor: () ->
     @innitialize_plugins()
+    @innitialize_locale()
+
+  innitialize_locale: () ->
+    I18n.locale = $('body').data('locale')
 
   innitialize_plugins: () ->
     @enable_tooltip()

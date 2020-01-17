@@ -23,3 +23,7 @@ en:
     no_posts: 'You have not uploaded any posts.'
     no_reservations: 'You have not made any reservation yet. What are your waiting for..'
     no_incoming: 'No one made a reservation for your posts yet.'
+    confirm?: 'Confirm?'
+    cancel: 'Cancel'
+    delete_reservation: 'Delete reservation?'
+    confirm_reservation: "Confirm reservation to %{user_name} for post %{post_title}?"

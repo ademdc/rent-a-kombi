@@ -56,5 +56,7 @@ en:
   from: 'From'
   to: 'To'
   na: 'N/A'
+  error: 'Error occured'
+  delete: 'Delete'
 
 

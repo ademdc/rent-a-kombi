@@ -17,3 +17,8 @@ en:
     confirmed: 'Confirmed'
     see_reservations: 'See reservations'
     edit: 'Edit'
+    added_favorites: 'Post added to favorites.'
+    already_favorite: 'This post is already in favorites.'
+    new_reservation_crated: 'New reservation successfully created'
+    reservation_deleted: 'Reservation successfully deleted'
+    delete_reservation?: 'Do you really want to delete time reservation?'

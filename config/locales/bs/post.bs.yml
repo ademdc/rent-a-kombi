@@ -17,3 +17,8 @@ bs:
     confirmed: 'Potvrdjenu'
     see_reservations: 'Pogledaj rezervacije'
     edit: 'Uredi'
+    added_favorites: 'Objava je dodana u favorite.'
+    already_favorite: 'Objava se nalazi u favoritima.'
+    new_reservation_crated: 'Napravljena je nova rezervacija'
+    reservation_deleted: 'Rezervacija je uspjesno izbrisana'
+    delete_reservation?: 'Da li stvarno želite izbrisati rezervaciju?'

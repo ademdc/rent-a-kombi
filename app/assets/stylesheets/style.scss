@@ -78,7 +78,8 @@ body {
 }
 
 .btn-search:hover {
-  background: #263343 !important;
+  background: $app-blue-light !important;
+  color: $app-blue-dark;
 }
 
 .btn-app {

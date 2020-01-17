@@ -299,6 +299,13 @@ ul.post-list {
 }
 
 @media only screen and (max-width: 1000px) {
+
+  .post-show-container {
+    .post-title {
+      text-align: center;
+    }
+  }
+
   .availability-from {
     display: block !important;
     .form-group {

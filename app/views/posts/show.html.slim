@@ -4,9 +4,10 @@
 
   .row
     .col-md-12
-      h3.d-inline.mr-3 = @post.title
-      = inline_svg "car_logos/#{@post.model}.svg", height: '60px', width: '60px'
-      hr
+      .post-title
+        h3.d-inline.mr-3 = @post.title
+        = inline_svg "car_logos/#{@post.model}.svg", height: '60px', width: '60px'
+        hr
   .row
     .col-md-7
       .subtitle-container
@@ -65,8 +66,6 @@
           /     = @post.hp
 
       .subtitle-container
-        h5.subtitle = t('post.images')
-        hr
         .row
           .col-md-12
             .flexslider.show-flex
@@ -92,12 +91,11 @@
           = favorite_post_icon(current_user)
       .messaging data-conversation-url=conversations_path(sender_id: current_user.try(:id), recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user&.id data-post-id=@post.id
       .subtitle-container
-        h5.subtitle = t('post.location')
-        #googleMap
-      .subtitle-container
         h5.subtitle = t('post.description')
         hr
           = @post.description
+      .subtitle-container
+        #googleMap
 
   - if current_ability.can?(:edit, @post)
     = link_to t('post.edit'), edit_post_path(@post), class: 'btn btn-app btn-edit'

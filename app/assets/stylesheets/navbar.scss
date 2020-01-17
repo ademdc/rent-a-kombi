@@ -1,9 +1,14 @@
 .navbar {
   background-color: $app-blue-dark !important;
   padding: 0px 100px;
+  box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
 
   .nav-link {
     text-align: center;
+  }
+
+  .navbar-toggler {
+    border: none;
   }
 
   .publish-post {

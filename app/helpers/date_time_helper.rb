@@ -3,12 +3,12 @@ module DateTimeHelper
   def message_datetime(created_at)
     days_ago = get_day_ago(created_at)
 
-    hours_format = created_at.strftime("at %H:%M")
-    date_format = created_at.strftime("at %l:%D %M")
+    hours_format = created_at.strftime("#{I18n.t('at')} %H:%M")
+    date_format = created_at.strftime("%d/%m/%Y #{I18n.t('at')} %H:%M")
 
     if days_ago > 1
       if (1..15).to_a.include?(days_ago)
-        return "#{days_ago} days ago, #{hours_format}"
+        return "#{I18n.t('days_ago', number: days_ago)}, #{hours_format}"
       end
       return date_format
     end

@@ -58,5 +58,7 @@ en:
   na: 'N/A'
   error: 'Error occured'
   delete: 'Delete'
+  at: 'at'
+  days_ago: "%{number} days ago"
 
 

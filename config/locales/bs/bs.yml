@@ -27,3 +27,5 @@ bs:
   na: 'N/A'
   error: 'Desila se pogreška'
   delete: 'Izbrisati'
+  at: 'u'
+  days_ago: "prije %{number} dana"

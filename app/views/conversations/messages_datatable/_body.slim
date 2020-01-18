@@ -2,6 +2,7 @@
   - unread_message = conversation[:unread] ? 'unread-message' : ''
   tr.js-message-action data-recipient-id=conversation[:recipient].id data-message-url=conversation_messages_path(conversation[:conversation]) class=unread_message
     td = conversation[:recipient].full_name
-    td = conversation[:messages].last.body
+    td
+      p.message-body = conversation[:messages].last.body
     td = conversation[:messages].last.message_time
-    td.text-center = message_icon
+    / td.text-center = message_icon

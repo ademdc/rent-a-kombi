@@ -4,3 +4,15 @@ en:
     sent: 'Message sent succesfully.'
     error: 'Message could not be sent'
     can_not_see: 'Message could not be seen'
+    all: 'All'
+    unread: 'Unread'
+    sent: 'Sent'
+    datatable:
+      to: 'To'
+      message: 'Message'
+      time: 'Time'
+      actions: 'Action'
+      sInfo_label: 'Showing %{start} to %{end} of %{total} entries'
+      emptyTable_label: 'no data available in table'
+      empty_label: 'Empty'
+      sLengthMenu_label: "Display %{menu} records"

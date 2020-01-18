@@ -4,3 +4,15 @@ bs:
     sent: 'Poruka je uspješno poslata.'
     error: 'Poruka nije mogla biti poslata.'
     can_not_see: 'Poruka se nije mogla učitati.'
+    all: 'Sve'
+    unread: 'Nepročitane'
+    sent: 'Poslato'
+    datatable:
+      to: 'Primalac'
+      message: 'Poruka'
+      time: 'Vrijeme'
+      actions: 'Akcije'
+      sInfo_label: 'Prikazano %{start} do %{end} od %{total} unosa'
+      emptyTable_label: 'Nema podataka za prikazati'
+      empty_label: 'Prazno'
+      sLengthMenu_label: "Prikazano %{menu} unosa"

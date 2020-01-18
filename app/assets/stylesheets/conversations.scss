@@ -11,6 +11,10 @@
 .conversation-container {
   padding: 20px;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  .dataTables_filter input {
+    margin: 0;
+    height: 30px;
+  }
 }
 
 .sidenav {
@@ -31,4 +35,47 @@
   thead {
     background-color: $app-blue-light;
   }
+
+  td {
+    .message-body {
+      width: 300px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .sidenav {
+    font-size: 16px;
+    padding-top: 0px;
+    text-align: center;
+  }
+  .conversation-part {
+    padding: 0;
+  }
+  .conversation-container {
+    padding: 10px;
+
+    input {
+      height: 27px;
+    }
+
+    .datatable {
+      font-size: 14px;
+      tbody {
+        tr {
+          td {
+            border-bottom: 1px solid black;
+            .message-body {
+              width: 100px;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
 }

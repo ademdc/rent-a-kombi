@@ -26,7 +26,7 @@ class Messages
         dataType: 'JSON'
         success: (data) =>
           @render_messages(data)
-          $('.js-receiver-name').html(data[0].conversation.recipient)
+          $('.js-receiver-name').html("<a href='/users/#{data[0].conversation.recipient_id}'>#{data[0].conversation.recipient}</a>")
           $('#message_body').focus()
         error: () =>
           toastr.error I18n.t('message.can_not_see')
@@ -76,9 +76,20 @@ class Messages
   innitialize_datatable: () ->
     $('.datatable').DataTable(
       responsive: true,
+      columnDefs: [
+        { responsivePriority: 1, targets: 0 },
+        { responsivePriority: 2, targets: -1 }
+      ]
       paging: false,
       searching: true,
       label: true,
+      language: {
+        sSearch: I18n.t('buttons.search'),
+        sLengthMenu: I18n.t('message.datatable.sLengthMenu_label', { menu: '_MENU_' })
+        sInfo: I18n.t('message.datatable.sInfo_label', { start: '_START_', end: '_END_', total: '_TOTAL_' })
+        sInfoEmpty: I18n.t('message.datatable.empty_label')
+        emptyTable: I18n.t('message.datatable.emptyTable_label')
+      }
       order: [],
       select: true)
 

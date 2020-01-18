@@ -13,6 +13,7 @@ json.array! @messages do |msg|
     json.id msg.conversation_id
     json.url conversation_messages_path(msg.conversation_id)
     json.recipient msg.conversation.recipient_of(current_user).full_name
+    json.recipient_id msg.conversation.recipient_of(current_user).id
   end
   json.created_at msg.message_time
   json.current_user_id current_user.id

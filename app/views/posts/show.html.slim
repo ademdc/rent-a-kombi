@@ -19,51 +19,12 @@
                 i.fa.fa-money-bill
                 = @post.price_w_currency
             .main-info
-              p
-                i.fa.fa-horse-head
-                = @post.hp
-              p
-                i.fa.fa-gas-pump
-                = t("search.fuels.#{@post.fuel}")
-              p
-                i.fa.fa-calendar
-                = @post.production_year
-              p
-                i.fa.fa-road
-                = @post.milage
-              p
-                i.fa.fa-chair
-                = @post.number_of_seats
-              p
-                i.fa.fa-cogs
-                = t("search.transmissions.#{@post.transmission}")
-
-
-          /   p
-          /     strong Category:
-          /     = @post.category.name
-          /   p
-          /     strong Model:
-          /     = @post.model
-          /   p
-          /     strong Milage:
-          /     = @post.milage
-          /   p
-          /     strong Number of seats:
-          /     = @post.number_of_seats
-          / .col-md-6
-          /   p
-          /     strong Fuel:
-          /     = @post.fuel
-          /   p
-          /     strong Year:
-          /     = @post.production_year
-          /   p
-          /     strong Transmission:
-          /     = @post.transmission
-          /   p
-          /     strong HorsePower:
-          /     = @post.hp
+              = main_information(@post.hp, 'horse-head', t('post.horse_power'))
+              = main_information(t("search.fuels.#{@post.fuel}"), 'gas-pump', t('post.fuel'))
+              = main_information(@post.production_year, 'calendar', t('post.production_year'))
+              = main_information(@post.milage, 'road', t('post.milage'))
+              = main_information(@post.number_of_seats, 'chair', t('post.number_of_seats'))
+              = main_information(t("search.transmissions.#{@post.transmission}"), 'cogs', t('post.transmission'))
 
       .subtitle-container
         .row

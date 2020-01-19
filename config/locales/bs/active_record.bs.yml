@@ -14,6 +14,7 @@ bs:
         hp: 'Konjske Snage'
         price: 'Cijena'
         number_of_seats: 'Broj sjedišta'
+        currency_id: 'Valuta'
       user:
         first_name: 'Ime'
         last_name: 'Prezime'

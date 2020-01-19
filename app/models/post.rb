@@ -3,12 +3,14 @@ class Post < ApplicationRecord
   include WithAddresses
   include PostsHelper
 
-  belongs_to :category
-  belongs_to :user
-  has_many :reservations, dependent: :destroy
-  has_many :slots, dependent: :destroy
-  has_many :messages
-  has_many :favorite_posts, dependent: :destroy
+  belongs_to  :category
+  belongs_to  :user
+  has_many    :reservations, dependent: :destroy
+  has_many    :slots, dependent: :destroy
+  has_many    :messages
+  has_many    :favorite_posts, dependent: :destroy
+  has_one     :currency
+  has_many    :currency_prices
 
   has_many_attached :images
 

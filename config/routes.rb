@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
     resource :reservations, only: [:create, :destroy, :update] do
       post :for_post, on: :collection
+      post :confirm, on: :collection
     end
 
     resources :profile, only: [:index]

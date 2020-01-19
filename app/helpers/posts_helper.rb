@@ -74,6 +74,13 @@ module PostsHelper
     Post.where(id: reservation.post.id).with_reservations_in_range(reservation.start..reservation.end)
   end
 
+  def main_information(value, klass, title)
+    content_tag :p, '' do
+      concat content_tag :i, '', class: "fa fa-#{klass}", "data-toggle": "tooltip", 'title':title
+      concat value
+    end
+  end
+
   def currency_for_locale(locale)
     case locale
     when 'bs'
@@ -84,6 +91,4 @@ module PostsHelper
       'KM'
     end
   end
-
-
 end

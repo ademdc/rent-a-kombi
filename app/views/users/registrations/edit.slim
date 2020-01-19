@@ -12,6 +12,9 @@
         .field
           = f.input :last_name, autofocus: true, autocomplete: "last_name"
 
+        .field
+          = f.input :locale, as: :select, collection: Users::Locales::ALL
+
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
           div = "Currently waiting confirmation for: #{resource.unconfirmed_email}"
 

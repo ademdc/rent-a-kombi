@@ -26,6 +26,7 @@ bs:
         is_admin: 'Je admin'
         gender: 'Spol'
         dob: 'Datum rodjenja'
+        locale: 'Jezik'
       address:
         address: 'Naziv ulice'
         city: 'Grad'

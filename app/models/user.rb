@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   include WithAddresses
+  extend FriendlyId
+
+  friendly_id :full_name, use: :slugged
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable

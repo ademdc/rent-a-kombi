@@ -27,7 +27,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.images.attach(params[:post][:images]) if params[:post][:images]
+    attach_images(@post)
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -42,8 +42,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        @post.images.attach(params[:post][:images]) if params[:post][:images]
-
+        attach_images(@post)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -106,6 +105,10 @@ class PostsController < ApplicationController
 
     def get_image
       @image = ActiveStorage::Attachment.find(params[:id])
+    end
+
+    def attach_images(post)
+      post.images.attach(params[:post][:images]) if params[:post][:images]
     end
 
     def search_post_params

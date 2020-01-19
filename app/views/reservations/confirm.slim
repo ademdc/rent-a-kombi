@@ -1,0 +1,24 @@
+.confirm-reservation-container
+  p.confirm-text = "Confirm the reservation for #{@reservation.post.title}"
+
+  h5 Start
+  p = @reservation.start
+
+  hr
+
+  h5 End
+  p = @reservation.end
+
+  hr
+
+  h5 Renter
+  p = @reservation.post.user.full_name
+
+  hr
+
+  h5 Price
+  p.price = @reservation.price_w_currency
+
+  hr
+
+  = link_to "CONFIRM RESERVATION", @reservation, class: 'btn btn-success', method: :post

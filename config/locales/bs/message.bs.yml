@@ -6,7 +6,7 @@ bs:
     can_not_see: 'Poruka se nije mogla učitati.'
     all: 'Sve'
     unread: 'Nepročitane'
-    sent: 'Poslato'
+    sent: 'Poruka uspješno poslata.'
     datatable:
       to: 'Primalac'
       message: 'Poruka'

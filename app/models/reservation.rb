@@ -1,4 +1,6 @@
 class Reservation < ApplicationRecord
+  include PostsHelper
+
   belongs_to :post
   belongs_to :user, optional: true
   validates  :post_id, :start, :end, presence: true
@@ -19,6 +21,18 @@ class Reservation < ApplicationRecord
 
   def between_range?(from, to)
     (from..to).include?(self.start) || (from..to).include?(self.end)
+  end
+
+  def days_number
+    (self.start.to_date..self.end.to_date).count
+  end
+
+  def price
+    days_number * self.post.price
+  end
+
+  def price_w_currency
+    "#{price} #{currency_for_locale(self.post.user.locale)}"
   end
 
   protected

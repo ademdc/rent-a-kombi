@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:destroy, :update]
+  after_action :set_price, only: [:create]
 
   def create
     @reservation = Reservation.new(reservation_params)
-
     respond_to do |format|
       if @reservation.save
         UserMailer.with(reservation: @reservation).reservation_confirmation.deliver_now
@@ -41,6 +41,10 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def confirm
+    @reservation = Reservation.new(reservation_params)
+  end
+
   private
 
     def reservation_params
@@ -51,6 +55,10 @@ class ReservationsController < ApplicationController
         :end,
         :confirmed,
         :title)
+    end
+
+    def set_price
+
     end
 
     def set_reservation

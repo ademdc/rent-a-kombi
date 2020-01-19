@@ -50,7 +50,6 @@
           span.mr-2.renter-full-name = link_to @post.user.full_name, user_path(@post.user)
           = send_message_icon(current_user) unless current_user&.my_post?(@post)
           = favorite_post_icon(current_user)
-      .messaging data-conversation-url=conversations_path(sender_id: current_user.try(:id), recipient_id: @post.user.id, format: 'json') data-current-user-id=current_user&.id data-post-id=@post.id
       .subtitle-container
         h5.subtitle = t('post.description')
         hr

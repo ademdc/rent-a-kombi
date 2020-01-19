@@ -1,4 +1,4 @@
-= simple_form_for @reservation do |f|
+= simple_form_for @reservation, url: confirm_reservations_path, method: :post do |f|
   .row
     .col-md-12
       .availability-from
@@ -16,7 +16,8 @@
       .available style='display:none;'
         = inline_svg 'check.svg', style: 'height: 40px; display: inline;'
         span = t('post.car_available')
-        span = button_tag car_icon(t('post.reserve')), class: 'btn js-rent btn-success btn', style: 'width: 100%'
+        span = t('post.car_available')
+        span = button_tag car_icon(t('post.reserve').upcase), class: 'btn js-rent btn-success btn btn-reserve', style: 'width: 100%'
   .row
     .col-md-12
       .not-available style='display:none;'

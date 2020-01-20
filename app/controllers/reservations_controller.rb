@@ -59,7 +59,6 @@ class ReservationsController < ApplicationController
     end
 
     def set_price
-      byebug
       @reservation.set_price!
     end
 

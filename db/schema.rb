@@ -89,11 +89,6 @@ ActiveRecord::Schema.define(version: 2020_01_19_215838) do
     t.index ["post_id"], name: "index_currency_prices_on_post_id"
   end
 
-  create_table "data_migrations", id: false, force: :cascade do |t|
-    t.string "version", null: false
-    t.index ["version"], name: "unique_data_migrations", unique: true
-  end
-
   create_table "favorite_posts", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "post_id"

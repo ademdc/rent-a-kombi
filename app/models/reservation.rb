@@ -29,8 +29,16 @@ class Reservation < ApplicationRecord
     (self.start.to_date..self.end.to_date).count
   end
 
+  def pending_price
+    days_number * self.post.price
+  end
+
+  def pending_price_w_currency
+    "#{days_number * self.post.price} #{self.currency.symbol}"
+  end
+
   def price_w_currency
-    "#{price} #{self.currency.name}"
+    "#{price} #{self.currency.symbol}"
   end
 
   def set_price!

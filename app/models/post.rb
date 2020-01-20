@@ -31,7 +31,7 @@ class Post < ApplicationRecord
   scope :by_availability_from, -> (availability) {  }
   scope :by_availability_to, -> (availability) { }
 
-  validates :title, :price, :model, :production_year, presence: true
+  validates :title, :price, :model, :production_year, :currency_id, presence: true
 
   enum model: Vehicles::Models::MODELS
   enum fuel: Posts::Filters::FUEL
@@ -60,6 +60,8 @@ class Post < ApplicationRecord
   end
 
   def available?(date_from, date_to)
+    return unless date_from && date_to
+
     from, to = date_from.to_datetime, date_to.to_datetime
     self.reservations.each { |reservation| return false if (reservation.between_range?(from, to) && reservation.confirmed) }
     true

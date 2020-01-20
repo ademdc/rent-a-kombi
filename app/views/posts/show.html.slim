@@ -40,7 +40,7 @@
         h5.subtitle = t('post.availability')
         hr
         = upocoming_reservation(current_user, @post)
-        = render 'availability_form', post: @post
+        = render 'availability_form', post: @post, available: @available
 
 
       .subtitle-container

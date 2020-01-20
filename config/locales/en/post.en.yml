@@ -11,7 +11,7 @@ en:
     reserve: 'Reserve'
     check: 'Check'
     car_available: 'Car available in that range'
-    car_unavailable: 'Car unavailable in that range'
+    car_unavailable: 'Car unavailable in that range. Try changing the dates.'
     have_reservation: "You have a %{reservation_confirmed} reservation for this post"
     pending: 'Pending'
     confirmed: 'Confirmed'

@@ -18,7 +18,7 @@
 
   h5 Price
   p.price
-    b = @reservation.price_w_currency
+    b = @reservation.pending_price_w_currency
     = " for total of "
     b = "#{@reservation.days_number} days"
 

@@ -204,10 +204,17 @@ ul.post-list {
     width: 100%;
   }
 
-  .availability-from {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  #new_reservation {
+    .availability-from {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .available, .not-available {
+      padding: 10px 0px;
+    }
   }
 
   #googleMap {

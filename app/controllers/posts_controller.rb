@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def show
     @reservation = Reservation.new
+    @available = @post.available?(cookies[:availability_from], cookies[:availability_to])
   end
 
   def new
@@ -64,7 +65,7 @@ class PostsController < ApplicationController
     cookies[:availability_from]  = params[:search][:availability_from]
     cookies[:availability_to]  = params[:search][:availability_to]
 
-    @posts = Post.filter(search_post_params).paginate(page: params[:page], per_page: 10)
+    @posts = Post.filter(search_post_params).paginate(page: params[:page], per_page: 10).order('created_at desc')
   end
 
   def available

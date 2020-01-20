@@ -1,7 +1,7 @@
 module Users
   module Locales
-    BOSNIAN=[I18n.t('languages.bs'), :bs]
-    ENGLISH=[I18n.t('languages.en'), :en]
+    BOSNIAN=:bs
+    ENGLISH=:en
 
     ALL=[BOSNIAN, ENGLISH]
   end

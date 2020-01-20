@@ -5,12 +5,12 @@ class Post < ApplicationRecord
 
   belongs_to  :category
   belongs_to  :user
+  belongs_to  :currency
   has_many    :reservations, dependent: :destroy
   has_many    :slots, dependent: :destroy
   has_many    :messages
   has_many    :favorite_posts, dependent: :destroy
-  has_one     :currency
-  has_many    :currency_prices
+  # has_many    :currency_prices, through: :currencies_posts
 
   has_many_attached :images
 
@@ -72,7 +72,7 @@ class Post < ApplicationRecord
   end
 
   def price_w_currency
-    "#{self.price} #{currency_for_locale(self.user.locale)}"
+    "#{self.price} #{self&.currency.symbol}"
   end
 
 end

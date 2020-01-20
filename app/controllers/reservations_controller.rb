@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_reservation, only: [:destroy, :update]
   after_action :set_price, only: [:create]
 
@@ -58,7 +59,8 @@ class ReservationsController < ApplicationController
     end
 
     def set_price
-
+      byebug
+      @reservation.set_price!
     end
 
     def set_reservation

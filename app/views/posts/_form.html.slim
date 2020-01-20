@@ -63,7 +63,7 @@
             .col-md-6
               = f.input :hp
             .col-md-6
-              = f.input :currency_id, as: :select, collection: Currency.all.map(&:code), selected: Currency::BAM
+              = f.input :currency_id, as: :select, collection: currencies_collection, selected: Currency::BAM
             .col-md-6
               = f.input :price
             .col-md-12

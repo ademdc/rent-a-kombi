@@ -8,6 +8,8 @@ class Reservation < ApplicationRecord
   validate :not_my_post?
   validate :does_not_overlap?
 
+  delegate :currency, to: :post
+
   scope :current_reservation_for, ->(user, post) { where('user_id = ? AND post_id = ? AND start > ?', user.id, post.id, Time.now ) }
   scope :for_post, -> (post_id) { where('post_id = ? AND confirmed = ?', post_id, true) }
 
@@ -27,12 +29,13 @@ class Reservation < ApplicationRecord
     (self.start.to_date..self.end.to_date).count
   end
 
-  def price
-    days_number * self.post.price
+  def price_w_currency
+    "#{price} #{self.currency.name}"
   end
 
-  def price_w_currency
-    "#{price} #{currency_for_locale(self.post.user.locale)}"
+  def set_price!
+    self.price = days_number * self.post.price
+    self.save
   end
 
   protected

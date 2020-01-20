@@ -28,4 +28,8 @@ module UserHelper
     end
   end
 
+  def locale_collection
+    Users::Locales::ALL.map { |lang| [I18n.t("languages.#{lang}"), lang] }
+  end
+
 end

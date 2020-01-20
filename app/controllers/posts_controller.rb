@@ -145,6 +145,7 @@ class PostsController < ApplicationController
         :number_of_seats,
         :hp,
         :kw,
+        :currency_id,
         address_attributes: addresses_attributes)
     end
 end

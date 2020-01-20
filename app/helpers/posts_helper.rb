@@ -25,6 +25,10 @@ module PostsHelper
     Posts::Filters::TRANSMISSION.map { |transmission|  t("search.transmissions.#{transmission}") }
   end
 
+  def currencies_collection
+    Currency.all.map { |currency| [currency.code, currency.id] }
+  end
+
   def sanitized_search_param(params, param)
     params[:search][param]
   end

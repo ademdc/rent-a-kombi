@@ -43,6 +43,8 @@
                     .col-md-6
                       h5
                         = link_to reservation.post.title, post_path(reservation.post), target: '_blank'
+                      span Price
+                      p = reservation.price_w_currency
                     .col-md-6
                       p
                         strong = t('profile.from')

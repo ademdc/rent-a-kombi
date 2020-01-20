@@ -2,12 +2,12 @@
   p.confirm-text = "Confirm the reservation for #{@reservation.post.title}"
 
   h5 Start
-  p = @reservation.start
+  p = @reservation.formatted_date(:start)
 
   hr
 
   h5 End
-  p = @reservation.end
+  p = @reservation.formatted_date(:end)
 
   hr
 
@@ -17,8 +17,23 @@
   hr
 
   h5 Price
-  p.price = @reservation.price_w_currency
+  p.price
+    b = @reservation.price_w_currency
+    = " for total of "
+    b = "#{@reservation.days_number} days"
 
   hr
 
-  = link_to "CONFIRM RESERVATION", @reservation, class: 'btn btn-success', method: :post
+= simple_form_for @reservation do |f|
+  .row
+    .col-md-12
+      = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+      = f.input :title, as: :hidden, input_html: { value: current_user.full_name }
+      = f.input :post_id, as: :hidden, input_html: { value: @reservation.post.id }
+      = f.input :start, as: :hidden, input_html: { class: "daterange js-post-availability-from picker-from", value: @reservation.start }
+      = f.input :end, as: :hidden, input_html: { class: "daterange js-post-availability-to picker-to", value: @reservation.end }
+  .row
+    .col-md-12
+      span = button_tag car_icon("CONFIRM RESERVATION"), class: 'btn js-rent btn-success btn btn-reserve', style: 'width: 100%'
+
+

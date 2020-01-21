@@ -12,6 +12,7 @@ class Show
 
       unless from && to
         toastr.warning I18n.t('post.enter_date')
+        $('.picker-from').focus()
         return
 
       url = $(e.currentTarget).parents('.subtitle-container').data('post-available-url')

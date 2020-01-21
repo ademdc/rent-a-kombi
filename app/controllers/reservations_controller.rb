@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:create, :confirm]
   before_action :set_reservation, only: [:destroy, :update]
   after_action :set_price, only: [:create]
 

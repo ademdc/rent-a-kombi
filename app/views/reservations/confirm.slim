@@ -1,39 +1,40 @@
 .confirm-reservation-container
-  p.confirm-text = "Confirm the reservation for #{@reservation.post.title}"
+  p.confirm-text = t('reservation.confirm', title: @reservation.post.title)
 
-  h5 Start
+  h5 = t('reservation.start')
   p = @reservation.formatted_date(:start)
 
   hr
 
-  h5 End
+  h5 = t('reservation.end')
   p = @reservation.formatted_date(:end)
 
   hr
 
-  h5 Renter
+  h5 = t('reservation.renter')
   p = @reservation.post.user.full_name
 
   hr
 
-  h5 Price
+  h5 = t('reservation.price')
   p.price
     b = @reservation.pending_price_w_currency
-    = " for total of "
-    b = "#{@reservation.days_number} days"
+    = t('reservation.for_total')
+    b = (t'reservation.number_days', number: @reservation.days_number)
 
   hr
 
 = simple_form_for @reservation do |f|
   .row
     .col-md-12
-      = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-      = f.input :title, as: :hidden, input_html: { value: current_user.full_name }
+      = f.input :user_id, as: :hidden, input_html: { value: current_user&.id }
+      = f.input :title, as: :hidden, input_html: { value: current_user&.full_name }
       = f.input :post_id, as: :hidden, input_html: { value: @reservation.post.id }
       = f.input :start, as: :hidden, input_html: { class: "daterange js-post-availability-from picker-from", value: @reservation.start }
       = f.input :end, as: :hidden, input_html: { class: "daterange js-post-availability-to picker-to", value: @reservation.end }
+    - unless current_user
   .row
     .col-md-12
-      span = button_tag car_icon("CONFIRM RESERVATION"), class: 'btn js-rent btn-success btn btn-reserve', style: 'width: 100%'
+      span = button_tag car_icon(t('reservation.button.confirm').upcase), class: 'btn js-rent btn-success btn btn-reserve', style: 'width: 100%'
 
 

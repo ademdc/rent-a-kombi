@@ -16,3 +16,4 @@ en:
       emptyTable_label: 'no data available in table'
       empty_label: 'Empty'
       sLengthMenu_label: "Display %{menu} records"
+    sent_message: 'Message sent.'

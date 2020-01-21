@@ -65,7 +65,7 @@ class PostsController < ApplicationController
     cookies[:availability_from]  = params[:search][:availability_from]
     cookies[:availability_to]  = params[:search][:availability_to]
 
-    @posts = Post.filter(search_post_params).paginate(page: params[:page], per_page: 10).order('created_at desc')
+    @posts = Post.filter(search_post_params).not_from_user(current_user).paginate(page: params[:page], per_page: 10).order('created_at desc')
   end
 
   def available

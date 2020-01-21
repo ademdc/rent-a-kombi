@@ -7,6 +7,7 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
       - if current_user
         = navbar_item(profile_index_path, :profile, nil)
         = navbar_item(conversations_path, :messages, current_user)
+        = navbar_item(conversations_path, :money, current_user, 'text-warning')
     ul.navbar-nav.ml-auto.text-white
       - if current_user
         .mt-2.mr-3.text-center = current_user.full_name

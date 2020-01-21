@@ -31,6 +31,8 @@ class Post < ApplicationRecord
   scope :by_availability_from, -> (availability) {  }
   scope :by_availability_to, -> (availability) { }
 
+  scope :not_from_user, -> (user) { where.not(user_id: user.id) if user }
+
   validates :title, :price, :model, :production_year, :currency_id, presence: true
 
   enum model: Vehicles::Models::MODELS

@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  after_update :changed_locale?
+
   def admin?
     is_admin
   end
@@ -54,4 +56,11 @@ class User < ApplicationRecord
   def favorite_posts
     Post.favorite_posts_for(self)
   end
+
+    private
+
+    def changed_locale?
+      # self.locale ? I18n.locale = extract_locale :
+      # redirect_to root_path
+    end
 end

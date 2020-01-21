@@ -9,6 +9,11 @@ class Show
 
       from = $('.picker-from').val()
       to = $('.picker-to').val()
+
+      unless from && to
+        toastr.warning I18n.t('post.enter_date')
+        return
+
       url = $(e.currentTarget).parents('.subtitle-container').data('post-available-url')
 
       $.ajax

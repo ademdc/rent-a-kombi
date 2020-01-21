@@ -85,6 +85,10 @@ module PostsHelper
     end
   end
 
+  def availability_cookies?
+    cookies[:availability_from].present? && cookies[:availability_to].present?
+  end
+
   def currency_for_locale(locale)
     case locale
     when 'bs'

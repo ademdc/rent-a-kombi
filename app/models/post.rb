@@ -60,7 +60,7 @@ class Post < ApplicationRecord
   end
 
   def available?(date_from, date_to)
-    return unless date_from && date_to
+    return unless date_from.present? && date_to.present?
 
     from, to = date_from.to_datetime, date_to.to_datetime
     self.reservations.each { |reservation| return false if (reservation.between_range?(from, to) && reservation.confirmed) }

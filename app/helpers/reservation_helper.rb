@@ -16,6 +16,7 @@ module ReservationHelper
 
   def post_not_available_container(available)
     is_hidden = available ? 'hidden' : ''
+    is_hidden += availability_cookies? ? '' : 'hidden'
 
     content_tag :div, '', class: "js-not-available not-available #{is_hidden}" do
       concat inline_svg 'letter-x.svg', style: 'height: 30px; display: inline;'

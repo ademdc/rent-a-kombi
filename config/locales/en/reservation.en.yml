@@ -8,5 +8,6 @@ en:
     price: 'Price'
     for_total: ' for total of '
     number_days: '%{number} days'
+    almost_done: 'Almost done. Enter your contact information'
     button:
       confirm: 'Confirm reservation'

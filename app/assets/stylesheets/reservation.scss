@@ -5,4 +5,31 @@
   p.confirm-text {
     font-size: 30px;
   }
+
+  .reservation-image {
+    width: 100%;
+  }
+
+  .guest-user-container {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: $app-blue-light;
+
+    .field {
+      margin-bottom: 10px;
+
+      label {
+        display: block;
+      }
+
+      input {
+        height: 40px;
+        border-radius: 8px;
+        border: 1px solid $app-blue-light;
+        width: 100%;
+        padding-left: 10px;
+      }
+    }
+  }
 }

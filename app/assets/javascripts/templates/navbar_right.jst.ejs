@@ -1,0 +1,9 @@
+<div class="mt-2 mr-3 text-center"><%= data.first_name%> <%= data.last_name%></div>
+<li class="dropdown text-center">
+    <div class="dropdown-toggle" data-toggle="dropdown"><span class=""><img class="img-circle profile-photo" src="<%= user_icon %>"></span></div>
+    <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="/users/edit"><%= I18n.t('account') %></a><a class="dropdown-item" rel="nofollow" data-method="delete" href="/bs/users/sign_out"><%= I18n.t('logout') %></a></div>
+</li>
+<end></end>
+<li>
+    <a class="nav-link publish-post" href="/posts/new"> <i class="fa fa-plus-circle plus-icon add-post" data-toggle="tooltip" title="" aria-hidden="true" data-original-title=<%= I18n.t('post.publish_new')%>></i><span class="sr-only"><%= I18n.t('post.publish_new')%></span></a>
+</li>

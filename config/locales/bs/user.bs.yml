@@ -1,5 +1,6 @@
 bs:
   user:
+    created: 'Korisnik je uspjesno registriran.'
     sign_up: 'Registruj se'
     sign_in: 'Prijavi se'
     forgot_password: 'Zaboravljena lozinka?'
@@ -25,4 +26,11 @@ bs:
       your_message: 'Vaša poruka'
       send: 'Pošalji'
       send_message_to: 'Pošalji poruku korisniku %{user}'
+    first_name: 'Ime'
+    last_name: 'Prezime'
+    email: 'Email'
+    password: 'Lozinka'
+    password_confimation: 'Potvrda lozinke'
+    phone_number: 'Broj telefona'
+
 

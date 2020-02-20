@@ -45,7 +45,7 @@ en:
     log_out: 'Logout'
     account: 'Account'
     profile: 'Profile'
-    money: 'Money'
+    ducats: 'Ducats'
   buttons:
     search: 'Search'
   datetime:

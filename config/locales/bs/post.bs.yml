@@ -29,3 +29,4 @@ bs:
     number_of_seats: 'Broj sjedišta'
     transmission: 'Transmisija'
     enter_date: 'Unesi datum'
+    publish_new: 'Objavi vozilo'

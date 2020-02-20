@@ -14,7 +14,7 @@ bs:
     account: 'Račun'
     logout: 'Odjaviti se'
     profile: 'Profil'
-    money: 'Novčići'
+    ducats: 'Dukati'
   buttons:
     search: 'Traži'
   datetime:

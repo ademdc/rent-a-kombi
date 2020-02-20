@@ -25,6 +25,10 @@ module PostsHelper
     Posts::Filters::TRANSMISSION.map { |transmission|  t("search.transmissions.#{transmission}") }
   end
 
+  def currencies_collection
+    Currency.all.map { |currency| [currency.code, currency.id] }
+  end
+
   def sanitized_search_param(params, param)
     params[:search][param]
   end
@@ -79,6 +83,10 @@ module PostsHelper
       concat content_tag :i, '', class: "fa fa-#{klass}", "data-toggle": "tooltip", 'title':title
       concat value
     end
+  end
+
+  def availability_cookies?
+    cookies[:availability_from].present? && cookies[:availability_to].present?
   end
 
   def currency_for_locale(locale)

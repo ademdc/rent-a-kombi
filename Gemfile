@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'slim-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'momentjs-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'devise'
@@ -67,6 +68,8 @@ gem 'countries'
 gem 'paranoia'
 
 gem 'nilify_blanks'
+gem 'friendly_id'
+gem 'rails-data-migrations'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

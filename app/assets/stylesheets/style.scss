@@ -1,4 +1,5 @@
 @import 'custom/colors';
+@import 'custom/spinner';
 @import 'home';
 @import 'posts';
 @import 'messages';
@@ -8,7 +9,6 @@
 @import 'navbar';
 @import 'direct_upload';
 @import 'reservation';
-
 
 body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

@@ -7,7 +7,8 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
       - if current_user
         = navbar_item(profile_index_path, :profile, nil)
         = navbar_item(conversations_path, :messages, current_user)
-    ul.navbar-nav.ml-auto.text-white
+        = navbar_item(root_path, :ducats, current_user, 'text-warning')
+    ul.navbar-nav.ml-auto.text-white.js-navbar-right
       - if current_user
         .mt-2.mr-3.text-center = current_user.full_name
         = dropdown_navbar_item((render 'shared/users/navbar_photo'), '') do
@@ -16,10 +17,10 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
         end
       - else
         li.nav-item
-          = link_to t('navigation.sign_in'), new_user_session_path, method: :get, class: 'nav-link'
+          = link_to t('navigation.sign_in'), new_user_session_path, method: :get, class: 'nav-link js-sign-in'
         = dropdown_navbar_item('', 'language-icon fa fa-language') do
           = locale_selector
         end
       li
-        = link_to plus_icon('','plus-icon add-post'), new_post_path, class: 'nav-link publish-post'
+        = link_to plus_icon('','plus-icon add-post', t('post.publish_new')), new_post_path, class: 'nav-link publish-post'
 

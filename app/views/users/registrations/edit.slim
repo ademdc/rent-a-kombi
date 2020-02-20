@@ -12,6 +12,9 @@
         .field
           = f.input :last_name, autofocus: true, autocomplete: "last_name"
 
+        .field
+          = f.input :locale, as: :select, collection: locale_collection
+
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
           div = "Currently waiting confirmation for: #{resource.unconfirmed_email}"
 
@@ -39,7 +42,7 @@
           = render 'shared/modals/confirm_password_modal'
 
         .actions
-          = link_to "Update user", '#', class: 'btn btn-sm btn-primary btn-rounded js-update-user mt-2', data: { target: "#confirm-changes-modal", toggle: "modal" }
+          = link_to "Update user", '#', class: 'btn btn-sm btn-app btn-rounded js-update-user mt-2', data: { target: "#confirm-changes-modal", toggle: "modal" }
 
       .col-md-6
         .input-group

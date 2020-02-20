@@ -1,24 +1,83 @@
+- disable_submit = false
+.js-user-photo-asset *{data: { user_icon: asset_path('user-photo.png')}}
+
 .confirm-reservation-container
-  p.confirm-text = "Confirm the reservation for #{@reservation.post.title}"
+  p.confirm-text = t('reservation.confirm', title: @reservation.post.title)
+  .row.mb-4
+    .col-md-6
+      h5 = t('reservation.start')
+      p = @reservation.formatted_date(:start)
 
-  h5 Start
-  p = @reservation.start
+      hr
 
-  hr
+      h5 = t('reservation.end')
+      p = @reservation.formatted_date(:end)
 
-  h5 End
-  p = @reservation.end
+      hr
 
-  hr
+      h5 = t('reservation.renter')
+      p = @reservation.post.user.full_name
 
-  h5 Renter
-  p = @reservation.post.user.full_name
+      hr
 
-  hr
+      h5 = t('reservation.price')
+      p.price
+        b = @reservation.pending_price_w_currency
+        = t('reservation.for_total')
+        b = t('reservation.number_days', number: @reservation.days_number)
+    .col-md-6
+       = image_tag @reservation.post.cover_image, class: 'reservation-image'
+    hr
 
-  h5 Price
-  p.price = @reservation.price_w_currency
+  = simple_form_for @reservation do |f|
+    .row
+      .col-md-12
+        = f.input :user_id, as: :hidden, input_html: { value: current_user&.id, class: 'js-reservation-user-id' }
+        = f.input :title, as: :hidden, input_html: { value: current_user&.full_name }
+        = f.input :post_id, as: :hidden, input_html: { value: @reservation.post.id }
+        = f.input :start, as: :hidden, input_html: { class: "daterange js-post-availability-from picker-from", value: @reservation.start }
+        = f.input :end, as: :hidden, input_html: { class: "daterange js-post-availability-to picker-to", value: @reservation.end }
+    - unless current_user
+      - disable_submit = true
+      .guest-user-container data-url=user_registration_path
+        h3 = t('reservation.almost_done')
+        = hidden_field_tag :guest_user, true
+        = hidden_field_tag :locale, I18n.locale, class: 'js-guest-user-locale'
+        .loader.hidden
+        .guest-user-container-fields
+          .row
+            .col-md-6
+              .field
+                = label_tag :first_name
+                = text_field_tag :first_name, "", class: 'js-guest-user-first-name js-guest-user-data'
+            .col-md-6
+              .field
+                = label_tag :last_name
+                = text_field_tag :last_name, "", class: 'js-guest-user-last-name js-guest-user-data'
+          .row
+            .col-md-6
+              .field
+                = label_tag :email
+                = text_field_tag :email, "", class: 'js-guest-user-email js-guest-user-data'
+            .col-md-6
+              .field
+                = label_tag :phone_number
+                = text_field_tag :phone_number, "", class: 'js-guest-user-phone-number js-guest-user-data'
+          .row class='js-reservations-password-container hidden'
+            .col-md-6
+              .field
+                = label_tag :password
+                = password_field_tag :password, "", class: 'js-guest-user-password'
+            .col-md-6
+              .field
+                = label_tag :password_confirmation
+                = password_field_tag :password_confirmation, "", class: 'js-guest-user-password-confirmation'
+            .col-md-12
+              .col-md-12
+              = button_tag 'Submit data', class: 'btn btn-success js-register-guest-user', style: 'width: 100%'
 
-  hr
+    .row
+      .col-md-12
+        span = button_tag car_icon(t('reservation.button.confirm').upcase), class: 'btn js-rent btn-success btn btn-reserve mb-5', style: 'width: 100%', disabled: disable_submit
 
-  = link_to "CONFIRM RESERVATION", @reservation, class: 'btn btn-success', method: :post
+

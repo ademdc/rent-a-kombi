@@ -3,12 +3,14 @@ class Post < ApplicationRecord
   include WithAddresses
   include PostsHelper
 
-  belongs_to :category
-  belongs_to :user
-  has_many :reservations, dependent: :destroy
-  has_many :slots, dependent: :destroy
-  has_many :messages
-  has_many :favorite_posts, dependent: :destroy
+  belongs_to  :category
+  belongs_to  :user
+  belongs_to  :currency
+  has_many    :reservations, dependent: :destroy
+  has_many    :slots, dependent: :destroy
+  has_many    :messages
+  has_many    :favorite_posts, dependent: :destroy
+  # has_many    :currency_prices, through: :currencies_posts
 
   has_many_attached :images
 
@@ -29,7 +31,9 @@ class Post < ApplicationRecord
   scope :by_availability_from, -> (availability) {  }
   scope :by_availability_to, -> (availability) { }
 
-  validates :title, :price, :model, :production_year, presence: true
+  scope :not_from_user, -> (user) { where.not(user_id: user.id) if user }
+
+  validates :title, :price, :model, :production_year, :currency_id, presence: true
 
   enum model: Vehicles::Models::MODELS
   enum fuel: Posts::Filters::FUEL
@@ -58,6 +62,8 @@ class Post < ApplicationRecord
   end
 
   def available?(date_from, date_to)
+    return unless date_from.present? && date_to.present?
+
     from, to = date_from.to_datetime, date_to.to_datetime
     self.reservations.each { |reservation| return false if (reservation.between_range?(from, to) && reservation.confirmed) }
     true
@@ -70,7 +76,7 @@ class Post < ApplicationRecord
   end
 
   def price_w_currency
-    "#{self.price} #{currency_for_locale(self.user.locale)}"
+    "#{self.price} #{self&.currency.symbol}"
   end
 
 end

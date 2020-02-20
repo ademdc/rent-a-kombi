@@ -12,6 +12,7 @@
 //
 //= require sweetalert
 //= require jquery
+//= require jquery-ui
 //= require toastr
 //= require popper
 //= require bootstrap-sprockets

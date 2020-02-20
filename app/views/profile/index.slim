@@ -43,6 +43,8 @@
                     .col-md-6
                       h5
                         = link_to reservation.post.title, post_path(reservation.post), target: '_blank'
+                      span Price
+                      p = reservation.price_w_currency
                     .col-md-6
                       p
                         strong = t('profile.from')
@@ -68,6 +70,10 @@
                       - unless reservation.confirmed
                         = button_tag check_icon, class: 'js-confirm-reservation btn btn-success btn-sm mr-2'
                       = button_tag trash_icon, class: 'js-delete-reservation btn btn-danger btn-sm'
+
+                      p style='margin-top: 20px;'
+                        strong Price
+                        = reservation.price_w_currency
                     .col-md-6
                       p
                         strong = t('profile.user')

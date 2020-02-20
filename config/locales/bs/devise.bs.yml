@@ -9,6 +9,7 @@ bs:
       inactive: "Račun vam još nije aktivan."
       invalid: "Netačan %{authentication_keys} ili lozinka."
       locked: "Vaš račun je zaključan."
+      email_maybe_taken: 'Desila se greska. Možda je email već zauzet. Pokusajte se prijaviti.'
       last_attempt: "Imate još jedan pokušaj prije nego blokiramo vaš račun."
       not_found_in_database: "Netačan %{authentication_keys} ili lozinka."
       timeout: "Vaša sesija je istekla. Ponovo se prijavite da biste nastavili."

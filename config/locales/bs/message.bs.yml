@@ -6,7 +6,7 @@ bs:
     can_not_see: 'Poruka se nije mogla učitati.'
     all: 'Sve'
     unread: 'Nepročitane'
-    sent: 'Poruka uspješno poslata.'
+    sent: 'Poslata.'
     datatable:
       to: 'Primalac'
       message: 'Poruka'
@@ -16,3 +16,4 @@ bs:
       emptyTable_label: 'Nema podataka za prikazati'
       empty_label: 'Prazno'
       sLengthMenu_label: "Prikazano %{menu} unosa"
+    sent_message: 'Poruka poslata.'

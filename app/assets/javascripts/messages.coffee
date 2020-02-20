@@ -26,7 +26,7 @@ class Messages
         dataType: 'JSON'
         success: (data) =>
           @render_messages(data)
-          $('.js-receiver-name').html("<a href='/users/#{data[0].conversation.recipient_id}'>#{data[0].conversation.recipient}</a>")
+          $('.js-receiver-name').html("<a href='/users/#{data[0].conversation.recipient_slug}'>#{data[0].conversation.recipient}</a>")
           $('#message_body').focus()
         error: () =>
           toastr.error I18n.t('message.can_not_see')

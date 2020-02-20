@@ -10,8 +10,8 @@ bs:
     images: 'Slike'
     reserve: 'Rezerviši'
     check: 'Provjeri'
-    car_available: 'Auto je dostupno u tom periodu'
-    car_unavailable: 'Auto nije dostupno u tom periodu'
+    car_available: 'Vozilo je dostupno u tom periodu. '
+    car_unavailable: 'Vozilo nije dostupno u tom periodu. Pokušajte promjeniti datum.'
     have_reservation: "Imate %{reservation_confirmed} rezervaciju za ovu objavu"
     pending: 'Poslatu'
     confirmed: 'Potvrdjenu'
@@ -28,3 +28,5 @@ bs:
     milage: 'Kilometraža'
     number_of_seats: 'Broj sjedišta'
     transmission: 'Transmisija'
+    enter_date: 'Unesi datum'
+    publish_new: 'Objavi vozilo'

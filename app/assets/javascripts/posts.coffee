@@ -59,30 +59,6 @@ class Posts
       e.preventDefault()
       Posts.refresh_calendar()
 
-    $(document).on 'click', '.js-check-availability', (e) ->
-      e.preventDefault()
-
-      from = $('.picker-from').val()
-      to = $('.picker-to').val()
-      url = $(e.currentTarget).parents('.subtitle-container').data('post-available-url')
-
-      $.ajax
-        url: url
-        data: { available_from: from, available_to: to }
-        method: 'POST'
-        dataType: 'JSON'
-        success: (data) =>
-          console.log data
-          if data == true
-            $('.available').css('display', 'inline')
-            $('.not-available').css('display', 'none')
-          else
-            $('.not-available').css('display', 'inline')
-            $('.available').css('display', 'none')
-
-        error: () =>
-          console.log I18n.t('error')
-
     $(document).on 'change', '#user_address_check', (e) =>
       $target = $(e.currentTarget)
       $container = $('.address-fields-container')

@@ -1,0 +1,13 @@
+en:
+  reservation:
+    confirm: "Confirm the reservation for %{title}"
+    start: 'Start'
+    end: 'End'
+    renter: 'Renter'
+    reserve_now: 'Reserve now'
+    price: 'Price'
+    for_total: ' for total of '
+    number_days: '%{number} days'
+    almost_done: 'Almost done. Enter your contact information'
+    button:
+      confirm: 'Confirm reservation'

@@ -1,0 +1,14 @@
+bs:
+  reservation:
+    confirm: "Potvrdite rezervaciju za %{title}"
+    start: 'Početak'
+    end: 'Kraj'
+    renter: 'Iznajmljivač'
+    reserve_now: 'Rezerviši sada'
+    price: 'Cijena'
+    for_total: ' za ukupno '
+    number_days: '%{number} dana'
+    almost_done: 'Još malo pa gotovo. Unesite svoje podatke'
+    button:
+      confirm: 'Potvrdite rezervaciju'
+

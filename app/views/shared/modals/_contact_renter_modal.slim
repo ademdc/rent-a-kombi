@@ -1,7 +1,7 @@
 - post      ||= nil
 - subject   ||= nil
 
-#modalContactForm.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" data-url=conversations_path(sender_id: sender.id, recipient_id: recipient.id)
+#modalContactForm.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" data-url=conversations_path(sender_id: sender&.id, recipient_id: recipient&.id)
   .modal-dialog role="document"
     .modal-content
       .modal-header.text-center
@@ -23,4 +23,4 @@
           = t('user.messaging.send')
           i.fas.fa.fa-paper-plane-o.ml-1
 
-.messaging data-conversation-url=conversations_path(sender_id: sender.id, recipient_id: recipient.id, format: 'json') data-current-user-id=sender.id data-post-id=post&.id
+.messaging data-conversation-url=conversations_path(sender_id: sender&.id, recipient_id: recipient&.id, format: 'json') data-current-user-id=sender&.id data-post-id=post&.id

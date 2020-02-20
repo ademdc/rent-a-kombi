@@ -47,6 +47,6 @@ Rails.application.routes.draw do
 
     resources :profile, only: [:index]
 
-    resources :users, only: [:show]
+    resources :users, only: [:show], param: :slug
   end
 end

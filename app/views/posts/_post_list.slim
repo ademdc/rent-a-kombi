@@ -13,7 +13,7 @@ ul.list-group.shadow.post-list
           h5.mt-0.font-weight-bold.mb-2.post-title = link_to post.title, post
           p.font-italic.text-muted.mb-0.small = post.description
           .d-flex.align-items-center.justify-content-between.mt-1
-            h6.font-weight-bold.my-2.post-price = "#{post.price} KM"
+            h6.font-weight-bold.my-2.post-price = post.price_w_currency
           .d-flex.align-items-center.justify-content-between.mt-1 style='flex-wrap: wrap;'
             .info-tag
               span.left = t('search.fuel')

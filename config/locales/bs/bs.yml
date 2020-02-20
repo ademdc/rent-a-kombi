@@ -14,6 +14,7 @@ bs:
     account: 'Račun'
     logout: 'Odjaviti se'
     profile: 'Profil'
+    ducats: 'Dukati'
   buttons:
     search: 'Traži'
   datetime:

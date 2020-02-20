@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   include WithAddresses
+  extend FriendlyId
+
+  friendly_id :full_name, use: :slugged
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
@@ -11,6 +14,8 @@ class User < ApplicationRecord
   has_many :reservations
 
   has_one_attached :avatar
+
+  after_update :changed_locale?
 
   def admin?
     is_admin
@@ -51,4 +56,11 @@ class User < ApplicationRecord
   def favorite_posts
     Post.favorite_posts_for(self)
   end
+
+    private
+
+    def changed_locale?
+      # self.locale ? I18n.locale = extract_locale :
+      # redirect_to root_path
+    end
 end

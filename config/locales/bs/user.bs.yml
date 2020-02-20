@@ -1,5 +1,6 @@
 bs:
   user:
+    created: 'Korisnik je uspjesno registriran.'
     sign_up: 'Registruj se'
     sign_in: 'Prijavi se'
     forgot_password: 'Zaboravljena lozinka?'
@@ -17,9 +18,19 @@ bs:
     no_posts: 'Korisnik još nije objavio niti jedno vozilo...'
     phone_number: 'Broj telefona'
     total_uploaded: 'Ukupan broj objava'
+    confirm_password_to_update: 'Potvrdite lozinku da biste ažurirali račun'
+    enter_password_to_confirm: 'Unesite lozinku da biste potvrdili izmjene'
+    update_user: 'Izvršite izmjene računa'
     messaging:
       subject: 'Naslov'
       your_message: 'Vaša poruka'
       send: 'Pošalji'
       send_message_to: 'Pošalji poruku korisniku %{user}'
+    first_name: 'Ime'
+    last_name: 'Prezime'
+    email: 'Email'
+    password: 'Lozinka'
+    password_confimation: 'Potvrda lozinke'
+    phone_number: 'Broj telefona'
+
 

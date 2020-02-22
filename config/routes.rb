@@ -39,7 +39,6 @@ Rails.application.routes.draw do
       resources :messages
     end
 
-
     resource :reservations, only: [:create, :destroy, :update] do
       post :for_post, on: :collection
       post :confirm, on: :collection
@@ -48,5 +47,7 @@ Rails.application.routes.draw do
     resources :profile, only: [:index]
 
     resources :users, only: [:show], param: :slug
+
+    resources :ducats, only: [:index]
   end
 end

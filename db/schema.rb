@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_215838) do
+ActiveRecord::Schema.define(version: 2020_02_20_203008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,9 @@ ActiveRecord::Schema.define(version: 2020_01_19_215838) do
     t.datetime "updated_at", null: false
     t.index ["currency_id"], name: "index_currency_prices_on_currency_id"
     t.index ["post_id"], name: "index_currency_prices_on_post_id"
+  end
+
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
   create_table "favorite_posts", force: :cascade do |t|
@@ -186,7 +189,9 @@ ActiveRecord::Schema.define(version: 2020_01_19_215838) do
     t.string "unconfirmed_email"
     t.string "locale"
     t.string "slug"
+    t.integer "ducats", default: 30
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["ducats"], name: "index_users_on_ducats"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true

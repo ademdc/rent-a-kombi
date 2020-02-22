@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   after_update :changed_locale?
 
+  INNITIAL_DUCATS_COUNT = 30
+
   def admin?
     is_admin
   end

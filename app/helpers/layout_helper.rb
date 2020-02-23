@@ -71,6 +71,10 @@ module LayoutHelper
     end.join("").html_safe
   end
 
+  def navbar_logo
+    image_tag 'logo2.png', class: 'navbar-brand', style: 'height: 45px; padding: 0;'
+  end
+
     private
 
       def check_if_message_item(name, current_user)

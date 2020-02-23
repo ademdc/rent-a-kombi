@@ -1,18 +1,59 @@
-h2 = I18n.t('user.sign_up')
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = f.hidden_field :locale, value: params[:locale]
-  = render "devise/shared/error_messages", resource: resource
+.authentication
   .field
-    = f.input :first_name, autofocus: true
-  .field
-    = f.input :last_name
-  .field
-    = f.input :email, autocomplete: 'email'
-  .field
-    = f.input :password, autocomplete: 'off'
-  .field
-    = f.input :password_confirmation, autocomplete: 'off'
-  .actions
-    = f.submit t('user.sign_up'), class: 'btn btn-primary btn-sm btn-app'
+    .row
+      .col-sm-9.col-md-7.col-lg-5.mx-auto
+        .card.card-signin.my-5
+          .card-body
+            h5.card-title.text-center Sign up
+            = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+              .form-label-group
+                = f.input :first_name, autofocus: true
+              .form-label-group
+                = f.input :last_name
+              .form-label-group
+                = f.input :email, autocomplete: 'email'
+              .form-label-group
+                = f.input :password, autocomplete: 'off'
+              .form-label-group
+                = f.input :password_confirmation, autocomplete: 'off'
+              .custom-control.custom-checkbox.mb-3
+                input#customCheck1.custom-control-input type="checkbox" /
+                label.custom-control-label for="customCheck1"  Remember password
+              button.btn.btn-lg.btn-primary.btn-block.text-uppercase type="submit"  Sign up
+              br/
+              .checks
+                / a href="devise/sessions/new.slim"  Already have an account? Login here.
+                br/
+                = link_to "Already have an account? Login here.", new_user_session_path
+                a href="forgottenpass.html"  Forgotten Password?
+                br/
+                a href="confirmationemail.html"  Didn't receive confirmation e-mail?
+                br/
+              hr.my-4/
+              button.btn.btn-lg.btn-google.btn-block.text-uppercase type="submit" 
+                i.fab.fa-google.mr-2
+                | Sign up with Google
+              button.btn.btn-lg.btn-facebook.btn-block.text-uppercase type="submit" 
+                i.fab.fa-facebook-f.mr-2
+                | Sign up with Facebook
 
-= render "users/shared/links"
+
+/ h2 = I18n.t('user.sign_up')
+/ = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+/   = f.hidden_field :locale, value: params[:locale]
+/   = render "devise/shared/error_messages", resource: resource
+
+/   .field
+/     = f.input :first_name, autofocus: true
+/   .field
+/     = f.input :last_name
+/   .field
+/     = f.input :email, autocomplete: 'email'
+/   .field
+/     = f.input :password, autocomplete: 'off'
+/   .field
+/     = f.input :password_confirmation, autocomplete: 'off'
+/   .actions
+/     = f.submit t('user.sign_up'), class: 'btn btn-primary btn-sm btn-app'
+
+/ = render "users/shared/links"

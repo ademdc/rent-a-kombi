@@ -1,7 +1,8 @@
 nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
-  a.navbar-brand href=root_path  VOZILICA
-  button.navbar-toggler data-target="#collapsibleNavbar" data-toggle="collapse" type="button"
-    span.navbar-toggler-icon
+  .flex-center-all
+    = link_to navbar_logo, root_path
+    button.navbar-toggler data-target="#collapsibleNavbar" data-toggle="collapse" type="button"
+      span.navbar-toggler-icon
   #collapsibleNavbar.collapse.navbar-collapse
     ul.navbar-nav
       - if current_user

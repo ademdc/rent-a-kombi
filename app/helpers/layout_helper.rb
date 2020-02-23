@@ -31,6 +31,10 @@ module LayoutHelper
     end
   end
 
+  def next_button(url, klazz)
+    link_to I18n.t('next'), url, class: "btn btn-app #{klazz}", data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
+  end
+
   def delete_button(url)
     content_tag :div, class: 'btn-group' do
       link_to url, data: { confirm: 'Are you sure you want to delete resource?' }, method: :delete  do
@@ -69,6 +73,10 @@ module LayoutHelper
         concat link_to t("languages.#{locale}"), locale_path(locale: locale), class: 'dropdown-item d-inline'
       end
     end.join("").html_safe
+  end
+
+  def navbar_logo
+    image_tag 'logo3.png', class: 'navbar-brand', style: 'height: 45px; padding: 0;'
   end
 
     private

@@ -30,3 +30,10 @@ en:
     transmission: 'Transmission'
     enter_date: 'Enter date'
     publish_new: 'Publish new post'
+    use_same_address: 'Use same address as user'
+    edit_pane:
+      main_info: 'Main info'
+      other_info: 'Other info'
+      photos: 'Photos'
+      price: 'Price'
+      schedule: 'Schedule'

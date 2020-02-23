@@ -61,5 +61,6 @@ en:
   delete: 'Delete'
   at: 'at'
   days_ago: "%{number} days ago"
+  next: 'Next'
 
 

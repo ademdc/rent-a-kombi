@@ -26,27 +26,32 @@
           h3 New rental
         ul#edit-post-tab-list.nav.nav-tabs.nav-justified.md-tabs.indigo role="tablist"
           li.nav-item
-            = link_to info_icon('fa-lg'), '#main-info-tab', class: 'nav-link active', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'home-just' }, role: 'tab'
+            = link_to info_circle_icon(t('post.edit_pane.main_info'), 'fa-lg'), '#main-info-tab', class: 'nav-link active', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'home-just' }, role: 'tab'
 
           li.nav-item
-            = link_to info_icon('fa-sm'), '#other-info-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'profile-just' }, role: 'tab'
+            = link_to info_circle_icon(t('post.edit_pane.other_info'), 'fa-sm'), '#other-info-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'profile-just' }, role: 'tab'
           li.nav-item
-            = link_to camera_icon, '#photos-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
+            = link_to camera_icon(t('post.edit_pane.photos')), '#photos-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
           li.nav-item
-            = link_to calendar_icon, '#schedule-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
+            = link_to money_icon(t('post.edit_pane.price')), '#price-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
+          li.nav-item
+            = link_to calendar_icon(t('post.edit_pane.schedule')), '#schedule-tab', class: 'nav-link', data: { toggle: "tab" }, aria: { selected: 'false', controls: 'contact-just' }, role: 'tab'
 
         #edit-post-tab.tab-content.card.pt-5
           #main-info-tab.tab-pane.fade.show.active aria-labelledby="home-tab-just" role="tabpanel"
-           .row
-            .col-md-12
-              = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-              = f.input :title
-            .col-md-6
-              = f.input :category_id, as: :select, collection: Category.all
-            .col-md-6
-              = f.input :model, as: :select, collection: Vehicles::Models::MODELS.map(&:to_s), label_method: :titleize
-            .col-md-12
-              = f.input :description
+            .row
+              .col-md-12
+                = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+                = f.input :title
+              .col-md-6
+                = f.input :category_id, as: :select, collection: Category.all
+              .col-md-6
+                = f.input :model, as: :select, collection: Vehicles::Models::MODELS.map(&:to_s), label_method: :titleize
+              .col-md-12
+                = f.input :description
+            .row
+              .col-md-12
+                = next_button('#other-info-tab', 'float-right')
           #other-info-tab.tab-pane.fade aria-labelledby="profile-tab-just" role="tabpanel"
            .row
 
@@ -62,20 +67,22 @@
               = f.input :number_of_seats
             .col-md-6
               = f.input :hp
-            .col-md-6
-              = f.input :currency_id, as: :select, collection: currencies_collection, selected: Currency::BAM
-            .col-md-6
-              = f.input :price
             .col-md-12
               h3 Address
               .inline
-                = label_tag '', 'Use same address as user', class: 'mr-3'
+                = label_tag '', t('post.use_same_address'), class: 'mr-3'
                 = check_box_tag "user_address_check", "user_address_check", !address_exist_for?(@post)
               = render 'shared/addresses/fields', builder: f
           #photos-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
             .row
               .col-md-12
                 = render 'shared/uploaders/image_uploader', form_builder: f, attribute: :images, default_image: 'fa-photo'
+          #price-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
+            .row
+              .col-md-6
+                = f.input :price
+              .col-md-6
+                  = f.input :currency_id, as: :select, collection: currencies_collection, selected: Currency::BAM
           #schedule-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
             .row
               .js-calendar-container.calendar-container

@@ -30,3 +30,10 @@ bs:
     transmission: 'Transmisija'
     enter_date: 'Unesi datum'
     publish_new: 'Objavi vozilo'
+    use_same_address: 'Koristi istu adresu kao i korisnik'
+    edit:
+      main_info: 'Glavni podaci'
+      other_info: 'Ostali podaci'
+      photos: 'Slike'
+      price: 'Cijena'
+      schedule: 'Raspored'

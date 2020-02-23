@@ -30,3 +30,4 @@ bs:
   delete: 'Izbrisati'
   at: 'u'
   days_ago: "prije %{number} dana"
+  next: 'Sljedeće'

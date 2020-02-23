@@ -1,22 +1,61 @@
-h2 = t('user.sign_in')
+.authentication
+  .row
+    .col-sm-9.col-md-7.col-lg-5.mx-auto
+      .card.card-signin.my-5
+        .card-body
+          h5.card-title.text-center Sign In
+          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-label-group
+              = f.input :email
+            .form-label-group
+              = f.input :password
+            .custom-control.custom-checkbox.mb-3
+              input#customCheck1.custom-control-input type="checkbox" /
+              label.custom-control-label for="customCheck1"  Remember password
+            button.btn.btn-lg.btn-primary.btn-block.text-uppercase type="submit"  Sign in
+            br/
+            .checks
+              / a href="users/registrations/new.slim"  Don't have an account? Sign up here.
+              br/
+              = link_to "Don't have an account? Sign up here.", new_user_registration_path  
+              a href="forgottenpass.html"  Forgotten Password?
+              br/
+              a href="confirmationemail.html"  Didn't receive confirmation e-mail?
+              br/
+            hr.my-4/
+            button.btn.btn-lg.btn-google.btn-block.text-uppercase type="submit" 
+              i.fab.fa-google.mr-2
+              | Sign in with Google
+            button.btn.btn-lg.btn-facebook.btn-block.text-uppercase type="submit" 
+              i.fab.fa-facebook-f.mr-2
+              | Sign in with Facebook
 
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br/
-    = f.password_field :password, autocomplete: "current-password"
-
-    - if devise_mapping.rememberable?
-      .field
-        = f.check_box :remember_me
-        = f.label t('user.remember_me')
-
-  .actions
-    = f.submit t('user.sign_in'), class: 'btn btn-app'
 
 
-= render "devise/shared/links"
+
+
+
+
+
+/ h2 = t('user.sign_in')
+
+/ = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+/   .field
+/     = f.label :email
+/     br/
+/     = f.email_field :email, autofocus: true, autocomplete: "email"
+/   .field
+/     = f.label :password
+/     br/
+/     = f.password_field :password, autocomplete: "current-password"
+
+/     - if devise_mapping.rememberable?
+/       .field
+/         = f.check_box :remember_me
+/         = f.label t('user.remember_me')
+
+/   .actions
+/     = f.submit t('user.sign_in'), class: 'btn btn-app'
+
+
+/ = render "devise/shared/links"

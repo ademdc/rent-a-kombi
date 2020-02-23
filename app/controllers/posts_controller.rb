@@ -147,6 +147,7 @@ class PostsController < ApplicationController
         :hp,
         :kw,
         :currency_id,
-        address_attributes: addresses_attributes)
+        address_attributes: addresses_attributes,
+        post_prices_attributes: [:id, :min_days, :max_days, :price, :_destroy])
     end
 end

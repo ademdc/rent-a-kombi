@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   has_many    :slots, dependent: :destroy
   has_many    :messages
   has_many    :favorite_posts, dependent: :destroy
+  has_many    :post_prices
   # has_many    :currency_prices, through: :currencies_posts
 
   has_many_attached :images
@@ -34,6 +35,8 @@ class Post < ApplicationRecord
   scope :not_from_user, -> (user) { where.not(user_id: user.id) if user }
 
   validates :title, :price, :model, :production_year, :currency_id, presence: true
+
+  accepts_nested_attributes_for :post_prices, allow_destroy: true, reject_if: :all_blank
 
   enum model: Vehicles::Models::MODELS
   enum fuel: Posts::Filters::FUEL

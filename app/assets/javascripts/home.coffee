@@ -10,6 +10,7 @@ class Home
     @enable_tooltip()
     @innitialize_daterangepicker()
     @innitialize_flexslider()
+    @innitialize_append_nested_attributes()
 
   innitialize_daterangepicker: () ->
     $('.daterange').flatpickr
@@ -32,6 +33,16 @@ class Home
 
   enable_tooltip: () ->
     $('[data-toggle="tooltip"]').tooltip()
+
+  innitialize_append_nested_attributes: () =>
+    $('[data-form-append]').click (e) ->
+      obj = $($(this).attr('data-form-append'))
+      obj.find('input, select, textarea').each ->
+        $(this).attr 'name', ->
+          $(this).attr('name').replace 'new_record', (new Date).getTime()
+        return
+      obj.insertAfter this
+      false
 
 
 $(document).ready ->

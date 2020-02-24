@@ -4,6 +4,10 @@ class UsersController < ApplicationController
   def show
   end
 
+  def add_ducats
+    current_user.add_ducats(params[:ducat_number])
+  end
+
   private
     def set_data
       @user   = User.find_by_slug(params[:slug])

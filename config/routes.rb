@@ -46,7 +46,9 @@ Rails.application.routes.draw do
 
     resources :profile, only: [:index]
 
-    resources :users, only: [:show], param: :slug
+    resources :users, only: [:show], param: :slug do
+      post :add_ducats, on: :collection
+    end
 
     resources :ducats, only: [:index]
   end

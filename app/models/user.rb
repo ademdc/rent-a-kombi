@@ -59,6 +59,12 @@ class User < ApplicationRecord
     Post.favorite_posts_for(self)
   end
 
+  def add_ducats(ducat_number)
+    current_ducat_number = self.ducats
+    new_ducat_count = current_ducat_number + ducat_number.to_i
+    self.update(ducats: new_ducat_count)
+  end
+
     private
 
     def changed_locale?

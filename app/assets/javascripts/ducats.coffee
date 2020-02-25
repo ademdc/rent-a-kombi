@@ -1,5 +1,6 @@
 class Ducats
   constructor: () ->
+    @$payment_details = $('#payment-details')
     @innitialize_listeners()
     @innitialize_paypal()
 
@@ -11,7 +12,7 @@ class Ducats
 
 
   innitialize_paypal: () ->
-    @setupPaypal()
+    @setupPaypal() if @$payment_details.exists()
 
   setupPaypal: () ->
     paypal.Buttons(

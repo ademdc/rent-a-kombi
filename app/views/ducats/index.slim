@@ -143,7 +143,7 @@
   /             a.btn.btn-block.btn-primary.text-uppercase href="#"  Button
 
 div
-  = form_tag({:controller => "users", :action => "add_ducats" }, {:id => 'order-details'}) do
+  = form_tag({:controller => "users", :action => "add_ducats" }, {:id => 'payment-details'}) do
     input id='order-type' type="hidden" value="stripe" name='orders[payment_gateway]'
     .form_row
       h4 Charges/Payment

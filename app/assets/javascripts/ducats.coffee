@@ -15,13 +15,21 @@ class Ducats
 
   setupPaypal: () ->
     paypal.Buttons(
-      # env: "sandbox",
-      # createOrder: () ->
-      # onApprove: (data) ->
+      env: 'sandbox'
+      createOrder: () ->
+        $.post('/ducats/create_payment').then (data) ->
+          data.token
+      onApprove: (data) =>
+        $.post('/ducats/execute_payment',
+          paymentID: data.paymentID
+          payerID: data.payerID).then ->
+            console.log 'inside on approve'
+            # @submitOrderPaypal(data.paymentID)
+        return
     ).render('#submit-paypal')
 
     isPayment: () ->
-    return $('[data-charges-and-payments-section] input[name="orders[product_id]"]:checked').length
+      return $('[data-charges-and-payments-section] input[name="orders[product_id]"]:checked').length
 
     submitOrderPaypal: (chargeID) ->
       $form = $("#order-details")

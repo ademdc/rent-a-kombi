@@ -1,6 +1,7 @@
-p = I18n.t('mailer.registration.welcome', email: @email)
+div style='text-align: center;'
+  p = I18n.t('mailer.registration.welcome', email: @email)
 
-p = I18n.t('mailer.registration.message')
+  p = I18n.t('mailer.registration.message')
 
-p
-  = link_to I18n.t('mailer.registration.confirm'), confirmation_url(@resource, confirmation_token: @token)
+  p
+    = link_to I18n.t('mailer.registration.confirm'), confirmation_url(@resource, confirmation_token: @token)

@@ -1,7 +1,7 @@
 en:
   mailer:
     reservation:
-      successfull: 'You got a new reservation from %{user_name} for %{post_title}'
+      successfull: 'You got a new reservation from <b>%{user_name}</b> for <b>%{post_title}</b>'
       see_reservation: 'See reservation'
       upcoming_reservation: 'Upcoming reservation for %{title}'
     registration:

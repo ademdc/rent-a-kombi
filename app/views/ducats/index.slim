@@ -147,15 +147,10 @@ div
     input id='order-type' type="hidden" value="stripe" name='orders[payment_gateway]'
     .form_row
       h4 Charges/Payment
-      = radio_button_tag 'ducat_number', '10', true
-      span 100 ducats for 10 BAM
-      br
-      = radio_button_tag 'ducat_number', '20', false
-      span 250 ducats for 20 BAM
-      br
-      = radio_button_tag 'ducat_number', '50', false
-      span 700 ducats for 50 BAM
-      br
+      - PurchaseItem.all.each do |item|
+        = radio_button_tag 'purchase[purchase_item_id]', item.id, item.is_first?
+        span = item.to_label
+        br
     hr
     h1 Payment Method
 

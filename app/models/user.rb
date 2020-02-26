@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :messages, through: :conversations
   has_many :favorite_posts, dependent: :destroy
   has_many :reservations
+  has_many :purchases
 
   has_one_attached :avatar
 

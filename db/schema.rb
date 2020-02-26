@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_203008) do
+ActiveRecord::Schema.define(version: 2020_02_25_161856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,29 @@ ActiveRecord::Schema.define(version: 2020_02_20_203008) do
     t.string "kw"
     t.integer "currency_id"
     t.index ["category_id"], name: "index_posts_on_category_id"
+  end
+
+  create_table "purchase_items", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "BAM", null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "purchase_item_id"
+    t.integer "status", default: 0
+    t.string "title"
+    t.string "token"
+    t.string "charge_id"
+    t.string "error_message"
+    t.string "payment_gateway"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["purchase_item_id"], name: "index_purchases_on_purchase_item_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "reservations", force: :cascade do |t|

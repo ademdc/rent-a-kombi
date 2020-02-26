@@ -10,7 +10,7 @@ class DucatsController < ApplicationController
     if result
       render json: { token: result }, status: :ok
     else
-      render json: {error: FAILURE_MESSAGE}, status: :unprocessable_entity
+      render json: { error: FAILURE_MESSAGE }, status: :unprocessable_entity
     end
   end
 
@@ -18,7 +18,7 @@ class DucatsController < ApplicationController
     if Payments::Paypal.execute_payment(payment_id: params[:paymentID], payer_id: params[:payerID], current_user_id: current_user.id)
       render json: {}, status: :ok
     else
-      render json: {error: FAILURE_MESSAGE}, status: :unprocessable_entity
+      render json: { error: FAILURE_MESSAGE }, status: :unprocessable_entity
     end
   end
 end

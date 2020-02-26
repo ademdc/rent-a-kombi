@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_161856) do
+ActiveRecord::Schema.define(version: 2020_02_26_225032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,9 +159,9 @@ ActiveRecord::Schema.define(version: 2020_02_25_161856) do
     t.string "token"
     t.string "charge_id"
     t.string "error_message"
-    t.string "payment_gateway"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payment_gateway"
     t.index ["purchase_item_id"], name: "index_purchases_on_purchase_item_id"
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end

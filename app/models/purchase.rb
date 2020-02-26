@@ -2,8 +2,8 @@ class Purchase < ApplicationRecord
   belongs_to   :user
   belongs_to   :purchase_item
 
-  enum status: { pending: 0, failed: 1, paid: 2, paypal_executed: 3}
-  enum payment_gateway: { paypal: 0 }
+  enum status: [:pending, :failed, :paid, :paypal_executed]
+  enum payment_gateway: [:paypal]
 
   validates :purchase_item_id, :user_id, :payment_gateway, presence: true
 
@@ -12,15 +12,15 @@ class Purchase < ApplicationRecord
   scope :recently_created, ->  { where(created_at: 1.minutes.ago..DateTime.now) }
 
   def set_paid
-    self.status = Purchase.statuses[:paid]
+    self.paid!
   end
 
   def set_failed
-    self.status = Purchase.statuses[:failed]
+    self.failed!
   end
 
   def set_paypal_executed
-    self.status = Purchase.statuses[:paypal_executed]
+    self.paypal_executed!
   end
 
   protected

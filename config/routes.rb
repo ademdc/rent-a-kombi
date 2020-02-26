@@ -50,13 +50,13 @@ Rails.application.routes.draw do
       post :add_ducats, on: :collection
     end
 
-    resources :ducats, only: [:index] do
+    resources :ducats, only: [:index]
+
+    resources :purchases, only: [:create] do
       collection do
-        post :create_payment,   as: :paypal_create_payment
-        post :execute_payment,  as: :paypal_execute_payment
+        post :create_paypal_payment,   as: :paypal_create_payment
+        post :execute_paypal_payment,  as: :paypal_execute_payment
       end
     end
-
-    resources :purchases, only: [:create]
   end
 end

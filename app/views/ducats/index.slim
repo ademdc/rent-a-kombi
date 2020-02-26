@@ -4,7 +4,7 @@
   h5 = t('ducat.current_count', count: @ducat_count).html_safe
 
   .ducat-buttons-container
-    = colapse_button('Sta su dukati?', 'mr-5', 'ducats-about-container')
+    = colapse_button(t('ducat.what_are_ducats'), 'mr-5', 'ducats-about-container')
     = colapse_button(t('ducat.add_ducats'), 'btn-orange', 'payment-gateway-container')
 
   .row
@@ -18,7 +18,7 @@
     .col-md-6
       .payment-gateway-container.collapse.text-center
         = simple_form_for @purchase, url: purchases_path, method: :POST do |f|
-          = f.input :payment_gateway, as: :hidden, input_html: { value: Purchase.payment_gateways[Payments::PaymentGateways::PAYPAL] }
+          = f.input :payment_gateway, as: :hidden, input_html: { value: Payments::PaymentGateways::PAYPAL }
           = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
           .form_row
             h4 = t('ducat.charges')

@@ -14,6 +14,24 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def create_paypal_payment
+    byebug
+    result = Payments::Paypal.create_payment
+    if result
+      render json: { token: result }, status: :ok
+    else
+      render json: { error: FAILURE_MESSAGE }, status: :unprocessable_entity
+    end
+  end
+
+  def execute_paypal_payment
+    if Payments::Paypal.execute_payment(payment_id: params[:paymentID], payer_id: params[:payerID], current_user_id: current_user.id)
+      render json: {}, status: :ok
+    else
+      render json: { error: FAILURE_MESSAGE }, status: :unprocessable_entity
+    end
+  end
+
   private
 
     def purchase_params
@@ -26,5 +44,9 @@ class PurchasesController < ApplicationController
         :charge_id,
         :payment_gateway,
         :error_message)
+    end
+
+    def prepare_data
+      @purchase = Purchase.new
     end
 end

@@ -4,3 +4,4 @@ bs:
     payment_method: 'Način plaćanja'
     charges: 'Dopune'
     add_ducats: 'Dopuni dukate'
+    what_are_ducats: 'Šta su dukati?'

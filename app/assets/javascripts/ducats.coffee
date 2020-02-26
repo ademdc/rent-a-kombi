@@ -9,17 +9,18 @@ class Ducats
     # to add listners
 
   innitialize_paypal: () ->
+    console.log @$purchase_form.serialize()
     @setupPaypal() if @$purchase_form.exists()
 
   setupPaypal: () ->
     paypal.Buttons(
       env: 'sandbox'
-      createOrder: () ->
-        $.post('/ducats/create_payment').then (data) ->
+      createOrder: () =>
+        $.post('/purchases/create_paypal_payment', @$purchase_form.serialize()).then (data) ->
           data.token
       onApprove: (data) =>
         @$loader.show()
-        $.post('/ducats/execute_payment',
+        $.post('/purchases/execute_paypal_payment',
           paymentID: data.paymentID
           payerID: data.payerID).then =>
             @submitOrderPaypal(data.paymentID)

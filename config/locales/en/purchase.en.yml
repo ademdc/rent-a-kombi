@@ -1,0 +1,4 @@
+en:
+  purchase:
+    success: 'Purchase was made succesfully.'
+    error: 'Error occured while making payment.'

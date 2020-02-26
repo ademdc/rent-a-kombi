@@ -62,5 +62,6 @@ en:
   at: 'at'
   days_ago: "%{number} days ago"
   next: 'Next'
+  submitting: 'Submitting..'
 
 

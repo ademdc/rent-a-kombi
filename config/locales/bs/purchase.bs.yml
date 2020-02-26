@@ -1,0 +1,4 @@
+bs:
+  purchase:
+    success: 'Uspješno izvrešena uplata.'
+    error: 'Desila se greška prilikom plaćanja.'

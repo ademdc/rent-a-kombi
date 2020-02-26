@@ -3,3 +3,4 @@ en:
     current_count: 'Your currently have <i class="mr-2"> %{count}</i> <i class="fa fa-coins text-warning mb-3"></i> ducats'
     payment_method: 'Payment method'
     charges: 'Charges'
+    add_ducats: 'Add ducats'

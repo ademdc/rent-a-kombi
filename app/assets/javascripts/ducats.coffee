@@ -1,6 +1,7 @@
 class Ducats
   constructor: () ->
     @$purchase_form = $('#new_purchase')
+    @$loader = $('.ui-page-loader')
     @innitialize_listeners()
     @innitialize_paypal()
 
@@ -17,6 +18,7 @@ class Ducats
         $.post('/ducats/create_payment').then (data) ->
           data.token
       onApprove: (data) =>
+        @$loader.show()
         $.post('/ducats/execute_payment',
           paymentID: data.paymentID
           payerID: data.payerID).then =>
@@ -28,9 +30,7 @@ class Ducats
     return $('[data-charges-and-payments-section] input[name="orders[product_id]"]:checked').length
 
   submitOrderPaypal: (chargeID) =>
-    # Add a hidden input purchase[charge_id]
     @$purchase_form.append($('<input type="hidden" name="purchase[charge_id]"/>').val(chargeID))
-    # Set order type
     @$purchase_form.submit()
 
 $(document).ready ->

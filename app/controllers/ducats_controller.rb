@@ -3,6 +3,7 @@ class DucatsController < ApplicationController
 
   def index
     @ducat_count = current_user.ducats
+    @purchase = Purchase.new
   end
 
   def create_payment

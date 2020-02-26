@@ -5,6 +5,10 @@ class Purchase < ApplicationRecord
   enum status: { pending: 0, failed: 1, paid: 2, paypal_executed: 3}
   enum payment_gateway: { paypal: 0 }
 
+  validates :purchase_item_id, :user_id, :payment_gateway, presence: true
+
+  after_save :add_title_to_purchase
+
   scope :recently_created, ->  { where(created_at: 1.minutes.ago..DateTime.now) }
 
   def set_paid
@@ -18,4 +22,10 @@ class Purchase < ApplicationRecord
   def set_paypal_executed
     self.status = Purchase.statuses[:paypal_executed]
   end
+
+  protected
+
+    def add_title_to_purchase
+      self.update(title: self.purchase_item.to_label)
+    end
 end

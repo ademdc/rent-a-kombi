@@ -57,6 +57,6 @@ Rails.application.routes.draw do
       end
     end
 
-
+    resources :purchases, only: [:create]
   end
 end

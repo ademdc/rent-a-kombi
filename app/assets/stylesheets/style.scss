@@ -9,6 +9,8 @@
 @import 'navbar';
 @import 'direct_upload';
 @import 'reservation';
+@import 'ducats';
+
 
 body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -63,15 +65,22 @@ body {
   padding: 1px 3px;
   font-size: 10px;
 
-  position: absolute; /* Position the badge within the relatively positioned button */
+  position: absolute;
   bottom: 0;
   right: 0;
 }
 
-
-.gray-bg {
-  background-color: #ededed;
+.flex-center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.hidden {
+  display: none !important;
+}
+
+// Buttons
 
 .btn-search {
   background: #323E5F;
@@ -104,8 +113,13 @@ body {
   color: white;
 }
 
+.btn-orange {
+  background: $app-orange;
+}
+
 .btn-orange:hover {
-  background: #FFA500;
+  background: $app-orange;
+  border: 1px solid $app-blue-main;
 }
 
 .btn-send-msg {
@@ -117,20 +131,28 @@ body {
   color: black !important;
 }
 
-.flex-center-all {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hidden {
-  display: none !important;
-}
+// Backgrounds
 
 .light-blue-bg {
-  background: #CFDBE1;
+  background: $app-blue-light;
   color: black;
 }
+
+.app-blue-bg {
+  background: $app-blue-main;
+  color: black;
+}
+
+.app-orange-bg {
+  background: $app-orange;
+  color: $app-blue-main;
+}
+
+.app-gray-bg {
+  background-color: $app-gray;
+}
+
+// Loader
 
 .ui-page-loader {
   width:100%;

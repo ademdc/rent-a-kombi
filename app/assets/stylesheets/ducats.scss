@@ -1,4 +1,14 @@
 .ducats-container {
+
+  .ducat-buttons-container {
+    margin: 10px 0px;
+    padding: 1rem !important;
+    margin: 1.5rem 0px !important;
+    border-radius: 0.2rem !important;
+    @extend .flex-center-all;
+    @extend .light-blue-bg;
+  }
+
   section.pricing {
     background: #007bff;
     background: linear-gradient(to right, #0062E6, #33AEFF);

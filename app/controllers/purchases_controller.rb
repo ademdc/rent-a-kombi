@@ -7,9 +7,9 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to ducats_path, notice: 'Purchase was made succesfully.' }
+        format.html { redirect_to ducats_path, notice: t('purchase.success') }
       else
-        format.html { redirect_to ducats_path, alert: 'Error occured while making payment.' }
+        format.html { redirect_to ducats_path, alert: t('purchase.error') }
       end
     end
   end

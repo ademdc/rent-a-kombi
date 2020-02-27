@@ -3,27 +3,41 @@
 .ducats-container
   h5 = t('ducat.current_count', count: @ducat_count).html_safe
 
-  .ducat-buttons-container
-    = colapse_button(t('ducat.what_are_ducats'), 'mr-5', 'ducats-about-container')
-    = colapse_button(t('ducat.add_ducats'), 'btn-orange', 'payment-gateway-container')
-
   .row
     .col-md-6
-      .ducats-about-container.collapse
-        .row
-          .col-md-6
-            p = 'Dukati su virtuelna valuta unutar Vozilice. Pomocu njih mozete vrsiti potvrdu rezervacija i izdvajanje vozila na naslovnoj stranici. Vrijednost jednog dukata je 1 KM. Ako uzmete vece kolicine štedite i do 50%.'
-          .col-md-6.text-center
-            = image_tag image_url('ducats.jpg'), style: 'height: 150px;'
+      table.datatable style='width: 100%;'
+        thead
+          tr
+            th = 'Status'
+            th = 'Title'
+            th = 'Payment date'
+        tbody
+          - Purchase.for_user(current_user).each do |p|
+            tr
+              td = p.status
+              td = p.title
+              td = p.formatted_date(:created_at)
     .col-md-6
-      .payment-gateway-container.collapse.text-center
-        = simple_form_for @purchase, url: purchases_path, method: :POST do |f|
-          = f.input :payment_gateway, as: :hidden, input_html: { value: Payments::PaymentGateways::PAYPAL }
-          = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-          .form_row
-            h4 = t('ducat.charges')
-            = f.input :purchase_item_id, as: :radio_buttons, collection: PurchaseItem.all, label: false
+      .ducat-buttons-container
+        = colapse_button(t('ducat.what_are_ducats'), 'mr-5', 'ducats-about-container')
+        = colapse_button(t('ducat.add_ducats'), 'btn-orange', 'payment-gateway-container')
+      .row
+        .col-md-12
+          .ducats-about-container.collapse
+            .row
+              .col-md-6
+                p = 'Dukati su virtuelna valuta unutar Vozilice. Pomocu njih mozete vrsiti potvrdu rezervacija i izdvajanje vozila na naslovnoj stranici. Vrijednost jednog dukata je 1 KM. Ako uzmete vece kolicine štedite i do 50%.'
+              .col-md-6.text-center
+                = image_tag image_url('ducats.jpg'), style: 'height: 150px;'
+        .col-md-12
+          .payment-gateway-container.collapse.text-center
+            = simple_form_for @purchase, url: purchases_path, method: :POST do |f|
+              = f.input :payment_gateway, as: :hidden, input_html: { value: Payments::PaymentGateways::PAYPAL }
+              = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+              .form_row
+                h4 = t('ducat.charges')
+                = f.input :purchase_item_id, as: :radio_buttons, collection: PurchaseItem.all, label: false
 
-        hr
-        h4 = t('ducat.payment_method')
-        div id="submit-paypal"
+            hr
+            h4 = t('ducat.payment_method')
+            div id="submit-paypal"

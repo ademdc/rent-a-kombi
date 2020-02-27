@@ -1,12 +1,16 @@
 .ducats-container {
 
   .ducat-buttons-container {
-    margin: 10px 0px;
     padding: 1rem !important;
-    margin: 1.5rem 0px !important;
+    margin: 1.5rem 0px;
+    margin-top: 0;
     border-radius: 0.2rem !important;
     @extend .flex-center-all;
     @extend .light-blue-bg;
+  }
+
+  .dataTables_filter {
+    display: none;
   }
 
   section.pricing {

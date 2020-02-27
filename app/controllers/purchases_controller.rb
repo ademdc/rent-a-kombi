@@ -4,6 +4,7 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
+    @purchase.set_title
 
     respond_to do |format|
       if @purchase.save
@@ -15,7 +16,6 @@ class PurchasesController < ApplicationController
   end
 
   def create_paypal_payment
-    byebug
     result = Payments::Paypal.create_payment
     if result
       render json: { token: result }, status: :ok

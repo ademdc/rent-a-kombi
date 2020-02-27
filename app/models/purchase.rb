@@ -7,8 +7,6 @@ class Purchase < ApplicationRecord
 
   validates :purchase_item_id, :user_id, :payment_gateway, presence: true
 
-  after_save :add_title_to_purchase
-
   scope :recently_created, ->  { where(created_at: 1.minutes.ago..DateTime.now) }
 
   def set_paid
@@ -23,9 +21,9 @@ class Purchase < ApplicationRecord
     self.paypal_executed!
   end
 
-  protected
+  def set_title
+    return unless self.purchase_item.present?
 
-    def add_title_to_purchase
-      self.update(title: self.purchase_item.to_label)
-    end
+    self.title = self.purchase_item.to_label
+  end
 end

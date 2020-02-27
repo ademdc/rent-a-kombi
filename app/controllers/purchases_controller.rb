@@ -1,13 +1,12 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :prepare_data, only: [:index]
+  before_action :prepare_data, only: [:create_paypal_payment]
 
-  def create
-    @purchase = Purchase.new(purchase_params)
-    @purchase.set_title
+  def submit
+    @purchase = Payments::Paypal.finish(purchase_params[:charge_id])
 
     respond_to do |format|
-      if @purchase.save
+      if @purchase
         format.html { redirect_to ducats_path, notice: t('purchase.success') }
       else
         format.html { redirect_to ducats_path, alert: t('purchase.error') }
@@ -16,11 +15,11 @@ class PurchasesController < ApplicationController
   end
 
   def create_paypal_payment
-    result = Payments::Paypal.create_payment
+    result = Payments::Paypal.create_payment(purchase: @purchase)
     if result
       render json: { token: result }, status: :ok
     else
-      render json: { error: FAILURE_MESSAGE }, status: :unprocessable_entity
+      render json: { error: t('purchase.error') }, status: :unprocessable_entity
     end
   end
 
@@ -28,7 +27,7 @@ class PurchasesController < ApplicationController
     if Payments::Paypal.execute_payment(payment_id: params[:paymentID], payer_id: params[:payerID], current_user_id: current_user.id)
       render json: {}, status: :ok
     else
-      render json: { error: FAILURE_MESSAGE }, status: :unprocessable_entity
+      render json: { error: t('purchase.error') }, status: :unprocessable_entity
     end
   end
 
@@ -47,6 +46,6 @@ class PurchasesController < ApplicationController
     end
 
     def prepare_data
-      @purchase = Purchase.new
+      @purchase = Purchase.new(purchase_params)
     end
 end

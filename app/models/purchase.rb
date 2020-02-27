@@ -5,7 +5,7 @@ class Purchase < ApplicationRecord
   enum status: [:pending, :failed, :paid, :paypal_executed]
   enum payment_gateway: [:paypal]
 
-  validates :purchase_item_id, :user_id, :payment_gateway, presence: true
+  validates :purchase_item_id, :user_id, presence: true
 
   scope :recently_created, ->  { where(created_at: 1.minutes.ago..DateTime.now) }
   scope :for_user, -> (user) { where(user_id: user.id) }

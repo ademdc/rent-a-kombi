@@ -9,12 +9,12 @@
         thead
           tr
             th = 'Status'
-            th = 'Title'
-            th = 'Payment date'
+            th = 'Naslov'
+            th = 'Datum plaćanja'
         tbody
           - Purchase.for_user(current_user).each do |p|
             tr
-              td = p.status
+              td = t("purchase.statuses.#{p.status}")
               td = p.title
               td = p.formatted_date(:created_at)
     .col-md-6
@@ -31,7 +31,7 @@
                 = image_tag image_url('ducats.jpg'), style: 'height: 150px;'
         .col-md-12
           .payment-gateway-container.collapse.text-center
-            = simple_form_for @purchase, url: purchases_path, method: :POST do |f|
+            = simple_form_for @purchase, url: submit_purchases_path, method: :POST do |f|
               = f.input :payment_gateway, as: :hidden, input_html: { value: Payments::PaymentGateways::PAYPAL }
               = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
               .form_row

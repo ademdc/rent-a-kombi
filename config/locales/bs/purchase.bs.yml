@@ -2,3 +2,9 @@ bs:
   purchase:
     success: 'Uspješno izvrešena uplata.'
     error: 'Desila se greška prilikom plaćanja.'
+    statuses:
+      pending: 'U toku'
+      failed: 'Neuspješno'
+      paypal_executed: 'Izvrešena preko Paypala'
+      paid: 'Plaćeno'
+

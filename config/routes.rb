@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     end
 
     resources :conversations do
+      post :datatables, on: :collection
       resources :messages
     end
 
@@ -55,6 +56,7 @@ Rails.application.routes.draw do
     resources :purchases, only: [:index] do
       collection do
         post :submit
+        get :datatables
         post :create_paypal_payment,   as: :paypal_create_payment
         post :execute_paypal_payment,  as: :paypal_execute_payment
       end

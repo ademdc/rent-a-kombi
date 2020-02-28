@@ -18,6 +18,9 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def datatables
+  end
+
   private
 
    def conversation_params

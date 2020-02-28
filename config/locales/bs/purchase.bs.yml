@@ -7,4 +7,8 @@ bs:
       failed: 'Neuspješno'
       paypal_executed: 'Izvrešena preko Paypala'
       paid: 'Plaćeno'
+    columns:
+      payment_date: 'Datum placanja'
+      status: 'Status'
+      title: 'Naslov'
 

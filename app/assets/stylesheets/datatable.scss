@@ -5,10 +5,14 @@
     }
   }
 
-  .datatable {
+  .datatable, .dataTable {
     th {
       height: 45px;
       padding-left: 8px
+    }
+
+    thead > tr {
+      background-color: $app-blue-light !important;
     }
 
     td {

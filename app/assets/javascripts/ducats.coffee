@@ -9,7 +9,6 @@ class Ducats
     # to add listners
 
   innitialize_paypal: () ->
-    console.log @$purchase_form.serialize()
     @setupPaypal() if @$purchase_form.exists()
 
   setupPaypal: () ->

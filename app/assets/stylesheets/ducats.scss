@@ -9,9 +9,36 @@
     @extend .light-blue-bg;
   }
 
+  .ducat-info-container {
+    &.about { @extend .light-blue-bg; }
+    &.buy { @extend .app-orange-bg; color: white !important; }
+
+    width: 100%;
+    height: 66px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid black;
+    display: table;
+
+    span.label {
+      padding-left: 26px;
+      font-size: 20px;
+      display:table-cell;
+      vertical-align:middle;
+    }
+    .fa-caret-down {
+      margin-top: 23px;
+      margin-right: 21px;
+    }
+  }
+
   .dataTables_filter {
     display: none;
   }
+
+  .dataTables_info {
+    margin-bottom: 30px;
+  }
+
 
   section.pricing {
     background: #007bff;

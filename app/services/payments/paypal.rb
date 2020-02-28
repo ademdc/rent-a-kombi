@@ -45,7 +45,7 @@ class Payments::Paypal
   def self.execute_payment(payment_id:, payer_id:, current_user_id:)
     user = User.find(current_user_id)
     purchase = Purchase.recently_created.find_by(charge_id: payment_id)
-    purchase_amount = purchase.purchase_item.price.amount.to_i
+    purchase_amount = purchase.purchase_item.ducats
 
     return false unless purchase && purchase_amount
 

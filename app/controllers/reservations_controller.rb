@@ -5,9 +5,9 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
+
     respond_to do |format|
       if @reservation.save
-        UserMailer.with(reservation: @reservation).reservation_confirmation.deliver_now
         format.json { render json: { message: 'Reservation created successfully.' } , status: :ok }
         format.html { redirect_to profile_index_path, notice: 'Reservation succesfully created. Pending...' }
       else

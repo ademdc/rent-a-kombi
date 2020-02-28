@@ -11,7 +11,7 @@ nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
         = navbar_item(ducats_path, :ducats, current_user, 'text-warning')
     ul.navbar-nav.ml-auto.text-white.js-navbar-right
       - if current_user
-        .mt-2.mr-3.text-center = current_user.full_name
+        .mt-2.mr-3.text-center.current-user-name = current_user.full_name
         = dropdown_navbar_item((render 'shared/users/navbar_photo'), '') do
           = link_to t('navigation.account'), edit_user_registration_path, class: 'dropdown-item'
           = link_to t('navigation.logout'), destroy_user_session_path, method: :delete, class: 'dropdown-item'

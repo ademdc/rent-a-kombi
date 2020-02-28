@@ -12,6 +12,9 @@ class Reservation < ApplicationRecord
 
   scope :current_reservation_for, ->(user, post) { where('user_id = ? AND post_id = ? AND start > ?', user.id, post.id, Time.now ) }
   scope :for_post, -> (post_id) { where('post_id = ? AND confirmed = ?', post_id, true) }
+  scope :active, -> { where('start > ?', Time.now) }
+
+  after_save :send_confirmation_emails
 
   def self.outgoing_reservation_for(user)
     Reservation.where(user_id: user.id)
@@ -47,6 +50,10 @@ class Reservation < ApplicationRecord
   end
 
   protected
+
+    def send_confirmation_emails
+      UserMailer.with(reservation: self).reservation_confirmation.deliver_now
+    end
 
     def not_my_post?
       self.errors[:base] << 'Can not reserve your own post!' if self.user_id == self.post.user.id

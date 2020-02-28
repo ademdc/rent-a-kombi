@@ -31,7 +31,23 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def datatables
+    if datatable_class.present?
+      respond_to do |format|
+        format.json { render json: datatable_class.new(view_context) }
+      end
+    else
+      respond_to do |format|
+        format.json { render layout: false }
+      end
+    end
+  end
+
   private
+
+    def datatable_class
+      PurchaseDatatable
+    end
 
     def purchase_params
       params.require(:purchase).permit(

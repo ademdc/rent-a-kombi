@@ -62,8 +62,8 @@ class Profile
 
     $.ajax
       url: reservation_url
-      method: 'PATCH'
-      data: { 'reservation[confirmed]': true, 'id': reservation_id}
+      method: 'POST'
+      data: { 'reservation[id]': reservation_id, 'id': reservation_id}
       dataType: 'JSON'
       success: (data) =>
         toastr.success data.message
@@ -80,7 +80,7 @@ class Profile
     $.ajax
       url: reservation_url
       method: 'DELETE'
-      data: { 'id': reservation_id }
+      data: { 'id': reservation_id, 'format': 'json' }
       dataType: 'JSON'
       success: (data) =>
         @handle_reservation_delete($parent, data)

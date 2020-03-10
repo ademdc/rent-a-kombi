@@ -79,6 +79,10 @@ module LayoutHelper
     image_tag 'logo3.png', class: 'navbar-brand', style: 'height: 45px; padding: 0;'
   end
 
+  def colapse_button(text, klass, target, expanded=false)
+    link_to text, '#', class: "btn btn-app #{klass}", data: { target:".#{target}", toggle:'collapse' }, aria: { expanded: expanded }
+  end
+
     private
 
       def check_if_message_item(name, current_user)

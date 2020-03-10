@@ -1,0 +1,7 @@
+bs:
+  ducat:
+    current_count: 'Imate ukupno <i class="mr-2"> %{count} </i> <i class="fa fa-coins text-warning mb-3"></i> dukata'
+    payment_method: 'Način plaćanja'
+    charges: 'Dopune'
+    add_ducats: 'Dopuni dukate'
+    what_are_ducats: 'Šta su dukati?'

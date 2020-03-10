@@ -65,6 +65,10 @@
 
 @media only screen and (max-width: 800px) {
   .navbar {
+
+    .nav-link, .current-user-name {
+      font-size: 20px;
+    }
     .navbar-brand {
       font-size: 17px;
       height: 35px !important;
@@ -77,6 +81,7 @@
       width: 100%;
       .dropdown-item, .dropdown-items {
         text-align: center;
+        font-size: 20px;
       }
     }
   }

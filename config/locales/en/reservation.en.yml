@@ -1,6 +1,8 @@
 en:
   reservation:
     confirm: "Confirm the reservation for %{title}"
+    confirm_success: 'Reservation confirmed succesfully.'
+    confirm_error: 'Error while confirming reservation.'
     start: 'Start'
     end: 'End'
     renter: 'Renter'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_215838) do
+ActiveRecord::Schema.define(version: 2020_02_28_093304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,9 @@ ActiveRecord::Schema.define(version: 2020_01_19_215838) do
     t.index ["post_id"], name: "index_currency_prices_on_post_id"
   end
 
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  end
+
   create_table "favorite_posts", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "post_id"
@@ -140,6 +143,30 @@ ActiveRecord::Schema.define(version: 2020_01_19_215838) do
     t.index ["category_id"], name: "index_posts_on_category_id"
   end
 
+  create_table "purchase_items", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "BAM", null: false
+    t.integer "ducats"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "purchase_item_id"
+    t.integer "status", default: 0
+    t.string "title"
+    t.string "token"
+    t.string "charge_id"
+    t.string "error_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "payment_gateway"
+    t.index ["purchase_item_id"], name: "index_purchases_on_purchase_item_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "post_id"
@@ -186,7 +213,9 @@ ActiveRecord::Schema.define(version: 2020_01_19_215838) do
     t.string "unconfirmed_email"
     t.string "locale"
     t.string "slug"
+    t.integer "ducats", default: 30
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["ducats"], name: "index_users_on_ducats"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true

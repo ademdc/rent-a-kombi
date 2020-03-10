@@ -59,7 +59,7 @@
               - unless @incoming_reservations.present?
                 p.mt-4.font-italic = t('profile.no_incoming')
               - @incoming_reservations.each do |reservation|
-                .incoming-reservation data-post-id=reservation.post.id  data-user-name=reservation.user&.full_name data-post-title=reservation.post.title data-reservation-url=reservations_path data-reservation-id=reservation.id
+                .incoming-reservation data-post-id=reservation.post.id  data-user-name=reservation.user&.full_name data-post-title=reservation.post.title data-reservation-url=confirm_reservations_path data-reservation-id=reservation.id
                   .status style="background: #{reservation.confirmed ? 'lightgreen' : 'lightblue' }"
                     h6 = reservation_status(reservation.confirmed)
                   .row

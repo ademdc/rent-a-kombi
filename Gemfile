@@ -71,6 +71,10 @@ gem 'nilify_blanks'
 gem 'friendly_id'
 gem 'rails-data-migrations'
 
+gem 'paypal-sdk-rest'
+gem "money-rails"
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

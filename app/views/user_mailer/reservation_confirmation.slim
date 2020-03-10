@@ -1,5 +1,7 @@
-- I18n.with_locale(@receiver.locale.to_sym) do
-  = I18n.t('mailer.reservation.successfull', user_name: @reservation.user.full_name, post_title: @reservation.post.title)
-  p
-    = link_to I18n.t('mailer.reservation.see_reservation'), profile_index_url
-end
+.div style='text-align: center;'
+  - I18n.with_locale(@receiver.locale.to_sym) do
+    = image_tag image_url('logo3.png'), style: 'height: 45px; padding: 0;'
+    p = I18n.t('mailer.reservation.successfull', user_name: @reservation.user.full_name, post_title: @reservation.post.title).html_safe
+    p
+      = link_to I18n.t('mailer.reservation.see_reservation'), profile_index_url
+  end

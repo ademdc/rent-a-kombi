@@ -1,0 +1,45 @@
+= javascript_include_tag paypal_url
+
+.ducats-container
+  h5 = t('ducat.current_count', count: @ducat_count).html_safe
+
+  .row
+    .col-md-6
+      table.datatable style='width: 100%;'
+        thead
+          tr
+            th = 'Status'
+            th = 'Naslov'
+            th = 'Datum plaćanja'
+        tbody
+          - Purchase.for_user(current_user).each do |p|
+            tr
+              td = t("purchase.statuses.#{p.status}")
+              td = p.title
+              td = p.formatted_date(:created_at)
+    .col-md-6
+      .ducat-info-container.about data-target=".ducats-about-container" data-toggle="collapse" aria-expanded="false"
+        span.label Sta su dukati?
+        i.fa.fa-caret-down.right
+
+      .ducats-about-container.collapse
+        .row
+          .col-md-6
+            p = 'Dukati su virtuelna valuta unutar Vozilice. Pomocu njih mozete vrsiti potvrdu rezervacija i izdvajanje vozila na naslovnoj stranici. Vrijednost jednog dukata je 1 KM. Ako uzmete vece kolicine štedite i do 50%.'
+          .col-md-6.text-center
+            = image_tag image_url('coins.png'), style: 'height: 150px;'
+      .ducat-info-container.buy data-target=".payment-gateway-container" data-toggle="collapse" aria-expanded="false"
+        span.label Dokupi dukate
+        i.fa.fa-caret-down.right
+
+      .payment-gateway-container.collapse.text-center tabindex="0"
+        = simple_form_for @purchase, url: submit_purchases_path, method: :POST do |f|
+          = f.input :payment_gateway, as: :hidden, input_html: { value: Payments::PaymentGateways::PAYPAL }
+          = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+          .form_row
+            h4 = t('ducat.charges')
+            = f.input :purchase_item_id, as: :radio_buttons, collection: PurchaseItem.all, label: false
+
+        hr
+        h4 = t('ducat.payment_method')
+        div id="submit-paypal"

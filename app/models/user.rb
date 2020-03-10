@@ -12,10 +12,13 @@ class User < ApplicationRecord
   has_many :messages, through: :conversations
   has_many :favorite_posts, dependent: :destroy
   has_many :reservations
+  has_many :purchases
 
   has_one_attached :avatar
 
   after_update :changed_locale?
+
+  INNITIAL_DUCATS_COUNT = 30
 
   def admin?
     is_admin
@@ -55,6 +58,12 @@ class User < ApplicationRecord
 
   def favorite_posts
     Post.favorite_posts_for(self)
+  end
+
+  def add_ducats(ducat_number)
+    current_ducat_number = self.ducats
+    new_ducat_count = current_ducat_number + ducat_number.to_i
+    self.update(ducats: new_ducat_count)
   end
 
     private

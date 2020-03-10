@@ -43,3 +43,6 @@ bs:
       conversation:
         sender_id: 'Pošiljalac'
         receiver_id: 'Primalac'
+      purchase:
+        purchase_item_id: 'Paketi'
+

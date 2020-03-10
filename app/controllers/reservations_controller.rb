@@ -1,13 +1,13 @@
 class ReservationsController < ApplicationController
-  before_action :authenticate_user!, except: [:create, :confirm]
-  before_action :set_reservation, only: [:destroy, :update]
+  before_action :authenticate_user!, except: [:create, :new]
+  before_action :set_reservation, only: [:destroy, :update, :confirm]
   after_action :set_price, only: [:create]
 
   def create
     @reservation = Reservation.new(reservation_params)
+
     respond_to do |format|
       if @reservation.save
-        UserMailer.with(reservation: @reservation).reservation_confirmation.deliver_now
         format.json { render json: { message: 'Reservation created successfully.' } , status: :ok }
         format.html { redirect_to profile_index_path, notice: 'Reservation succesfully created. Pending...' }
       else
@@ -43,6 +43,16 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
+    success = @reservation.confirm!
+
+    if success
+      render json: { message: t('reservation.confirm_success') }, status: :ok
+    else
+      render json: { message: t('reservation.confirm_error') }, status: :unprocessable_entity
+    end
+  end
+
+  def new
     @reservation = Reservation.new(reservation_params)
   end
 

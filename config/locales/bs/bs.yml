@@ -31,3 +31,4 @@ bs:
   at: 'u'
   days_ago: "prije %{number} dana"
   next: 'Sljedeće'
+  submitting: 'Spašava se...'

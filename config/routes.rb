@@ -39,14 +39,25 @@ Rails.application.routes.draw do
       resources :messages
     end
 
-
-    resource :reservations, only: [:create, :destroy, :update] do
+    resource :reservations, only: [:create, :destroy, :update, :new] do
       post :for_post, on: :collection
-      post :confirm, on: :collection
+      post :confirm, on: :member
     end
 
     resources :profile, only: [:index]
 
-    resources :users, only: [:show], param: :slug
+    resources :users, only: [:show], param: :slug do
+      post :add_ducats, on: :collection
+    end
+
+    resources :ducats, only: [:index]
+
+    resources :purchases, only: [:index] do
+      collection do
+        post :submit
+        post :create_paypal_payment,   as: :paypal_create_payment
+        post :execute_paypal_payment,  as: :paypal_execute_payment
+      end
+    end
   end
 end

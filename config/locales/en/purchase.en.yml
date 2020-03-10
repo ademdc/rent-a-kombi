@@ -1,0 +1,9 @@
+en:
+  purchase:
+    success: 'Purchase was made succesfully.'
+    error: 'Error occured while making payment.'
+    statuses:
+      pending: 'Pending'
+      failed: 'Failed'
+      paypal_executed: 'Paypal executed'
+      paid: 'Paid'

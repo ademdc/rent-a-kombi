@@ -13,6 +13,10 @@ module ApplicationHelper
     'https://kit.fontawesome.com/f1327831ac.js'
   end
 
+  def paypal_url
+    "https://www.paypal.com/sdk/js?client-id=#{ENV['PAYPAL_CLIENT_ID']}"
+  end
+
   def logged_in?
     current_user.present?
   end

@@ -6,19 +6,22 @@ class Reservation < ApplicationRecord
   validates  :post_id, :start, :end, presence: true
 
   validate :not_my_post?
-  validate :does_not_overlap?
+  validate :does_not_overlap?, on: :create
 
   delegate :currency, to: :post
 
   scope :current_reservation_for, ->(user, post) { where('user_id = ? AND post_id = ? AND start > ?', user.id, post.id, Time.now ) }
   scope :for_post, -> (post_id) { where('post_id = ? AND confirmed = ?', post_id, true) }
+  scope :active, -> { where('start > ?', Time.now) }
+
+  after_create :send_confirmation_emails
 
   def self.outgoing_reservation_for(user)
     Reservation.where(user_id: user.id)
   end
 
   def self.incoming_reservation_for(user)
-    Reservation.includes(:post).where(posts: { user_id: user.id })
+    Reservation.active.includes(:post).where(posts: { user_id: user.id })
   end
 
   def between_range?(from, to)
@@ -46,7 +49,16 @@ class Reservation < ApplicationRecord
     self.save
   end
 
+  def confirm!
+    self.confirmed = true
+    self.save
+  end
+
   protected
+
+    def send_confirmation_emails
+      UserMailer.with(reservation: self).reservation_confirmation.deliver_now
+    end
 
     def not_my_post?
       self.errors[:base] << 'Can not reserve your own post!' if self.user_id == self.post.user.id

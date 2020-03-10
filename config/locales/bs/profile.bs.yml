@@ -22,7 +22,7 @@ bs:
     upload_post: 'Postavi novo vozilo'
     no_posts: 'Još niste postavili nijedno vozilo'
     no_reservations: 'Niste još napravili niti jednu rezervaciju. Šta čekate...'
-    no_incoming: 'Niko nije rezervisao vaše vozilo. Još...'
+    no_incoming: 'Nemate aktuelnih dolazećih rezervacija...'
     confirm?: 'Potvrditi?'
     cancel: 'Otkazati'
     delete_reservation: 'Obrisati rezervaciju?'

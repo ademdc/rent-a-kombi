@@ -14,7 +14,7 @@ class Reservation < ApplicationRecord
   scope :for_post, -> (post_id) { where('post_id = ? AND confirmed = ?', post_id, true) }
   scope :active, -> { where('start > ?', Time.now) }
 
-  after_save :send_confirmation_emails
+  after_create :send_confirmation_emails
 
   def self.outgoing_reservation_for(user)
     Reservation.where(user_id: user.id)

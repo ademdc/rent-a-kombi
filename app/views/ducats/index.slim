@@ -27,12 +27,12 @@
           .col-md-6
             p = 'Dukati su virtuelna valuta unutar Vozilice. Pomocu njih mozete vrsiti potvrdu rezervacija i izdvajanje vozila na naslovnoj stranici. Vrijednost jednog dukata je 1 KM. Ako uzmete vece kolicine štedite i do 50%.'
           .col-md-6.text-center
-            = image_tag image_url('ducats.jpg'), style: 'height: 150px;'
+            = image_tag image_url('coins.png'), style: 'height: 150px;'
       .ducat-info-container.buy data-target=".payment-gateway-container" data-toggle="collapse" aria-expanded="false"
         span.label Dokupi dukate
         i.fa.fa-caret-down.right
 
-      .payment-gateway-container.collapse.text-center
+      .payment-gateway-container.collapse.text-center tabindex="0"
         = simple_form_for @purchase, url: submit_purchases_path, method: :POST do |f|
           = f.input :payment_gateway, as: :hidden, input_html: { value: Payments::PaymentGateways::PAYPAL }
           = f.input :user_id, as: :hidden, input_html: { value: current_user.id }

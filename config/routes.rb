@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       resources :messages
     end
 
-    resource :reservations, only: [:create, :destroy, :update] do
+    resource :reservations, only: [:create, :destroy, :update, :new] do
       post :for_post, on: :collection
       post :confirm, on: :collection
     end

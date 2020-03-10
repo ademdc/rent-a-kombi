@@ -1,6 +1,8 @@
 bs:
   reservation:
     confirm: "Potvrdite rezervaciju za %{title}"
+    confirm_success: 'Rezervacija je uspješno potvrdjena'
+    confirm_error: 'Greška sa potvrdom rezervacije.'
     start: 'Početak'
     end: 'Kraj'
     renter: 'Iznajmljivač'

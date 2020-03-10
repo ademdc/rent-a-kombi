@@ -6,7 +6,7 @@ class Reservation < ApplicationRecord
   validates  :post_id, :start, :end, presence: true
 
   validate :not_my_post?
-  validate :does_not_overlap?
+  validate :does_not_overlap?, on: :create
 
   delegate :currency, to: :post
 
@@ -21,7 +21,7 @@ class Reservation < ApplicationRecord
   end
 
   def self.incoming_reservation_for(user)
-    Reservation.includes(:post).where(posts: { user_id: user.id })
+    Reservation.active.includes(:post).where(posts: { user_id: user.id })
   end
 
   def between_range?(from, to)
@@ -46,6 +46,11 @@ class Reservation < ApplicationRecord
 
   def set_price!
     self.price = days_number * self.post.price
+    self.save
+  end
+
+  def confirm!
+    self.confirmed = true
     self.save
   end
 

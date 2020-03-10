@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
-  before_action :authenticate_user!, except: [:create, :confirm]
-  before_action :set_reservation, only: [:destroy, :update]
+  before_action :authenticate_user!, except: [:create, :new]
+  before_action :set_reservation, only: [:destroy, :update, :confirm]
   after_action :set_price, only: [:create]
 
   def create
@@ -43,6 +43,16 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
+    success = @reservation.confirm!
+
+    if success
+      render json: { message: t('reservation.confirm_success') }, status: :ok
+    else
+      render json: { message: t('reservation.confirm_error') }, status: :unprocessable_entity
+    end
+  end
+
+  def new
     @reservation = Reservation.new(reservation_params)
   end
 

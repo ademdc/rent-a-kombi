@@ -26,13 +26,14 @@ class Profile
     $(document).on 'click', '.js-confirm-reservation', (e) =>
       $target   = $(e.currentTarget)
 
-      $parent    = $target.parents('.incoming-reservation')
-      post_title = $parent.data('post-title')
-      user_name  = $parent.data('user-name')
+      $parent      = $target.parents('.incoming-reservation')
+      post_title   = $parent.data('post-title')
+      user_name    = $parent.data('user-name')
+      ducat_price  = $parent.data('ducat-price')
 
       swal {
-        title: I18n.t('profile.confirm?')
-        text:  I18n.t('profile.confirm_reservation', { user_name: user_name, post_title: post_title })
+        title: I18n.t('profile.confirm_reservation', { user_name: user_name, post_title: post_title })
+        text:  "Ova rezervacija ce vas kostati #{ducat_price} dukata"
         type: 'info'
         showCancelButton: true
         confirmButtonColor: '#DD6B55'
@@ -56,9 +57,9 @@ class Profile
           @delete_reservation($target)
 
   confirm_reservation: ($target) =>
-    $parent         = $target.parents('.incoming-reservation')
-    reservation_url = $parent.data('reservation-url')
-    reservation_id  = $parent.data('reservation-id')
+    $parent           = $target.parents('.incoming-reservation')
+    reservation_url   = $parent.data('reservation-url')
+    reservation_id    = $parent.data('reservation-id')
 
     $.ajax
       url: reservation_url
@@ -67,10 +68,10 @@ class Profile
       dataType: 'JSON'
       success: (data) =>
         toastr.success data.message
-        @handle_reservation_update($target)
+        @handle_reservation_confirm($target)
       error: (data) =>
         console.log data
-        toastr.error data.responseJSON.message.base
+        toastr.error data.responseJSON.message
 
   delete_reservation: ($target) ->
     $parent   = $target.parents('.incoming-reservation')
@@ -87,7 +88,7 @@ class Profile
       error: (data) =>
         toastr.error data.responseText
 
-  handle_reservation_update: ($target) ->
+  handle_reservation_confirm: ($target) ->
     $target.addClass('hidden')
     $target.parents('.incoming-reservation').find('.js-reservation-info').addClass('hidden')
     $target.parents('p').append('True')

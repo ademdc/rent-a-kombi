@@ -13,8 +13,11 @@ class Reservation < ApplicationRecord
   scope :current_reservation_for, ->(user, post) { where('user_id = ? AND post_id = ? AND start > ?', user.id, post.id, Time.now ) }
   scope :for_post, -> (post_id) { where('post_id = ? AND confirmed = ?', post_id, true) }
   scope :active, -> { where('start > ?', Time.now) }
+  scope :active_and_confirmed, -> { active.where(confirmed: true) }
 
   after_create :send_confirmation_emails
+
+  DUCAT_RATIO = 0.05
 
   def self.outgoing_reservation_for(user)
     Reservation.where(user_id: user.id)
@@ -49,9 +52,18 @@ class Reservation < ApplicationRecord
     self.save
   end
 
-  def confirm!
-    self.confirmed = true
-    self.save
+  def confirm!(user)
+    if user.has_enough_ducats?(self.ducat_price)
+      self.confirmed = true
+      self.save
+      user.deduct_ducats(self.ducat_price)
+    else
+      false
+    end
+  end
+
+  def ducat_price
+    (price * DUCAT_RATIO).to_i
   end
 
   protected

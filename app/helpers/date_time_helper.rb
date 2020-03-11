@@ -20,8 +20,9 @@ module DateTimeHelper
     (Time.current.to_date - created_at.to_date).to_i
   end
 
-  def formated_date(date)
-    date.strftime('%d/%m/%Y')
+  def formated_date(date, with_time=false)
+    return date.strftime(ApplicationRecord::DATE_TIME_FORMAT) if with_time
+    date.strftime(ApplicationRecord::DATE_FORMAT)
   end
 
 end

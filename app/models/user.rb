@@ -66,6 +66,17 @@ class User < ApplicationRecord
     self.update(ducats: new_ducat_count)
   end
 
+  def deduct_ducats(ducat_number)
+    current_ducat_number = self.ducats
+    new_ducat_count = current_ducat_number - ducat_number.to_i
+    self.update(ducats: new_ducat_count)
+  end
+
+  def has_enough_ducats?(ducat_number)
+    return true if self.ducats >= ducat_number
+    false
+  end
+
     private
 
     def changed_locale?

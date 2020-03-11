@@ -32,3 +32,13 @@ bs:
   days_ago: "prije %{number} dana"
   next: 'Sljedeće'
   submitting: 'Spašava se...'
+  days:
+    monday: 'Ponedjeljak'
+    tuesday: 'Utorak'
+    wednesday: 'Srijeda'
+    thursday: 'Četvrtak'
+    friday: 'Petak'
+    saturday: 'Subota'
+    sunday: 'Nedjelja'
+
+

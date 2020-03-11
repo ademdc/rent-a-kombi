@@ -10,6 +10,8 @@
   }
 
   .ducat-info-container {
+    cursor: pointer;
+
     &.about { @extend .light-blue-bg; }
     &.buy { @extend .app-orange-bg; color: white !important; }
 
@@ -30,7 +32,11 @@
       margin-right: 21px;
     }
   }
-
+  .ducats-about-container {
+    p.info {
+      text-align: justify;
+    }
+  }
   .dataTables_filter {
     display: none;
   }

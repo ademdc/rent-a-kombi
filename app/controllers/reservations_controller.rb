@@ -43,10 +43,10 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
-    success = @reservation.confirm!
+    success = @reservation.confirm!(current_user)
 
     if success
-      render json: { message: t('reservation.confirm_success') }, status: :ok
+      render json: { message: t('reservation.confirm_success'), price: @reservation.price }, status: :ok
     else
       render json: { message: t('reservation.confirm_error') }, status: :unprocessable_entity
     end

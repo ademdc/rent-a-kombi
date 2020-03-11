@@ -63,5 +63,13 @@ en:
   days_ago: "%{number} days ago"
   next: 'Next'
   submitting: 'Submitting..'
+  days:
+    monday: 'Monday'
+    tuesday: 'Tuesday'
+    wednesday: 'Wednesday'
+    thursday: 'Thurdsday'
+    friday: 'Friday'
+    saturday: 'Saturday'
+    sunday: 'Sunday'
 
 

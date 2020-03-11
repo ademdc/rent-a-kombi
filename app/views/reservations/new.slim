@@ -6,12 +6,12 @@
   .row.mb-4
     .col-md-6
       h5 = t('reservation.start')
-      p = @reservation.formatted_date(:start)
+      p = @reservation.formatted_date_time_w_week_day(:start)
 
       hr
 
       h5 = t('reservation.end')
-      p = @reservation.formatted_date(:end)
+      p = @reservation.formatted_date_time_w_week_day(:end)
 
       hr
 

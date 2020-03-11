@@ -2,7 +2,7 @@ en:
   reservation:
     confirm: "Confirm the reservation for %{title}"
     confirm_success: 'Reservation confirmed succesfully.'
-    confirm_error: 'Error while confirming reservation.'
+    confirm_error: 'Error while confirming reservation. Check your ducat count.'
     start: 'Start'
     end: 'End'
     renter: 'Renter'

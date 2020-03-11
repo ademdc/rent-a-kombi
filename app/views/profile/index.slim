@@ -43,15 +43,16 @@
                     .col-md-6
                       h5
                         = link_to reservation.post.title, post_path(reservation.post), target: '_blank'
-                      span Price
-                      p = reservation.price_w_currency
+                      p.price
+                        strong = t('reservation.price')
+                        = reservation.price_w_currency
                     .col-md-6
                       p
                         strong = t('profile.from')
-                        = formated_date(reservation.start)
+                        = reservation.formatted_date_time_w_week_day(:start)
                       p
                         strong = t('profile.to')
-                        = formated_date(reservation.end)
+                        = reservation.formatted_date_time_w_week_day(:end)
         #incoming-reservations-tab.tab-pane.fade aria-labelledby="profile-tab-just" role="tabpanel"
          .row
           .col-md-12
@@ -59,7 +60,7 @@
               - unless @incoming_reservations.present?
                 p.mt-4.font-italic = t('profile.no_incoming')
               - @incoming_reservations.each do |reservation|
-                .incoming-reservation data-post-id=reservation.post.id  data-user-name=reservation.user&.full_name data-post-title=reservation.post.title data-reservation-url=confirm_reservations_path data-reservation-id=reservation.id
+                .incoming-reservation data-post-id=reservation.post.id  data-user-name=reservation.user&.full_name data-post-title=reservation.post.title data-reservation-url=confirm_reservations_path data-reservation-id=reservation.id data-ducat-price=reservation.ducat_price
                   .status style="background: #{reservation.confirmed ? 'lightgreen' : 'lightblue' }"
                     h6 = reservation_status(reservation.confirmed)
                   .row
@@ -71,8 +72,8 @@
                         = button_tag check_icon, class: 'js-confirm-reservation btn btn-success btn-sm mr-2'
                       = button_tag trash_icon, class: 'js-delete-reservation btn btn-danger btn-sm'
 
-                      p style='margin-top: 20px;'
-                        strong Price
+                      p.price
+                        strong = t('reservation.price')
                         = reservation.price_w_currency
                     .col-md-6
                       p
@@ -80,10 +81,10 @@
                         = reservation.user&.full_name
                       p
                         strong = t('profile.from')
-                        = formated_date(reservation.start)
+                        = reservation.formatted_date_time_w_week_day(:start)
                       p
                         strong = t('profile.to')
-                        = formated_date(reservation.end)
+                        = reservation.formatted_date_time_w_week_day(:end)
 
         #my-posts-tab.tab-pane.fade aria-labelledby="contact-tab-just" role="tabpanel"
           .row

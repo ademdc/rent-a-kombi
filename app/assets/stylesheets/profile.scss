@@ -24,6 +24,15 @@
     font-weight: bold;
   }
 
+  p.price {
+    background-color: $app-orange;
+    width: 170px;
+    padding: 10px 5px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 17px
+  }
+
   .my-reservations-container, .incoming-reservations-container, .favorite-posts-container, .my-posts-container {
     //box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
     height: 600px;
@@ -71,6 +80,8 @@
       top: 0;
       right: 0;
       bottom: 0;
+      display: flex;
+      justify-content: center;
 
       h6 {
         margin: 5px;

@@ -20,7 +20,7 @@ module RentAKombi
     config.i18n.default_locale = :bs
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales','**', '*.{rb,yml}')]
 
-    config.middleware.insert_before 0, "Rack::Cors" do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource(
@@ -30,5 +30,8 @@ module RentAKombi
           )
       end
     end
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+
   end
 end

@@ -1,8 +1,14 @@
 class Api::V1::UsersController  < Api::V1::ApplicationController
   respond_to :json
 
+  before_action :set_user, only: [:show, :edit, :update]
+
   def index
     render json: User.all
+  end
+
+  def show
+    respond_with @user
   end
 
   def set_push_token
@@ -13,4 +19,14 @@ class Api::V1::UsersController  < Api::V1::ApplicationController
       render json: { errors: @current_user.errors.full_messages }, status: :not_acceptable
     end
   end
+
+    private
+      def respond_with(resource, _opts = {})
+        render json: resource
+      end
+
+
+      def set_user
+        @user = User.find(params[:id])
+      end
 end

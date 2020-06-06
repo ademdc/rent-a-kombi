@@ -1,4 +1,4 @@
-class RegistrationsController < Api::V1::ApplicationController
+class Api::V1::RegistrationsController < Api::V1::ApplicationController
   respond_to :json
 
   skip_before_action :require_login, only: [:create]

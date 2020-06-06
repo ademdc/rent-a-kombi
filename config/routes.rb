@@ -4,6 +4,15 @@ Rails.application.routes.draw do
     root to: 'home#home'
     get 'locale', to: 'application#locale'
 
+    namespace :api, defaults: { format: :json } do
+      namespace :v1 do
+        resources :users
+        resources :sessions
+        resources :posts
+
+      end
+    end
+
     resources :posts do
 
       collection do

@@ -7,8 +7,15 @@ Rails.application.routes.draw do
     namespace :api, defaults: { format: :json } do
       namespace :v1 do
         resources :users
+
         resources :sessions
-        resources :posts
+
+        resources :posts do
+          collection do
+            get :search
+            delete :delete_favorite_post
+          end
+        end
 
       end
     end

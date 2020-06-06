@@ -42,6 +42,7 @@ gem 'jquery-ui-rails'
 gem 'momentjs-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'devise'
+gem 'devise-jwt', '~> 0.5.8'
 gem 'toastr_rails', '2.1.3'
 gem 'cancancan'
 gem 'simple_form'
@@ -70,6 +71,8 @@ gem 'paranoia'
 gem 'nilify_blanks'
 gem 'friendly_id'
 gem 'rails-data-migrations'
+
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

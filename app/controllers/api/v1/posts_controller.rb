@@ -1,10 +1,10 @@
-class Api::V1::PostsController < ApplicationController
+class Api::V1::PostsController < Api::V1::ApplicationController
   respond_to :json
-  #skip_before_action :require_login, only: [:create]
+  skip_before_action :require_login, only: [:search, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :available, :check_address]
 
   def index
-    respond_with Post.all
+    respond_with Post.by_user(@current_user)
   end
 
   def create

@@ -1,4 +1,4 @@
-class Api::V1::PostsController < Api::V1::ApplicationController
+class Api::V1::PostsController < ApplicationController
   respond_to :json
   #skip_before_action :require_login, only: [:create]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :available, :check_address]
